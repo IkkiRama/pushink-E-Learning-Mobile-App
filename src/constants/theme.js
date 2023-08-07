@@ -1,13 +1,22 @@
 const COLORS = {
-  primary: "#312651",
-  secondary: "#444262",
+  font: "#302f2f",
+
+  primary: "#6A5AE0",
+  secondary: "#1352ff",
   tertiary: "#FF7754",
+  yellowCollor: "#ffc107",
+
+  merah: "#dc3545",
+  btnBiru: "#0d46e0",
+  btnHijau: "#1ee592",
+  btnUngu: "#4535d4",
 
   gray: "#83829A",
   gray2: "#C1C0C8",
 
   white: "#F3F4F8",
   lightWhite: "#FAFAFC",
+  colorShadow: rgba(0, 0, 0, 0.1),
 };
 
 const FONT = {
@@ -27,7 +36,7 @@ const SIZES = {
 
 const SHADOWS = {
   small: {
-    shadowColor: "#000",
+    shadowColor: COLORS.colorShadow,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -37,7 +46,7 @@ const SHADOWS = {
     elevation: 2,
   },
   medium: {
-    shadowColor: "#000",
+    shadowColor: COLORS.colorShadow,
     shadowOffset: {
       width: 0,
       height: 2,
