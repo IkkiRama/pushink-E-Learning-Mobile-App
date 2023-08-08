@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Image, ImageBackground, Pressable } from "react-native";
+import { Dimensions, Image, ImageBackground, Pressable } from "react-native";
 import {
   StatusBar,
   ScrollView,
@@ -7,69 +7,57 @@ import {
   Text,
   View,
   FlatList,
+  SafeAreaView,
 } from "react-native";
-import Navbar from "../../components/Navbar";
 
-import Fiturs from "../../components/Fiturs";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 
+import { BottomMenu, Fiturs, Navbar } from "../../components";
 import Colors from "../../utils/Colors";
+import numberFormat from "../../utils/numberFormat";
+import Carousel from "./../../components/carousel/index";
+import { COLORS, SAFEAREAVIEW } from "../../constants";
 
-const HomeMain = ({ navigation }) => {
-  const [EventUtama, setEventUtama] = useState([
-    {
-      image: require("../../assets/Images/s3.jpeg"),
-    },
-    {
-      image: require("../../assets/Images/porsoed.png"),
-    },
-    {
-      image: require("../../assets/Images/desa.png"),
-    },
-    {
-      image: require("../../assets/Images/fosa.png"),
-    },
-  ]);
-
+const Home = ({ navigation }) => {
   const [Merchandise, setMerchandise] = useState([
     {
-      image: require("../../assets/Images/Merch/merch1.jpg"),
+      image: require("../../../assets/Images/Merch/merch1.jpg"),
       nama: "Baju Programmer anti murtad",
       hargaAsli: 200000,
       hargaDiskon: 130000,
     },
 
     {
-      image: require("../../assets/Images/Merch/merch2.jpg"),
+      image: require("../../../assets/Images/Merch/merch2.jpg"),
       nama: "Kaos Gensoed",
       hargaAsli: 120000,
       hargaDiskon: 90000,
     },
 
     {
-      image: require("../../assets/Images/Merch/merch3.jpg"),
+      image: require("../../../assets/Images/Merch/merch3.jpg"),
       nama: "Kaos Lengan Panjang Gensoed",
       hargaAsli: 140000,
       hargaDiskon: 100000,
     },
 
     {
-      image: require("../../assets/Images/Merch/merch4.jpg"),
+      image: require("../../../assets/Images/Merch/merch4.jpg"),
       nama: "Paket 5 Gensoed Merch",
       hargaAsli: 280000,
       hargaDiskon: 200000,
     },
 
     {
-      image: require("../../assets/Images/Merch/merch5.jpg"),
+      image: require("../../../assets/Images/Merch/merch5.jpg"),
       nama: "Paket 6 Gensoed Merch",
       hargaAsli: 300000,
       hargaDiskon: 210000,
     },
 
     {
-      image: require("../../assets/Images/Merch/merch6.jpg"),
+      image: require("../../../assets/Images/Merch/merch6.jpg"),
       nama: "Paket 3 Gensoed Merch",
       hargaAsli: 200000,
       hargaDiskon: 130000,
@@ -78,42 +66,42 @@ const HomeMain = ({ navigation }) => {
 
   const [SeriesArtikel, setSeriesArtikel] = useState([
     {
-      image: require("../../assets/Images/Artikel/Series1.jpg"),
+      image: require("../../../assets/Images/Artikel/Series1.jpg"),
       nama: "Mengupas Tuntas Perkembangan Teknologi Terkini",
       jumlah: 20,
     },
     {
-      image: require("../../assets/Images/Artikel/series2.jpeg"),
+      image: require("../../../assets/Images/Artikel/series2.jpeg"),
       nama: "Menggali Potensi Bisnis Online: Strategi dan Tips Sukses",
       jumlah: 24,
     },
 
     {
-      image: require("../../assets/Images/Artikel/series3.jpeg"),
+      image: require("../../../assets/Images/Artikel/series3.jpeg"),
       nama: "Membangun Karir di Era Digital: Tantangan dan Peluang",
       jumlah: 44,
     },
 
     {
-      image: require("../../assets/Images/Artikel/series4.jpg"),
+      image: require("../../../assets/Images/Artikel/series4.jpg"),
       nama: "Menjelajahi Budaya Populer Dunia: Film, Musik, dan Game",
       jumlah: 17,
     },
 
     {
-      image: require("../../assets/Images/Artikel/BABI.jpg"),
+      image: require("../../../assets/Images/Artikel/BABI.jpg"),
       nama: "Membangun Kemandirian Finansial: Tips dan Trik Mengelola Uang",
       jumlah: 19,
     },
 
     {
-      image: require("../../assets/Images/Artikel/Series6.jpg"),
+      image: require("../../../assets/Images/Artikel/Series6.jpg"),
       nama: "Menjaga Kesehatan Mental di Tengah Kesibukan Modern",
       jumlah: 31,
     },
 
     {
-      image: require("../../assets/Images/Artikel/Series7.jpg"),
+      image: require("../../../assets/Images/Artikel/Series7.jpg"),
       nama: "Membangun Hidup yang Berkelanjutan: Ide dan Inovasi Ramah Lingkungan",
       jumlah: 42,
     },
@@ -121,49 +109,50 @@ const HomeMain = ({ navigation }) => {
 
   const [Podcast, setPodcast] = useState([
     {
-      image: require("../../assets/Images/Podcast/Podcast1.jpeg"),
+      image: require("../../../assets/Images/Podcast/Podcast1.jpeg"),
       nama: "Menjelajahi Dunia Kuliner: Makanan, Minuman, dan Resep-resep Lezat",
       author: "Rifki Romadhan",
     },
 
     {
-      image: require("../../assets/Images/Podcast/Podcast2.jpeg"),
+      image: require("../../../assets/Images/Podcast/Podcast2.jpeg"),
       nama: "Mendiskusikan Isu-isu Kesehatan Mental dan Kesejahteraan Emosional",
       author: "Athar Rizki Yudistira",
     },
 
     {
-      image: require("../../assets/Images/Podcast/Podcast3.jpeg"),
+      image: require("../../../assets/Images/Podcast/Podcast3.jpeg"),
       nama: "Mendiskusikan Isu-isu Feminisme dan Kesetaraan Gender",
       author: "Feillany Maemu Rizki",
     },
 
     {
-      image: require("../../assets/Images/Podcast/Podcast4.jpeg"),
+      image: require("../../../assets/Images/Podcast/Podcast4.jpeg"),
       nama: "Membahas Berbagai Aspek Pariwisata: Destinasi Wisata, Pengalaman, dan Tips Bepergian",
       author: "Raditya Dika",
     },
 
     {
-      image: require("../../assets/Images/Podcast/Podcast5.jpeg"),
+      image: require("../../../assets/Images/Podcast/Podcast5.jpeg"),
       nama: "Menggali Sejarah dan Budaya Populer di Berbagai Negara",
       author: "Dedi Botak",
     },
 
     {
-      image: require("../../assets/Images/Podcast/Podcast6.png"),
+      image: require("../../../assets/Images/Podcast/Podcast6.png"),
       nama: "Membahas Berbagai Macam Genre Musik dari Masa ke Masa",
       author: "Raynold Chin",
     },
 
     {
-      image: require("../../assets/Images/Podcast/Podcast7.jpeg"),
+      image: require("../../../assets/Images/Podcast/Podcast7.jpeg"),
       nama: "Membahas Berbagai Teknologi Terapan: Internet of Things, Artificial Intelligence, dan Lain-lain",
       author: "Chairul Tanjung",
     },
   ]);
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={SAFEAREAVIEW.style}>
+      <Navbar></Navbar>
       <ScrollView>
         <StatusBar
           translucent
@@ -174,21 +163,19 @@ const HomeMain = ({ navigation }) => {
         <View
           style={{
             flex: 1,
-            backgroundColor: Colors.primary,
+            backgroundColor: COLORS.primary,
           }}
         >
           <View
             style={{
-              paddingTop: 40,
               paddingBottom: 20,
               paddingHorizontal: 10,
             }}
           >
-            <Navbar></Navbar>
             <Text
               style={{
                 fontSize: 20,
-                color: "#fff",
+                color: COLORS.white,
                 fontWeight: "600",
                 marginTop: 20,
               }}
@@ -200,43 +187,20 @@ const HomeMain = ({ navigation }) => {
           {/* slider */}
           <View
             style={{
-              backgroundColor: "#fff",
+              backgroundColor: COLORS.white,
               borderTopLeftRadius: 10,
               borderTopRightRadius: 10,
               padding: 5,
               marginTop: 50,
             }}
           >
-            <View style={{ alignItems: "center" }}>
-              <FlatList
-                data={EventUtama}
-                horizontal
-                style={{
-                  width: "90%",
-                  position: "relative",
-                  top: -50,
-                }}
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                  <Image
-                    source={item.image}
-                    style={{
-                      margin: 5,
-                      height: 120,
-                      width: 300,
-                      borderRadius: 10,
-                    }}
-                    resizeMode={"contain"}
-                  ></Image>
-                )}
-              ></FlatList>
-            </View>
+            <Carousel></Carousel>
 
             {/* Fiturs */}
             <Fiturs navigation={navigation}></Fiturs>
 
             {/* Merch */}
-            <View style={{ marginTop: 30 }}>
+            <View style={{ marginTop: 30, paddingHorizontal: 10 }}>
               <Text style={styles.headerSection}>Gensoed Merch</Text>
               <Text style={styles.paragrafSection}>
                 Beli merchandise spesial dari BEM UNSOED
@@ -279,8 +243,8 @@ const HomeMain = ({ navigation }) => {
                       <Text
                         style={{
                           textDecorationLine: "line-through",
-                          color: "#fa3f52",
-                          fontWeight: "500",
+                          color: COLORS.merah,
+                          fontWeight: "600",
                           fontSize: 11,
                         }}
                       >
@@ -289,7 +253,7 @@ const HomeMain = ({ navigation }) => {
 
                       <Text
                         style={{
-                          color: "#212121",
+                          color: COLORS.font,
                           fontWeight: "600",
                           marginLeft: 10,
                           fontSize: 13,
@@ -302,9 +266,8 @@ const HomeMain = ({ navigation }) => {
                 )}
               ></FlatList>
             </View>
-
             {/* Series Artikel */}
-            <View style={{ marginTop: 20 }}>
+            <View style={{ marginTop: 20, paddingHorizontal: 10 }}>
               <Text style={styles.headerSection}>Series Artikel</Text>
               <Text style={styles.paragrafSection}>
                 Nikmati Series Artikel dari BEM UNSOED
@@ -347,7 +310,7 @@ const HomeMain = ({ navigation }) => {
                         <Text
                           style={{
                             fontSize: 20,
-                            color: "#fff",
+                            color: COLORS.white,
                             fontWeight: "700",
                           }}
                           numberOfLines={2}
@@ -359,7 +322,7 @@ const HomeMain = ({ navigation }) => {
                             marginTop: 7,
                             fontSize: 12,
                             fontWeight: "600",
-                            color: "#fff",
+                            color: COLORS.white,
                           }}
                         >
                           {item.jumlah} Artikel
@@ -379,8 +342,7 @@ const HomeMain = ({ navigation }) => {
             marginTop: 20,
             paddingBottom: 20,
             backgroundColor: Colors.primary,
-            // borderTopLeftRadius: 10,
-            // borderTopRightRadius: 10,
+            paddingHorizontal: 10,
           }}
         >
           <Text
@@ -389,12 +351,12 @@ const HomeMain = ({ navigation }) => {
               fontSize: 22,
               padding: 10,
               paddingBottom: 0,
-              color: "#fff",
+              color: COLORS.white,
             }}
           >
             Rekomendasi Podcast
           </Text>
-          <Text style={{ fontSize: 14, color: "#fff", paddingLeft: 10 }}>
+          <Text style={{ fontSize: 14, color: COLORS.white, paddingLeft: 10 }}>
             Jangan Kelewatan Podcast Favorit Gensoed
           </Text>
 
@@ -411,7 +373,7 @@ const HomeMain = ({ navigation }) => {
                   borderWidth: 1,
                   borderColor: Colors.description,
                   elevation: 1,
-                  backgroundColor: "#fff",
+                  backgroundColor: COLORS.white,
                   margin: 5,
                 }}
               >
@@ -437,7 +399,7 @@ const HomeMain = ({ navigation }) => {
                     <Text
                       style={{
                         fontSize: 20,
-                        color: "#212121",
+                        color: COLORS.font,
                         fontWeight: "700",
                       }}
                       numberOfLines={1}
@@ -449,7 +411,7 @@ const HomeMain = ({ navigation }) => {
                         marginTop: 5,
                         fontSize: 14,
                         fontWeight: "500",
-                        color: "#212121",
+                        color: COLORS.font,
                       }}
                     >
                       {item.author}
@@ -471,7 +433,7 @@ const HomeMain = ({ navigation }) => {
                         padding: 7,
                         elevation: 3,
                         borderRadius: 50,
-                        backgroundColor: "#fff",
+                        backgroundColor: COLORS.white,
                       }}
                     />
                   </View>
@@ -481,17 +443,18 @@ const HomeMain = ({ navigation }) => {
           ></FlatList>
         </View>
       </ScrollView>
-    </View>
+      <BottomMenu focused="Beranda" />
+    </SafeAreaView>
   );
 };
 
-export default HomeMain;
+export default Home;
 
 const styles = StyleSheet.create({
   headerSection: {
     fontWeight: "700",
     fontSize: 22,
-    color: "#212121",
+    color: COLORS.font,
   },
 
   paragrafSection: { fontSize: 14, color: Colors.description },

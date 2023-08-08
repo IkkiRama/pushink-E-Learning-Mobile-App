@@ -6,6 +6,7 @@ import {
   Fontisto,
   Ionicons,
 } from "@expo/vector-icons";
+import { COLORS } from "../../constants";
 
 const Fiturs = ({ navigation }) => {
   return (
@@ -155,6 +156,7 @@ const Fiturs = ({ navigation }) => {
 
 const Styles = StyleSheet.create({
   perFitur: {
+    width: "20%",
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 7,
@@ -170,9 +172,10 @@ const Styles = StyleSheet.create({
     borderRadius: 10,
   },
   textFitur: {
-    fontWeight: "500",
-    fontSize: 11,
+    fontWeight: "600",
+    fontSize: 12,
     marginTop: 5,
+    color: COLORS.font,
   },
 });
 

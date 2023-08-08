@@ -1,9 +1,9 @@
 import { Text, TextInput, View } from "react-native";
-import Search from "../assets/Icons/search.svg";
-import Bell from "../assets/Icons/bell.svg";
+import Search from "../../../assets/Icons/search.svg";
+import Bell from "../../../assets/Icons/bell.svg";
 import { Image } from "react-native";
-import Colors from "../utils/Colors";
-
+import Colors from "../../utils/Colors";
+import { COLORS, images } from "../../constants";
 const Navbar = () => {
   return (
     <View
@@ -11,6 +11,10 @@ const Navbar = () => {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
+        paddingTop: 50,
+        paddingBottom: 10,
+        paddingHorizontal: 10,
+        backgroundColor: COLORS.primary,
       }}
     >
       {/* Search */}
@@ -23,8 +27,8 @@ const Navbar = () => {
             paddingVertical: 3,
             borderRadius: 8,
             borderWidth: 0.7,
-            borderColor: "#DBDEE2",
-            backgroundColor: "#fff",
+            borderColor: COLORS.borderColor,
+            backgroundColor: COLORS.white,
             elevation: 2,
             color: "#212121",
             fontSize: 16,
@@ -35,11 +39,11 @@ const Navbar = () => {
       </View>
 
       <View style={{ position: "relative" }}>
-        {/* <IonIcon color="#fff" size={26} name="notifications-outline"></IonIcon> */}
+        {/* <IonIcon colorCOLORS.white size={26} name="notifications-outline"></IonIcon> */}
         <Bell
           width={27}
           height={27}
-          style={{ color: "#fff", backgroundColor: "transparent" }}
+          style={{ color: COLORS.white, backgroundColor: "transparent" }}
         ></Bell>
         <View
           style={{
@@ -56,7 +60,7 @@ const Navbar = () => {
         >
           <Text
             style={{
-              color: "#fff",
+              color: COLORS.white,
               fontSize: 10,
               fontWeight: "600",
             }}
@@ -66,11 +70,22 @@ const Navbar = () => {
         </View>
       </View>
 
-      <Image
-        style={{ width: 33, height: 33, borderRadius: 50 }}
-        source={require("../assets/Images/People/rifki.jpg")}
-        // resizeMode="cover"
-      ></Image>
+      <View
+        style={{
+          width: 37,
+          height: 37,
+          borderRadius: 50,
+          backgroundColor: COLORS.white,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Image
+          style={{ width: 33, height: 33, borderRadius: 50 }}
+          source={images.fotoRifki}
+          // resizeMode="cover"
+        ></Image>
+      </View>
     </View>
   );
 };

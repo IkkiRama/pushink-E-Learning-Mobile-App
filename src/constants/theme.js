@@ -16,7 +16,9 @@ const COLORS = {
 
   white: "#F3F4F8",
   lightWhite: "#FAFAFC",
-  colorShadow: rgba(0, 0, 0, 0.1),
+  colorShadow: "rgba(0, 0, 0, 0.1)",
+
+  borderColor: "#e4e4e7",
 };
 
 const FONT = {
