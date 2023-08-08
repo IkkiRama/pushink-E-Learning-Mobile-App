@@ -14,7 +14,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 
 import { BottomMenu, Fiturs, Navbar } from "../../components";
-import Colors from "../../utils/Colors";
 import numberFormat from "../../utils/numberFormat";
 import Carousel from "./../../components/carousel/index";
 import { COLORS, SAFEAREAVIEW } from "../../constants";
@@ -174,7 +173,7 @@ const Home = ({ navigation }) => {
           >
             <Text
               style={{
-                fontSize: 20,
+                fontSize: 22,
                 color: COLORS.white,
                 fontWeight: "600",
                 marginTop: 20,
@@ -341,7 +340,7 @@ const Home = ({ navigation }) => {
           style={{
             marginTop: 20,
             paddingBottom: 20,
-            backgroundColor: Colors.primary,
+            backgroundColor: COLORS.primary,
             paddingHorizontal: 10,
           }}
         >
@@ -371,7 +370,7 @@ const Home = ({ navigation }) => {
                   width: 220,
                   borderRadius: 10,
                   borderWidth: 1,
-                  borderColor: Colors.description,
+                  borderColor: COLORS.gray,
                   elevation: 1,
                   backgroundColor: COLORS.white,
                   margin: 5,
@@ -457,5 +456,5 @@ const styles = StyleSheet.create({
     color: COLORS.font,
   },
 
-  paragrafSection: { fontSize: 14, color: Colors.description },
+  paragrafSection: { fontSize: 14, fontWeight: "500", color: COLORS.gray },
 });

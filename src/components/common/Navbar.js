@@ -1,10 +1,16 @@
-import { Text, TextInput, View } from "react-native";
+import {
+  Pressable,
+  Text,
+  TextInput,
+  View,
+  KeyboardAvoidingView,
+} from "react-native";
 import Search from "../../../assets/Icons/search.svg";
 import Bell from "../../../assets/Icons/bell.svg";
 import { Image } from "react-native";
-import Colors from "../../utils/Colors";
 import { COLORS, images } from "../../constants";
-const Navbar = () => {
+import { FontAwesome } from "@expo/vector-icons";
+const Navbar = ({ isBack, goBack }) => {
   return (
     <View
       style={{
@@ -17,8 +23,18 @@ const Navbar = () => {
         backgroundColor: COLORS.primary,
       }}
     >
+      {isBack ? (
+        <Pressable onPress={goBack}>
+          <FontAwesome name="chevron-left" size={24} color={COLORS.white} />
+        </Pressable>
+      ) : (
+        ""
+      )}
       {/* Search */}
-      <View style={{ width: "75%", position: "relative" }}>
+      <KeyboardAvoidingView
+        behavior="padding"
+        style={{ width: "75%", position: "relative" }}
+      >
         <TextInput
           placeholder="Mau Cari apa..."
           style={{
@@ -36,7 +52,7 @@ const Navbar = () => {
           }}
         ></TextInput>
         <Search style={{ position: "absolute", top: 6, left: 3 }}></Search>
-      </View>
+      </KeyboardAvoidingView>
 
       <View style={{ position: "relative" }}>
         {/* <IonIcon colorCOLORS.white size={26} name="notifications-outline"></IonIcon> */}
@@ -55,7 +71,7 @@ const Navbar = () => {
             top: -5,
             left: 10,
             borderRadius: 5,
-            backgroundColor: Colors.red,
+            backgroundColor: COLORS.merah,
           }}
         >
           <Text

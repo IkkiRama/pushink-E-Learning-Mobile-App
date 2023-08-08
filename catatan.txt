@@ -1,3 +1,5 @@
+Ketika onload image dicek apakah sudah ada penanganannya.
+
 SEARCH TAMBAH KEYBOARD AVOID
 
 
