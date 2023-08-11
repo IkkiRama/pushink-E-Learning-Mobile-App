@@ -1,3 +1,4 @@
 import Home from "./home";
+import LayananUnsoed from "./layanan unsoed/LayananUnsoed";
 
-export { Home };
+export { Home, LayananUnsoed };

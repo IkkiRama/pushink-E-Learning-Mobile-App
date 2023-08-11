@@ -1,5 +1,6 @@
 import {
   Dimensions,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -7,15 +8,26 @@ import {
   Text,
   View,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { ref, onValue, remove } from "firebase/database";
 import { MaterialIcons } from "@expo/vector-icons";
 import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
-import { Navbar } from "../../components";
-import BottomMenu from "./../../components/common/BottomMenu";
-import { FONT, SIZES } from "../../constants/theme";
+import { BottomMenu, Navbar } from "../../components";
+import { db } from "../../configs/firebase";
 
 const LayananUnsoed = ({ navigation }) => {
+  const [layanan, setLayanan] = useState({});
+  const layananKeys = Object.keys(layanan);
   const minHeightPage = Dimensions.get("window").height;
+
+  useEffect(() => {
+    return onValue(ref(db, "Layanan Unsoed"), (querySnapShot) => {
+      let data = querySnapShot.val() || {};
+      let dataLayanan = { ...data };
+      setLayanan(dataLayanan);
+    });
+  }, []);
+
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar isBack={true} goBack={() => navigation.goBack()} />
@@ -72,32 +84,54 @@ const LayananUnsoed = ({ navigation }) => {
             }}
           >
             {/* Perfile */}
-            <FileLayanan />
-            <FileLayanan />
-            <FileLayanan />
-            <FileLayanan />
-            <FileLayanan />
+            {layananKeys.length > 0 ? (
+              layananKeys.map((key) => (
+                <Pressable
+                  key={key}
+                  onPress={() =>
+                    navigation.navigate("DetailKontak", {
+                      link: layanan[key].link,
+                    })
+                  }
+                >
+                  <View style={styles.layananContainer}>
+                    <MaterialIcons
+                      name="article"
+                      size={45}
+                      color={COLORS.gray}
+                    />
+                    <View style={styles.layananContainerText}>
+                      <Text style={styles.layananTitleText} numberOfLines={1}>
+                        {layanan[key].nama}
+                      </Text>
+                      <Text
+                        style={styles.layananSubTitleText}
+                        numberOfLines={1}
+                      >
+                        {`${layanan[key].tanggal} | ${layanan[key].jumlah_halaman} Halaman`}
+                      </Text>
+                    </View>
+                  </View>
+                </Pressable>
+              ))
+            ) : (
+              <Text
+                style={{
+                  marginTop: 10,
+                  fontSize: 26,
+                  fontWeight: "600",
+                  color: COLORS.gray,
+                  textAlign: "center",
+                }}
+              >
+                Belum ada data
+              </Text>
+            )}
           </View>
         </View>
       </ScrollView>
       <BottomMenu focused="Beranda" />
     </SafeAreaView>
-  );
-};
-
-const FileLayanan = () => {
-  return (
-    <View style={styles.layananContainer}>
-      <MaterialIcons name="article" size={45} color={COLORS.gray} />
-      <View style={styles.layananContainerText}>
-        <Text style={styles.layananTitleText} numberOfLines={1}>
-          Kalendar Akademik 2023 - 2024
-        </Text>
-        <Text style={styles.layananSubTitleText} numberOfLines={1}>
-          20 Juli | 20 Halaman
-        </Text>
-      </View>
-    </View>
   );
 };
 
@@ -107,7 +141,8 @@ const styles = StyleSheet.create({
   layananContainer: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
     marginVertical: 5,
     borderColor: COLORS.borderColor,
     ...SHADOWS.medium,
@@ -116,6 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.lightWhite,
   },
   layananContainerText: {
+    width: "85%",
     paddingLeft: 10,
   },
   layananTitleText: {

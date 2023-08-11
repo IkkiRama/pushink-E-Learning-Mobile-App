@@ -1,6 +1,8 @@
-import { initializeApp } from "firebase/app";
+// import * as firebase from "firebase";
 import { getAuth } from "firebase/auth";
+import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getDatabase } from "firebase/database";
 // Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBv3_vyVJnest7hjDU-8lVpASKPp9quc1g",
@@ -14,6 +16,7 @@ const firebaseConfig = {
   //   @deprecated is deprecated Constants.manifest
 };
 // initialize firebase
-initializeApp(firebaseConfig);
+const FIREBASE = initializeApp(firebaseConfig);
 export const auth = getAuth();
+export const db = getDatabase(FIREBASE);
 export const database = getFirestore();
