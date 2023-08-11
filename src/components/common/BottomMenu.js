@@ -7,10 +7,13 @@ import {
   FontAwesome,
 } from "@expo/vector-icons";
 import { COLORS, SHADOWS } from "../../constants";
-const BottomMenu = ({ focused }) => {
+const BottomMenu = ({ focused, navigationHandle }) => {
   return (
     <View style={styles.menuWraper}>
-      <TouchableOpacity style={styles.menuButton}>
+      <TouchableOpacity
+        style={styles.menuButton}
+        onPress={() => navigationHandle.replace("Beranda")}
+      >
         <Foundation
           name="home"
           size={24}
@@ -28,7 +31,10 @@ const BottomMenu = ({ focused }) => {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.menuButton}>
+      <TouchableOpacity
+        style={styles.menuButton}
+        onPress={() => navigationHandle.navigate("Artikel")}
+      >
         <MaterialIcons
           name="article"
           size={24}
@@ -46,7 +52,10 @@ const BottomMenu = ({ focused }) => {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.menuButton}>
+      <TouchableOpacity
+        style={styles.menuButton}
+        onPress={() => navigationHandle.navigate("Merch")}
+      >
         <FontAwesome
           name="opencart"
           size={24}
@@ -64,7 +73,10 @@ const BottomMenu = ({ focused }) => {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.menuButton}>
+      <TouchableOpacity
+        style={styles.menuButton}
+        onPress={() => navigationHandle.navigate("Adkesma")}
+      >
         <Ionicons
           name="chatbox"
           size={24}
@@ -81,7 +93,10 @@ const BottomMenu = ({ focused }) => {
           Adkesma
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.menuButton}>
+      <TouchableOpacity
+        style={styles.menuButton}
+        onPress={() => navigationHandle.navigate("Profile")}
+      >
         <Ionicons
           name="person"
           size={24}

@@ -442,7 +442,7 @@ const Home = ({ navigation }) => {
           ></FlatList>
         </View>
       </ScrollView>
-      <BottomMenu focused="Beranda" />
+      <BottomMenu focused="Beranda" navigationHandle={navigation} />
     </SafeAreaView>
   );
 };

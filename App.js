@@ -1,16 +1,16 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Home, LayananUnsoed } from "./src/pages";
+import { Artikel, DetailArtikel, Home, LayananUnsoed } from "./src/pages";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Beranda">
         <Stack.Screen
-          name="Home"
+          name="Beranda"
           component={Home}
           options={{ headerShown: false }}
         />
@@ -18,6 +18,18 @@ export default function App() {
         <Stack.Screen
           name="LayananUnsoed"
           component={LayananUnsoed}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Artikel"
+          component={Artikel}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="DetailArtikel"
+          component={DetailArtikel}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
