@@ -5,6 +5,7 @@ const COLORS = {
   secondary: "#1352ff",
   tertiary: "#FF7754",
   yellowCollor: "#ffc107",
+  kategoriCOlor: "#2eb5c0",
 
   merah: "#dc3545",
   btnBiru: "#0d46e0",

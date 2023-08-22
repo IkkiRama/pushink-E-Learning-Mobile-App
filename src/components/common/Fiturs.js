@@ -5,6 +5,8 @@ import {
   MaterialIcons,
   Fontisto,
   Ionicons,
+  Feather,
+  AntDesign,
 } from "@expo/vector-icons";
 import { COLORS } from "../../constants";
 
@@ -68,7 +70,7 @@ const Fiturs = ({ navigation }) => {
       </Pressable>
       <Pressable
         style={Styles.perFitur}
-        onPress={() => navigation.navigate("Merch")}
+        onPress={() => navigation.navigate("Emagz")}
       >
         <View
           style={[
@@ -78,9 +80,9 @@ const Fiturs = ({ navigation }) => {
             },
           ]}
         >
-          <FontAwesome5 name="opencart" size={24} color="#448BDE" />
+          <Feather name="book-open" size={24} color="#448BDE" />
         </View>
-        <Text style={Styles.textFitur}>Merch</Text>
+        <Text style={Styles.textFitur}>E-Magz</Text>
       </Pressable>
       <Pressable
         style={Styles.perFitur}
@@ -100,7 +102,7 @@ const Fiturs = ({ navigation }) => {
       </Pressable>
       <Pressable
         style={Styles.perFitur}
-        onPress={() => navigation.navigate("Games")}
+        onPress={() => navigation.navigate("InfoKos")}
       >
         <View
           style={[
@@ -110,13 +112,9 @@ const Fiturs = ({ navigation }) => {
             },
           ]}
         >
-          <Ionicons
-            name="md-game-controller-outline"
-            size={30}
-            color="#60A85E"
-          />
+          <AntDesign name="home" size={30} color="#60A85E" />
         </View>
-        <Text style={Styles.textFitur}>Games</Text>
+        <Text style={Styles.textFitur}>Info Kos</Text>
       </Pressable>
       <Pressable
         style={Styles.perFitur}

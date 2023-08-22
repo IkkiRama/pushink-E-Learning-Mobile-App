@@ -30,10 +30,9 @@ const BottomMenu = ({ focused, navigationHandle }) => {
           Beranda
         </Text>
       </TouchableOpacity>
-
       <TouchableOpacity
         style={styles.menuButton}
-        onPress={() => navigationHandle.navigate("Artikel")}
+        onPress={() => navigationHandle.replace("Artikel")}
       >
         <MaterialIcons
           name="article"
@@ -54,7 +53,7 @@ const BottomMenu = ({ focused, navigationHandle }) => {
 
       <TouchableOpacity
         style={styles.menuButton}
-        onPress={() => navigationHandle.navigate("Merch")}
+        onPress={() => navigationHandle.replace("Merch")}
       >
         <FontAwesome
           name="opencart"
@@ -75,42 +74,42 @@ const BottomMenu = ({ focused, navigationHandle }) => {
 
       <TouchableOpacity
         style={styles.menuButton}
-        onPress={() => navigationHandle.navigate("Adkesma")}
+        onPress={() => navigationHandle.replace("LaporAja")}
       >
-        <Ionicons
-          name="chatbox"
+        <FontAwesome
+          name="bullhorn"
           size={24}
-          color={focused === "Adkesma" ? COLORS.primary : COLORS.gray}
+          color={focused === "LaporAja" ? COLORS.primary : COLORS.gray}
         />
         <Text
           style={[
             styles.menuTextButton,
             {
-              color: focused === "Adkesma" ? COLORS.primary : COLORS.gray,
+              color: focused === "LaporAja" ? COLORS.primary : COLORS.gray,
             },
           ]}
         >
-          Adkesma
+          LaporAja
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.menuButton}
-        onPress={() => navigationHandle.navigate("Profile")}
+        onPress={() => navigationHandle.replace("Profile")}
       >
         <Ionicons
           name="person"
           size={24}
-          color={focused === "Profil" ? COLORS.primary : COLORS.gray}
+          color={focused === "Profile" ? COLORS.primary : COLORS.gray}
         />
         <Text
           style={[
             styles.menuTextButton,
             {
-              color: focused === "Profil" ? COLORS.primary : COLORS.gray,
+              color: focused === "Profile" ? COLORS.primary : COLORS.gray,
             },
           ]}
         >
-          Profil
+          Profile
         </Text>
       </TouchableOpacity>
     </View>

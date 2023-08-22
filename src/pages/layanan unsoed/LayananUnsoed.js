@@ -18,6 +18,8 @@ import {
   orderByChild,
 } from "firebase/database";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as OpenAnything from "react-native-openanything";
+
 import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
 import { BottomMenu, Navbar } from "../../components";
 import { db } from "../../configs/firebase";
@@ -84,7 +86,7 @@ const LayananUnsoed = ({ navigation }) => {
               backgroundColor: COLORS.white,
               borderTopLeftRadius: 10,
               borderTopRightRadius: 10,
-              paddingHorizontal: 15,
+              paddingHorizontal: 10,
               paddingTop: 10,
               marginTop: 20,
               minHeight: minHeightPage - 100,
@@ -95,11 +97,7 @@ const LayananUnsoed = ({ navigation }) => {
               layananKeys.map((key) => (
                 <Pressable
                   key={key}
-                  onPress={() =>
-                    navigation.navigate("DetailKontak", {
-                      link: layanan[key].link,
-                    })
-                  }
+                  onPress={() => OpenAnything.Pdf(layanan[key].link)}
                 >
                   <View style={styles.layananContainer}>
                     <MaterialIcons
@@ -137,7 +135,7 @@ const LayananUnsoed = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
-      <BottomMenu focused="Beranda" />
+      <BottomMenu focused="Beranda" navigationHandle={navigation} />
     </SafeAreaView>
   );
 };

@@ -189,7 +189,7 @@ const Home = ({ navigation }) => {
               backgroundColor: COLORS.white,
               borderTopLeftRadius: 10,
               borderTopRightRadius: 10,
-              padding: 5,
+              padding: 10,
               marginTop: 50,
             }}
           >
@@ -198,75 +198,8 @@ const Home = ({ navigation }) => {
             {/* Fiturs */}
             <Fiturs navigation={navigation}></Fiturs>
 
-            {/* Merch */}
-            <View style={{ marginTop: 30, paddingHorizontal: 10 }}>
-              <Text style={styles.headerSection}>Gensoed Merch</Text>
-              <Text style={styles.paragrafSection}>
-                Beli merchandise spesial dari BEM UNSOED
-              </Text>
-
-              <FlatList
-                data={Merchandise}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                style={{ marginTop: 15 }}
-                renderItem={({ item }) => (
-                  <Pressable style={{ width: 170, marginHorizontal: 5 }}>
-                    <Image
-                      resizeMode="cover"
-                      style={{
-                        width: "100%",
-                        height: 170,
-                        borderTopLeftRadius: 10,
-                        borderTopRightRadius: 10,
-                      }}
-                      source={item.image}
-                    ></Image>
-                    <Text
-                      numberOfLines={1}
-                      style={{
-                        fontWeight: "700",
-                        fontSize: 17,
-                        marginBottom: 5,
-                      }}
-                    >
-                      {item.nama}
-                    </Text>
-
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text
-                        style={{
-                          textDecorationLine: "line-through",
-                          color: COLORS.merah,
-                          fontWeight: "600",
-                          fontSize: 11,
-                        }}
-                      >
-                        {numberFormat(item.hargaAsli)}
-                      </Text>
-
-                      <Text
-                        style={{
-                          color: COLORS.font,
-                          fontWeight: "600",
-                          marginLeft: 10,
-                          fontSize: 13,
-                        }}
-                      >
-                        {numberFormat(item.hargaDiskon)}
-                      </Text>
-                    </View>
-                  </Pressable>
-                )}
-              ></FlatList>
-            </View>
             {/* Series Artikel */}
-            <View style={{ marginTop: 20, paddingHorizontal: 10 }}>
+            <View style={{ marginTop: 20 }}>
               <Text style={styles.headerSection}>Series Artikel</Text>
               <Text style={styles.paragrafSection}>
                 Nikmati Series Artikel dari BEM UNSOED
@@ -328,6 +261,108 @@ const Home = ({ navigation }) => {
                         </Text>
                       </LinearGradient>
                     </ImageBackground>
+                  </Pressable>
+                )}
+              ></FlatList>
+            </View>
+
+            {/* Sekarang Unsoed Dalam Genggamanmu */}
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <View style={{ width: "60%" }}>
+                <Text
+                  style={{
+                    color: COLORS.font,
+                    fontSize: 23,
+                    fontWeight: "700",
+                    marginBottom: 10,
+                  }}
+                >
+                  #UnsoedInYourHand
+                </Text>
+                <Text
+                  style={{
+                    color: COLORS.font,
+                    fontSize: 15,
+                    fontWeight: "400",
+                  }}
+                >
+                  Menapak Jejak Unsoed Melalui Layar Genggam Anda
+                </Text>
+              </View>
+              <View style={{ width: "40%" }}>
+                <Image
+                  source={{
+                    uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2Fsudirman_bg_reverse.png?alt=media&token=f65d9aed-b981-460e-a790-3d82c57a200e",
+                  }}
+                  resizeMode="contain"
+                  style={{ width: "100%", height: 150 }}
+                />
+              </View>
+            </View>
+
+            {/* Merch */}
+            <View style={{ marginTop: 20 }}>
+              <Text style={styles.headerSection}>Gensoed Merch</Text>
+              <Text style={styles.paragrafSection}>
+                Beli merchandise spesial dari BEM UNSOED
+              </Text>
+
+              <FlatList
+                data={Merchandise}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={{ marginTop: 15 }}
+                renderItem={({ item }) => (
+                  <Pressable style={{ width: 170, marginHorizontal: 5 }}>
+                    <Image
+                      resizeMode="cover"
+                      style={{
+                        width: "100%",
+                        height: 170,
+                        borderTopLeftRadius: 10,
+                        borderTopRightRadius: 10,
+                      }}
+                      source={item.image}
+                    ></Image>
+                    <Text
+                      numberOfLines={1}
+                      style={{
+                        fontWeight: "700",
+                        fontSize: 17,
+                        marginBottom: 5,
+                      }}
+                    >
+                      {item.nama}
+                    </Text>
+
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text
+                        style={{
+                          textDecorationLine: "line-through",
+                          color: COLORS.merah,
+                          fontWeight: "600",
+                          fontSize: 11,
+                        }}
+                      >
+                        {numberFormat(item.hargaAsli)}
+                      </Text>
+
+                      <Text
+                        style={{
+                          color: COLORS.font,
+                          fontWeight: "600",
+                          marginLeft: 10,
+                          fontSize: 13,
+                        }}
+                      >
+                        {numberFormat(item.hargaDiskon)}
+                      </Text>
+                    </View>
                   </Pressable>
                 )}
               ></FlatList>
