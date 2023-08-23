@@ -1,3 +1,10 @@
+import { useState } from "react";
+
+let isDarkMode = false;
+
+const setIsDarkMode = (condition) => (isDarkMode = condition);
+
+// setIsDarkMode(true);
 const COLORS = {
   font: "#302f2f",
 
@@ -15,7 +22,7 @@ const COLORS = {
   gray: "#83829A",
   gray2: "#C1C0C8",
 
-  white: "#F3F4F8",
+  white: isDarkMode ? "#15202B" : "#F3F4F8",
   lightWhite: "#FAFAFC",
   colorShadow: "rgba(0, 0, 0, 0.1)",
 
@@ -67,4 +74,4 @@ const SAFEAREAVIEW = {
   },
 };
 
-export { COLORS, FONT, SIZES, SHADOWS, SAFEAREAVIEW };
+export { isDarkMode, COLORS, FONT, SIZES, SHADOWS, SAFEAREAVIEW };

@@ -8,8 +8,8 @@ import {
 import Search from "../../../assets/Icons/search.svg";
 import Bell from "../../../assets/Icons/bell.svg";
 import { Image } from "react-native";
-import { COLORS, images } from "../../constants";
-import { FontAwesome } from "@expo/vector-icons";
+import { COLORS } from "../../constants";
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 const Navbar = ({ isBack, goBack, withForm = false }) => {
   return (
     <View
@@ -66,8 +66,14 @@ const Navbar = ({ isBack, goBack, withForm = false }) => {
         )}
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <View style={{ position: "relative" }}>
-          {/* <IonIcon colorCOLORS.white size={26} name="notifications-outline"></IonIcon> */}
+        <Pressable>
+          <MaterialCommunityIcons
+            name="theme-light-dark"
+            size={24}
+            color={COLORS.white}
+          />
+        </Pressable>
+        <View style={{ position: "relative", marginLeft: 15 }}>
           <Bell
             width={27}
             height={27}
@@ -98,7 +104,7 @@ const Navbar = ({ isBack, goBack, withForm = false }) => {
           </View>
         </View>
 
-        <View
+        {/* <View
           style={{
             width: 37,
             height: 37,
@@ -114,7 +120,7 @@ const Navbar = ({ isBack, goBack, withForm = false }) => {
             source={images.fotoRifki}
             // resizeMode="cover"
           ></Image>
-        </View>
+        </View> */}
       </View>
     </View>
   );
