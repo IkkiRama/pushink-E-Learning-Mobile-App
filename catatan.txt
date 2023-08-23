@@ -28,6 +28,9 @@ Buatkan penjelasan step by step untuk artikel Cara Membuat Auth Login Dengan Lar
  1064.5714111328125
  LOG  widthCarousel 411.42857142857144
 
+ Cari Kos Deket Unsoed?
+  Temukan kos-kosan terdekat tanpa harus ada rasa khawatir
+
 
  Alur pendaftaran
 

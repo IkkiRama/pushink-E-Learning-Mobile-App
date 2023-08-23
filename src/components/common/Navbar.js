@@ -66,13 +66,13 @@ const Navbar = ({ isBack, goBack, withForm = false }) => {
         )}
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <Pressable>
+        {/* <Pressable>
           <MaterialCommunityIcons
             name="theme-light-dark"
             size={24}
             color={COLORS.white}
           />
-        </Pressable>
+        </Pressable> */}
         <View style={{ position: "relative", marginLeft: 15 }}>
           <Bell
             width={27}

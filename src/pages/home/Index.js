@@ -330,6 +330,7 @@ const Home = ({ navigation }) => {
                         fontWeight: "700",
                         fontSize: 17,
                         marginBottom: 5,
+                        color: COLORS.font,
                       }}
                     >
                       {item.nama}

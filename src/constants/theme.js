@@ -6,7 +6,7 @@ const setIsDarkMode = (condition) => (isDarkMode = condition);
 
 // setIsDarkMode(true);
 const COLORS = {
-  font: "#302f2f",
+  font: isDarkMode ? "#F3F4F8" : "#302f2f",
 
   primary: "#6A5AE0",
   secondary: "#1352ff",
@@ -62,6 +62,16 @@ const SHADOWS = {
       height: 2,
     },
     shadowOpacity: 0.25,
+    shadowRadius: 5.84,
+    elevation: 5,
+  },
+  hard: {
+    shadowColor: COLORS.colorShadow,
+    shadowOffset: {
+      width: 2,
+      height: 5,
+    },
+    shadowOpacity: 0.5,
     shadowRadius: 5.84,
     elevation: 5,
   },
