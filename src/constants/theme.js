@@ -13,6 +13,7 @@ const COLORS = {
   tertiary: "#FF7754",
   yellowCollor: "#ffc107",
   kategoriCOlor: "#2eb5c0",
+  kostWanita: "#FF1F00",
 
   merah: "#dc3545",
   btnBiru: "#0d46e0",

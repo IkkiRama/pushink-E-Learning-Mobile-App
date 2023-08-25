@@ -6,6 +6,7 @@ import {
   DetailArtikel,
   Home,
   InfoKos,
+  InfoKosDetail,
   LaporAja,
   LayananUnsoed,
   Profile,
@@ -56,6 +57,12 @@ export default function App() {
         <Stack.Screen
           name="Profile"
           component={Profile}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="InfoKosDetail"
+          component={InfoKosDetail}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

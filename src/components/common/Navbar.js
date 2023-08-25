@@ -18,7 +18,7 @@ const Navbar = ({ isBack, goBack, withForm = false }) => {
         justifyContent: "space-between",
         alignItems: "center",
         paddingTop: 50,
-        paddingBottom: 10,
+        paddingBottom: 15,
         paddingHorizontal: 10,
         backgroundColor: COLORS.primary,
       }}
@@ -66,13 +66,6 @@ const Navbar = ({ isBack, goBack, withForm = false }) => {
         )}
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        {/* <Pressable>
-          <MaterialCommunityIcons
-            name="theme-light-dark"
-            size={24}
-            color={COLORS.white}
-          />
-        </Pressable> */}
         <View style={{ position: "relative", marginLeft: 15 }}>
           <Bell
             width={27}

@@ -15,7 +15,7 @@ import {
 import React, { useState } from "react";
 import { FontAwesome5, Foundation } from "@expo/vector-icons";
 import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
-import { Carousel, Navbar } from "../../components";
+import { Carousel, Navbar, BottomMenu } from "../../components";
 
 const InfoKos = ({ navigation }) => {
   const minHeightPage = Dimensions.get("window").height;
@@ -126,7 +126,10 @@ const InfoKos = ({ navigation }) => {
 
             {/* KOS */}
             <View>
-              <Pressable style={styles.perKos}>
+              <Pressable
+                onPress={() => navigation.navigate("InfoKosDetail")}
+                style={styles.perKos}
+              >
                 <Image
                   style={styles.imageKos}
                   source={{
@@ -135,7 +138,7 @@ const InfoKos = ({ navigation }) => {
                   height={200}
                 />
                 <View style={styles.kosInfoContainer}>
-                  <View>
+                  <View style={styles.namaKosContainer}>
                     <Text style={styles.namaKos}>KOST PUTRA WISMA DIKA</Text>
                     <View style={styles.jenisKelaminKos("Pria")}>
                       <Text style={styles.jenisKelaminKosText("Pria")}>
@@ -154,10 +157,11 @@ const InfoKos = ({ navigation }) => {
               </Pressable>
             </View>
 
-            <Text style={styles.isEmpty}>Belum ada data</Text>
+            {/* <Text style={styles.isEmpty}>Belum ada data</Text> */}
           </View>
         </View>
       </ScrollView>
+      <BottomMenu focused="Beranda" navigationHandle={navigation}></BottomMenu>
     </SafeAreaView>
   );
 };
@@ -275,20 +279,26 @@ const styles = StyleSheet.create({
     borderLeftColor: COLORS.borderColor,
     borderRightColor: COLORS.borderColor,
   },
-  namaKos: {
+  namaKosContainer: {
     width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  namaKos: {
     fontSize: 18,
     fontWeight: "600",
     color: COLORS.font,
+    marginRight: 20,
   },
   jenisKelaminKos: (jenisKelamin) => ({
-    padding: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
     borderWidth: 1,
-    borderColor: jenisKelamin === "Pria" ? COLORS.secondary : COLORS.primary,
-    // color: jenisKelamin === "Pria" ? COLORS.secondary : COLORS.primary,
+    borderColor: jenisKelamin === "Pria" ? COLORS.secondary : COLORS.merah,
+    borderRadius: 10,
   }),
   jenisKelaminKosText: (jenisKelamin) => ({
-    color: jenisKelamin === "Pria" ? COLORS.secondary : COLORS.primary,
+    color: jenisKelamin === "Pria" ? COLORS.secondary : COLORS.merah,
   }),
   kosInfo: {
     flexDirection: "row",

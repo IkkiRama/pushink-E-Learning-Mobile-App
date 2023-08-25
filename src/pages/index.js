@@ -5,13 +5,15 @@ import DetailArtikel from "./artikel/Detail";
 import InfoKos from "./info kos/index";
 import LaporAja from "./laporAja/index";
 import Profile from "./profile/index";
+import InfoKosDetail from "./info kos/detail";
 
 export {
   Home,
   LayananUnsoed,
+  LaporAja,
+  Profile,
   Artikel,
   DetailArtikel,
   InfoKos,
-  LaporAja,
-  Profile,
+  InfoKosDetail,
 };
