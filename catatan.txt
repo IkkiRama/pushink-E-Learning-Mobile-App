@@ -45,3 +45,38 @@ Buatkan penjelasan step by step untuk artikel Cara Membuat Auth Login Dengan Lar
 • koordinasi terkait screening akan dilakukan melalui grup tersebut.
 
 • setelah bergabung ke dalam grup, pendaftar dipersilahkan untuk mengisi jadwal screening yang tersedia di deskripsi grup.
+
+
+filter: grayscale(100%) brightness(30%);
+how to make grayscale and brightness filter in react native
+
+ID Kost 7-11
+
+
+
+Peraturan umum yang berlaku di kos ini dirancang untuk memastikan bahwa lingkungan tetap bersih, nyaman, dan aman bagi semua penghuni. Setiap penghuni diharapkan menjaga kebersihan kamar dan ruang umum, serta merawat fasilitas dengan baik. Selain itu, jam malam diberlakukan untuk memastikan ketenangan di malam hari. Keamanan juga menjadi prioritas, dengan aturan penguncian pintu dan larangan memberikan akses kepada orang yang tidak dikenal. Selain itu, penghuni diharapkan mengikuti prosedur tertentu ketika memiliki tamu untuk menjaga keamanan bersama.
+
+
+Peraturan tambahan:
+1. Jika tenant merusak atau menghilangkan fasilitas, diwajibkan mengganti 100% fasilitas tersebut dengan pembelian dilakukan oleh pihak pemilik dan barang yang rusak tersebut dapat diambil oleh tenant dengan pengangkutan pribadi.
+
+2. Apabila tenant yang melanggar tata tertib yang diberlakukan pemilik, maka menyetujui untuk dikeluarkan dengan masa peringatan 3 hari, lewat dari 3 hari maka final dikeluarkan (pria melewati lobby, alas sepatu taruh sembarangan, alat kebersihan taruh sembarangan, dsb).
+
+
+
+saya mempunya api kost di https://api.bem-unsoed.com/api/kost
+
+Jadi saya mempunyai masalah, ketika saya klik salah satu filter jenis kelamin, data tidak terender lagi. coba berikan contoh kode apabila saya klik filter jenis kelamin, maka akan terender kos dengan type jenis kelamin yang sesuai.
+
+
+
+
+
+Apabila mengeklik kost dengan id 11 akan membawa ke halaman detail kos dengan mengirimkan id nya saja dan url apinya yaitu https://api.bem-unsoed.com/api/kost/11, maka akan menghasilkan data berikut
+
+bagaimana caranya memisahkan data kos, data fasilitas kos dan image kos pada saat awal mengunjungi halaman detail kost
+
+
+let nomer = "081393066855"
+
+bagaimana caranya saya bisa mendapatkan hasil +6281393066855

@@ -12,14 +12,17 @@ import {
   FlatList,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesome5, Foundation } from "@expo/vector-icons";
 import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
-import { Carousel, Navbar, BottomMenu } from "../../components";
+import { Navbar, BottomMenu } from "../../components";
+import numberFormat from "./../../utils/numberFormat";
 
 const InfoKos = ({ navigation }) => {
   const minHeightPage = Dimensions.get("window").height;
   const [jenisKelaminAktif, setJenisKelaminAktif] = useState("Semua");
+  const [filteredKosts, setFilteredKosts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const jenisKelamin = [
     {
       id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -62,6 +65,80 @@ const InfoKos = ({ navigation }) => {
     },
   ];
 
+  const [dataKos, setDataKos] = useState([]);
+
+  useEffect(() => {
+    fetch("https://api.bem-unsoed.com/api/kost")
+      .then((response) => response.json())
+      .then((result) => setDataKos(result));
+  }, []);
+
+  useEffect(() => {
+    // Filter data kost berdasarkan jenis kelamin yang dipilih
+    if (jenisKelaminAktif !== "Semua") {
+      const filteredData = dataKos.filter((kost) => {
+        if (jenisKelaminAktif === "Putra") {
+          return kost.type === "l";
+        } else {
+          return kost.type === "p";
+        }
+      });
+      setFilteredKosts(filteredData);
+    } else {
+      setFilteredKosts(dataKos);
+    }
+  }, [jenisKelaminAktif, dataKos]);
+
+  useEffect(() => {
+    // Filter data kost berdasarkan pencarian teks
+    if (searchQuery.trim() !== "") {
+      const filteredData = dataKos.filter((kost) =>
+        kost.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredKosts(filteredData);
+    } else {
+      setFilteredKosts(dataKos);
+    }
+  }, [searchQuery, dataKos]);
+
+  const renderKos = () =>
+    filteredKosts.map((kos) => (
+      <Pressable
+        key={kos.id}
+        onPress={() => navigation.navigate("InfoKosDetail", { id: kos.id })}
+        style={styles.perKos}
+      >
+        <Image
+          style={styles.imageKos}
+          source={{
+            uri: `https://api.bem-unsoed.com/api/kost/image/${kos.kost_images[0].image}`,
+          }}
+          height={200}
+        />
+        <View style={styles.kosInfoContainer}>
+          <View style={styles.namaKosContainer}>
+            <Text style={styles.namaKos} numberOfLines={1}>
+              {kos.name}
+            </Text>
+            <View style={styles.jenisKelaminKos(kos.type)}>
+              <Text style={styles.jenisKelaminKosText(kos.type)}>
+                {kos.type === "l" ? "Putra" : "Putri"}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.kosInfo}>
+            <View style={styles.lokasiKos}>
+              <Foundation name="marker" size={24} color={COLORS.font} />
+              <Text style={styles.textLokasiKos}>{kos.region}</Text>
+            </View>
+            <Text style={styles.hargaKos}>
+              {numberFormat(parseInt(kos.price_start))} / tahun
+            </Text>
+          </View>
+        </View>
+      </Pressable>
+    ));
+
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar isBack={true} goBack={() => navigation.goBack()} />
@@ -87,77 +164,53 @@ const InfoKos = ({ navigation }) => {
               <TextInput
                 style={styles.textInputStyle}
                 placeholder="Cari Kos..."
+                value={searchQuery}
+                onChangeText={(value) => setSearchQuery(value)}
               />
 
-              <Pressable
-                style={styles.searchIcon}
-                // onPress={() => console.log("ASU")}
-              >
+              <Pressable style={styles.searchIcon}>
                 <FontAwesome5 name="search" size={24} color={COLORS.font} />
               </Pressable>
             </KeyboardAvoidingView>
 
             {/* Jenis Kelamin */}
-            <View style={styles.jenisKelaminWrapper}>
-              <FlatList
-                horizontal
-                data={jenisKelamin}
-                renderItem={({ item }) => (
-                  <Pressable
-                    onPress={() => setJenisKelaminAktif(item.nama)}
-                    key={item.id}
-                    style={styles.perJenisKelamin(jenisKelaminAktif, item.nama)}
-                  >
-                    {item.icon}
-                    <Text
-                      style={styles.jenisKelaminText(
-                        jenisKelaminAktif,
-                        item.nama
-                      )}
-                    >
-                      {item.nama}
-                    </Text>
-                  </Pressable>
-                )}
-                keyExtractor={(item) => item.id}
-                key={(item) => item.id}
-              ></FlatList>
-            </View>
-
             {/* KOS */}
-            <View>
-              <Pressable
-                onPress={() => navigation.navigate("InfoKosDetail")}
-                style={styles.perKos}
-              >
-                <Image
-                  style={styles.imageKos}
-                  source={{
-                    uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FHouseBackground.jpg?alt=media&token=999574ac-b44c-4989-aa68-de43473c4249",
-                  }}
-                  height={200}
-                />
-                <View style={styles.kosInfoContainer}>
-                  <View style={styles.namaKosContainer}>
-                    <Text style={styles.namaKos}>KOST PUTRA WISMA DIKA</Text>
-                    <View style={styles.jenisKelaminKos("Pria")}>
-                      <Text style={styles.jenisKelaminKosText("Pria")}>
-                        Pria
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.kosInfo}>
-                    <View style={styles.lokasiKos}>
-                      <Foundation name="marker" size={24} color="black" />
-                      <Text style={styles.textLokasiKos}>Purwokerto</Text>
-                    </View>
-                    <Text style={styles.hargaKos}>Rp 4.000.000 / tahun</Text>
-                  </View>
+            {filteredKosts.length >= 1 ? (
+              <>
+                <View style={styles.jenisKelaminWrapper}>
+                  <FlatList
+                    horizontal
+                    data={jenisKelamin}
+                    renderItem={({ item }) => (
+                      <Pressable
+                        onPress={() => setJenisKelaminAktif(item.nama)}
+                        key={item.id}
+                        style={styles.perJenisKelamin(
+                          jenisKelaminAktif,
+                          item.nama
+                        )}
+                      >
+                        {item.icon}
+                        <Text
+                          style={styles.jenisKelaminText(
+                            jenisKelaminAktif,
+                            item.nama
+                          )}
+                        >
+                          {item.nama}
+                        </Text>
+                      </Pressable>
+                    )}
+                    keyExtractor={(item) => item.id}
+                    key={(item) => item.id}
+                  ></FlatList>
                 </View>
-              </Pressable>
-            </View>
 
-            {/* <Text style={styles.isEmpty}>Belum ada data</Text> */}
+                {renderKos()}
+              </>
+            ) : (
+              <Text style={styles.isEmpty}>Belum ada data</Text>
+            )}
           </View>
         </View>
       </ScrollView>
@@ -228,7 +281,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
   },
   jenisKelaminWrapper: {
-    width: "90%",
+    width: "87%",
     alignSelf: "center",
     marginTop: 10,
     marginBottom: 10,
@@ -285,6 +338,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   namaKos: {
+    width: "75%",
     fontSize: 18,
     fontWeight: "600",
     color: COLORS.font,
@@ -294,11 +348,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 5,
     borderWidth: 1,
-    borderColor: jenisKelamin === "Pria" ? COLORS.secondary : COLORS.merah,
+    borderColor: jenisKelamin === "l" ? COLORS.secondary : COLORS.merah,
     borderRadius: 10,
   }),
   jenisKelaminKosText: (jenisKelamin) => ({
-    color: jenisKelamin === "Pria" ? COLORS.secondary : COLORS.merah,
+    fontWeight: "500",
+    color: jenisKelamin === "l" ? COLORS.secondary : COLORS.merah,
   }),
   kosInfo: {
     flexDirection: "row",
@@ -314,6 +369,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "400",
     marginLeft: 10,
+    color: COLORS.font,
+    fontWeight: "400",
   },
   hargaKos: {
     fontSize: 16,
