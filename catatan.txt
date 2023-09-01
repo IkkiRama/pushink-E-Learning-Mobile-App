@@ -1,4 +1,8 @@
 Ketika onload image dicek apakah sudah ada penanganannya.
+Ditambahkan fitur kostemer care mirip kaya BliBli
+
+
+
 
 SEARCH TAMBAH KEYBOARD AVOID
 
@@ -8,12 +12,6 @@ Layanan Informasi Pelecehan Seksual
 
 Bantu orang-orang disekitarmu dari tindak kejahatan seksual! Kalau bukan kita, siapa lagi?
 
-
-Buatkan penjelasan step by step untuk artikel Cara Membuat Auth Login Dengan Laravel. Untuk beberapa step by stepnya seperti berikut:
-1. Melakukan Instalasi Laravel
-2. Melakukan Konfigurasi Database
-3. Menghubungkan Laravel dengan Bootstrap
-4. Membuat Tabel Artikel
 
 361.1428527832031
  LOG  widthCarousel 411.42857142857144
@@ -30,21 +28,6 @@ Buatkan penjelasan step by step untuk artikel Cara Membuat Auth Login Dengan Lar
 
  Cari Kos Deket Unsoed?
   Temukan kos-kosan terdekat tanpa harus ada rasa khawatir
-
-
- Alur pendaftaran
-
-• download template cv di website.
-
-• wajib mengisi cv sesuai format.
-
-• isi google form pendaftaran sesuai data yang diminta.
-
-• masuk ke dalam grup wa untuk screening.
-
-• koordinasi terkait screening akan dilakukan melalui grup tersebut.
-
-• setelah bergabung ke dalam grup, pendaftar dipersilahkan untuk mengisi jadwal screening yang tersedia di deskripsi grup.
 
 
 filter: grayscale(100%) brightness(30%);
@@ -80,3 +63,43 @@ bagaimana caranya memisahkan data kos, data fasilitas kos dan image kos pada saa
 let nomer = "081393066855"
 
 bagaimana caranya saya bisa mendapatkan hasil +6281393066855
+
+
+
+
+jumlah_halaman 52
+link "https://drive.google.com/file/d/1Ya3zN_qwcGlHK29zbvj0Fk7bG0Mtk8UM/view?usp=drive_link"
+nama "Handbook Minat dan Bakat"
+tanggal August 11, 2023 at 8:06:47 AM UTC+7
+https://instagram.com/GENSOED.MERCH
+https://api.whatsapp.com/send?phone=6285717971808
+business.merchunsoed@gmail.com
+
+Gensoed merch merupakan produk dari BEM Universitas Jenderal Soedirman untuk mahasiswa Unsoed yang mencerminkan anak Unsoed banget. Produk ini juga bisa digunakan sama kalian yang berkeinginan masuk unsoed biar lebih semangat. Selain itu, produk ini juga bisa banget dipakai buat masyarakat umum karena tampilannya yang trendi bisa bikin kamu lebih kece😊
+
+Jangan lupa kunjungi akun instagram kami di @gensoed.merch  biar ga ketinggalan informasi🔥
+
+
+
+Untuk covernya ambil dari array images index 0
+
+{
+    nama: 
+    harga:
+    deskripsi:
+    link:
+    images:[
+        "images1.jpg",
+        "images1.jpg",
+        "images1.jpg",
+        "images1.jpg",
+        "images1.jpg",
+        "images1.jpg",
+        "images1.jpg",
+        "images1.jpg",
+        "images1.jpg",
+    ]
+}
+
+
+

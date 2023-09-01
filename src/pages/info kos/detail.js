@@ -6,11 +6,9 @@ import {
   Text,
   View,
   Image,
-  FlatList,
-  Dimensions,
   Pressable,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
 import { FasilitasKhusus, KostCarousel, Navbar } from "../../components";
@@ -85,28 +83,6 @@ const InfoKosDetail = ({ route, navigation }) => {
       nama: "CCTV",
       image:
         "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FKost%2FFasilitas%20Umum%2FCCTV.png?alt=media&token=742edad8-b942-402a-aff3-a8645f626ff2",
-    },
-  ];
-  const FasilitasKos = [
-    {
-      id: 1,
-      fasilitas: "AC",
-    },
-    {
-      id: 2,
-      fasilitas: "Kamar mandi dalam",
-    },
-    {
-      id: 3,
-      fasilitas: "Wanita malam",
-    },
-    {
-      id: 4,
-      fasilitas: "Ruang karoke",
-    },
-    {
-      id: 5,
-      fasilitas: "Bioskop",
     },
   ];
 
