@@ -80,11 +80,21 @@ Gensoed merch merupakan produk dari BEM Universitas Jenderal Soedirman untuk mah
 Jangan lupa kunjungi akun instagram kami di @gensoed.merch  biar ga ketinggalan informasi🔥
 
 
+Dengan jaket dan baju Gensoed "EcoVision" ini, kami menggabungkan gaya Gen Z yang kreatif dengan komitmen kami terhadap tujuan pembangunan berkelanjutan. Terbuat dari bahan ramah lingkungan yang berkualitas tinggi, jaket ini memberikan tampilan modern yang mendukung perubahan positif. Ketika Anda mengenakannya, Anda merayakan kreativitas dan berkontribusi pada perjalanan menuju terwujudnya Tujuan Pembangunan Berkelanjutan. Bersiaplah menjadi agen perubahan!\n
+\n
+PAKET GENSOED MERCH 2\n
+\n
+What will you get?\n
+- 1 pcs Jaket Gensoed\n
+- 2 pcs Kaos Gensoed (Pilih design)\n 
+\n
+FREE RANDOM KEYRING AND STICKER\n
+SIZE HARAP DICANTUMKAN DI NOTES\n
 
 Untuk covernya ambil dari array images index 0
 
 {
-    nama: 
+    nama:  
     harga:
     deskripsi:
     link:

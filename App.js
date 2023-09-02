@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   Artikel,
   DetailArtikel,
+  Emagz,
   Home,
   InfoKos,
   InfoKosDetail,
@@ -63,6 +64,12 @@ export default function App() {
         <Stack.Screen
           name="InfoKosDetail"
           component={InfoKosDetail}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Emagz"
+          component={Emagz}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

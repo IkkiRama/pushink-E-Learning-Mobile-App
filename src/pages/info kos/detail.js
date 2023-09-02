@@ -7,13 +7,13 @@ import {
   View,
   Image,
   Pressable,
+  Linking,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-
-import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
-import { FasilitasKhusus, KostCarousel, Navbar } from "../../components";
 import { Foundation, Ionicons } from "@expo/vector-icons";
-import { Linking } from "react-native";
+
+import { COLORS, SAFEAREAVIEW } from "../../constants";
+import { FasilitasKhusus, KostCarousel, Navbar } from "../../components";
 
 const InfoKosDetail = ({ route, navigation }) => {
   const { id } = route.params;
@@ -116,6 +116,13 @@ const InfoKosDetail = ({ route, navigation }) => {
                 <Foundation name="marker" size={24} color={COLORS.font} />
                 <Text style={styles.alamatKos}>{kos.region}</Text>
               </View>
+            </View>
+
+            <View style={styles.hargaContainer}>
+              <Text style={styles.hargaText}>
+                {numberFormat(parseInt(kos.price_start))}
+                <Text style={styles.keteranganHarga}> / Tahun</Text>
+              </Text>
             </View>
 
             <View style={styles.peraturanUmumKos}>
@@ -280,8 +287,20 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
 
+  hargaContainer: {
+    marginTop: 15,
+  },
+  hargaText: {
+    fontSize: 23,
+    color: COLORS.font,
+    fontWeight: "600",
+  },
+  keteranganHarga: {
+    fontSize: 16,
+  },
+
   peraturanUmumKos: {
-    marginTop: 20,
+    marginTop: 15,
     marginBottom: 10,
   },
   peraturanUmumKosTitle: {

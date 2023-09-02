@@ -6,6 +6,7 @@ import InfoKos from "./info kos/index";
 import LaporAja from "./laporAja/index";
 import Profile from "./profile/index";
 import InfoKosDetail from "./info kos/detail";
+import Emagz from "./emagz/index";
 
 export {
   Home,
@@ -16,4 +17,5 @@ export {
   DetailArtikel,
   InfoKos,
   InfoKosDetail,
+  Emagz,
 };

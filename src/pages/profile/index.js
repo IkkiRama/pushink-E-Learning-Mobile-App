@@ -13,6 +13,7 @@ import {
   FontAwesome,
   FontAwesome5,
   Octicons,
+  Entypo,
 } from "@expo/vector-icons";
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 import { BottomMenu, Navbar } from "../../components";
@@ -80,6 +81,14 @@ const Profile = ({ navigation }) => {
 
           {/* Main content */}
           <View style={styles.mainContainer}>
+            <View style={styles.perFitur}>
+              <View style={styles.nameFiturContainer}>
+                <Entypo name="help-with-circle" size={24} color={COLORS.font} />
+                <Text style={styles.profileFitur}>Bantuan</Text>
+              </View>
+              <FontAwesome name="chevron-right" size={24} color={COLORS.font} />
+            </View>
+
             <View style={styles.perFitur}>
               <View style={styles.nameFiturContainer}>
                 <FontAwesome5 name="question" size={24} color={COLORS.font} />
