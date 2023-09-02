@@ -7,6 +7,8 @@ import LaporAja from "./laporAja/index";
 import Profile from "./profile/index";
 import InfoKosDetail from "./info kos/detail";
 import Emagz from "./emagz/index";
+import Merch from "./merch/index";
+import DetailMerch from "./merch/detail";
 
 export {
   Home,
@@ -18,4 +20,6 @@ export {
   InfoKos,
   InfoKosDetail,
   Emagz,
+  Merch,
+  DetailMerch,
 };

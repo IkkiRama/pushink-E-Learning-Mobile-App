@@ -10,7 +10,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { COLORS, images } from "../../constants";
 import { ImageBackground } from "react-native";
 
-const KostCarousel = ({ ImageKos = [] }) => {
+const DetailMerchCarousel = ({ ImageKos = [] }) => {
   const flatlistRef = useRef();
   const widthCarousel = Dimensions.get("window").width;
   const [activeIndex, setActiveIndex] = useState(0);
@@ -53,7 +53,7 @@ const KostCarousel = ({ ImageKos = [] }) => {
                 isLoadedImage
                   ? images.defaultBanner
                   : {
-                      uri: `https://api.bem-unsoed.com/api/kost/image/${item.image}`,
+                      uri: item.image,
                     }
               }
               style={{ height: "100%", width: widthCarousel }}
@@ -117,7 +117,7 @@ const KostCarousel = ({ ImageKos = [] }) => {
   );
 };
 
-export default KostCarousel;
+export default DetailMerchCarousel;
 
 const styles = StyleSheet.create({
   imageSlider: {

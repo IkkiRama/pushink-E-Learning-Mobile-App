@@ -10,15 +10,26 @@ import React, { useEffect, useRef, useState } from "react";
 import { COLORS, images } from "../../constants";
 import { ImageBackground } from "react-native";
 
-const KostCarousel = ({ ImageKos = [] }) => {
+const MerchCarousel = ({ widthCarousel }) => {
   const flatlistRef = useRef();
-  const widthCarousel = Dimensions.get("window").width;
   const [activeIndex, setActiveIndex] = useState(0);
   const [isLoadedImage, setIsLoadedImage] = useState(true);
+  const [ImageCarousel, setImageCarousel] = useState([
+    {
+      id: "Q4cUfTVGnVO80SlUx5t6",
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FMerch%2FGENSOED%20MERCH%20slide%201.jpg?alt=media&token=24b3d55c-c819-4952-b96e-9be1af5e2db1",
+    },
+    {
+      id: "i4Ko2tNO8oBD1d3occ98",
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FMerch%2FGENSOED%20MERCH%20slide%202.jpg?alt=media&token=9b46e5fa-177b-4b2f-8ea5-9cba94422481",
+    },
+  ]);
 
   useEffect(() => {
     let interval = setInterval(() => {
-      if (activeIndex === ImageKos.length - 1) {
+      if (activeIndex === ImageCarousel.length - 1) {
         flatlistRef.current.scrollToIndex({
           index: 0,
           animation: true,
@@ -42,26 +53,26 @@ const KostCarousel = ({ ImageKos = [] }) => {
 
   const renderCarouselItem = ({ item, index }) => {
     return (
-      <View key={index} style={{ height: "100%" }}>
-        {Object.keys(ImageKos).length === 0 ? (
-          ""
-        ) : (
-          <ImageBackground source={images.defaultBanner}>
-            <Image
-              onLoad={() => setIsLoadedImage(false)}
-              source={
-                isLoadedImage
-                  ? images.defaultBanner
-                  : {
-                      uri: `https://api.bem-unsoed.com/api/kost/image/${item.image}`,
-                    }
-              }
-              style={{ height: "100%", width: widthCarousel }}
-              resizeMode={isLoadedImage ? "contain" : "cover"}
-            />
-          </ImageBackground>
-        )}
-      </View>
+      //   <View key={index} style={{ height: "100%", width: "100%" }}>
+      Object.keys(ImageCarousel).length === 0 ? (
+        ""
+      ) : (
+        <ImageBackground source={images.defaultBanner}>
+          <Image
+            onLoad={() => setIsLoadedImage(false)}
+            source={
+              isLoadedImage
+                ? images.defaultBanner
+                : {
+                    uri: item.image,
+                  }
+            }
+            style={{ height: "100%", width: widthCarousel }}
+            resizeMode={isLoadedImage ? "contain" : "cover"}
+          />
+        </ImageBackground>
+      )
+      //   </View>
     );
   };
 
@@ -74,14 +85,14 @@ const KostCarousel = ({ ImageKos = [] }) => {
   };
 
   const renderIndexIndicators = (activeIndex) =>
-    Object.keys(ImageKos).length === 0
+    Object.keys(ImageCarousel).length === 0
       ? ""
-      : ImageKos.map((dot, index) => {
+      : ImageCarousel.map((dot, index) => {
           return (
             <View key={index} style={styles.indexImageContainer}>
               <View style={styles.indexImage}>
                 <Text style={styles.indexImageText}>{`${activeIndex + 1}/${
-                  ImageKos.length
+                  ImageCarousel.length
                 }`}</Text>
               </View>
             </View>
@@ -93,8 +104,8 @@ const KostCarousel = ({ ImageKos = [] }) => {
       <FlatList
         horizontal
         ref={flatlistRef}
-        key={ImageKos}
-        data={ImageKos}
+        key={ImageCarousel}
+        data={ImageCarousel}
         pagingEnabled={true}
         onScroll={handleScroll}
         getItemLayout={getItemLayout}
@@ -117,7 +128,7 @@ const KostCarousel = ({ ImageKos = [] }) => {
   );
 };
 
-export default KostCarousel;
+export default MerchCarousel;
 
 const styles = StyleSheet.create({
   imageSlider: {

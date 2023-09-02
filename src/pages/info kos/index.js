@@ -20,9 +20,12 @@ import numberFormat from "./../../utils/numberFormat";
 
 const InfoKos = ({ navigation }) => {
   const minHeightPage = Dimensions.get("window").height;
-  const [jenisKelaminAktif, setJenisKelaminAktif] = useState("Semua");
-  const [filteredKosts, setFilteredKosts] = useState([]);
+
+  const [dataKos, setDataKos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredKosts, setFilteredKosts] = useState([]);
+  const [jenisKelaminAktif, setJenisKelaminAktif] = useState("Semua");
+
   const jenisKelamin = [
     {
       id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -64,8 +67,6 @@ const InfoKos = ({ navigation }) => {
       ),
     },
   ];
-
-  const [dataKos, setDataKos] = useState([]);
 
   useEffect(() => {
     fetch("https://api.bem-unsoed.com/api/kost")

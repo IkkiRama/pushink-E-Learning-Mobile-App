@@ -4,12 +4,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   Artikel,
   DetailArtikel,
+  DetailMerch,
   Emagz,
   Home,
   InfoKos,
   InfoKosDetail,
   LaporAja,
   LayananUnsoed,
+  Merch,
   Profile,
 } from "./src/pages";
 
@@ -70,6 +72,18 @@ export default function App() {
         <Stack.Screen
           name="Emagz"
           component={Emagz}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Merch"
+          component={Merch}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="DetailMerch"
+          component={DetailMerch}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

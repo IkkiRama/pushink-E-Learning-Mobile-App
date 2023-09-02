@@ -4,5 +4,16 @@ import Carousel from "./carousel/index";
 import BottomMenu from "./common/BottomMenu";
 import KostCarousel from "./carousel/kostCarousel";
 import FasilitasKhusus from "./pages/kost/fasilitas";
+import MerchCarousel from "./carousel/merchCarousel";
+import DetailMerchCarousel from "./carousel/detailMerchCarousel";
 
-export { Navbar, Fiturs, Carousel, BottomMenu, KostCarousel, FasilitasKhusus };
+export {
+  Navbar,
+  Fiturs,
+  Carousel,
+  BottomMenu,
+  KostCarousel,
+  FasilitasKhusus,
+  MerchCarousel,
+  DetailMerchCarousel,
+};
