@@ -349,12 +349,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 5,
     borderWidth: 1,
-    borderColor: jenisKelamin === "l" ? COLORS.secondary : COLORS.merah,
+    borderColor: jenisKelamin === "l" ? COLORS.secondary : COLORS.kostWanita,
     borderRadius: 10,
   }),
   jenisKelaminKosText: (jenisKelamin) => ({
     fontWeight: "500",
-    color: jenisKelamin === "l" ? COLORS.secondary : COLORS.merah,
+    color: jenisKelamin === "l" ? COLORS.secondary : COLORS.kostWanita,
   }),
   kosInfo: {
     flexDirection: "row",

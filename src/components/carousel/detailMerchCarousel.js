@@ -101,7 +101,7 @@ const DetailMerchCarousel = ({ ImageKos = [] }) => {
         renderItem={renderCarouselItem}
         keyExtractor={(item) => item.id}
         showsHorizontalScrollIndicator={false}
-        style={{ height: 250, position: "relative" }}
+        style={{ height: 300, position: "relative" }}
       />
       <View
         style={{
@@ -120,12 +120,6 @@ const DetailMerchCarousel = ({ ImageKos = [] }) => {
 export default DetailMerchCarousel;
 
 const styles = StyleSheet.create({
-  imageSlider: {
-    height: 300,
-  },
-  indexImageContainer: {
-    position: "relative",
-  },
   indexImageContainer: {
     position: "absolute",
     bottom: 20,

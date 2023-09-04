@@ -6,6 +6,7 @@ import KostCarousel from "./carousel/kostCarousel";
 import FasilitasKhusus from "./pages/kost/fasilitas";
 import MerchCarousel from "./carousel/merchCarousel";
 import DetailMerchCarousel from "./carousel/detailMerchCarousel";
+import MerchCard from "./common/card/merchCard";
 
 export {
   Navbar,
@@ -16,4 +17,5 @@ export {
   FasilitasKhusus,
   MerchCarousel,
   DetailMerchCarousel,
+  MerchCard,
 };
