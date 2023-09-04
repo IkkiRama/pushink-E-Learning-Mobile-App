@@ -11,7 +11,7 @@ import {
   Image,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
+import { COLORS, SAFEAREAVIEW } from "../../constants";
 import { Navbar, BottomMenu, MerchCarousel, MerchCard } from "../../components";
 import numberFormat from "./../../utils/numberFormat";
 

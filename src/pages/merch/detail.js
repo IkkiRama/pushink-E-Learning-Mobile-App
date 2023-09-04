@@ -15,7 +15,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons, Foundation } from "@expo/vector-icons";
 
 import { COLORS, SAFEAREAVIEW } from "../../constants";
-import { Navbar, DetailMerchCarousel, MerchCard } from "../../components";
+import {
+  Navbar,
+  DetailMerchCarousel,
+  MerchCard,
+  RekomendasiProduk,
+} from "../../components";
 import numberFormat from "./../../utils/numberFormat";
 
 const DetailMerch = ({ navigation }) => {
@@ -129,10 +134,6 @@ const DetailMerch = ({ navigation }) => {
                   </Text>
                 </View>
               </View>
-
-              <Pressable style={styles.merchCta}>
-                <Text style={styles.merchCtaText}>Kunjungi Toko</Text>
-              </Pressable>
             </View>
 
             {/* Rekomendasi Produk */}
@@ -140,7 +141,22 @@ const DetailMerch = ({ navigation }) => {
               <Text style={styles.rekomendasiProdukTitle}>
                 Rekomendasi Produk
               </Text>
-              <View style={styles.rekomendasiProduk}>
+              <FlatList
+                style={styles.rekomendasiProduk}
+                horizontal
+                data={[1, 2, 3, 4]}
+                renderItem={({ item }) => (
+                  <RekomendasiProduk key={item} navigation={navigation} />
+                )}
+              />
+            </View>
+
+            {/* Mungkin anda suka */}
+            <View style={styles.rekomendasiProdukContainer}>
+              <Text style={styles.rekomendasiProdukTitle}>
+                Mungkin anda suka
+              </Text>
+              <View style={styles.mungkinAndaSukaProduk}>
                 <MerchCard navigation={navigation} />
                 <MerchCard navigation={navigation} />
                 <MerchCard navigation={navigation} />
@@ -265,24 +281,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "400",
   },
-  merchCta: {
-    flex: 1,
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: COLORS.gray,
-    paddingVertical: 10,
-    marginLeft: 10,
-    borderRadius: 7,
-  },
-  merchCtaText: {
-    color: COLORS.font,
-    fontWeight: "400",
-    fontSize: 16,
+
+  rekomendasiProduk: {
+    paddingBottom: 5,
+    marginBottom: 10,
   },
 
-  rekomendasiProdukContainer: {},
-  rekomendasiProdukTitle: {},
-  rekomendasiProduk: {},
+  rekomendasiProdukTitle: {
+    paddingHorizontal: 10,
+    color: COLORS.font,
+    fontWeight: "600",
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  mungkinAndaSukaProduk: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
 
   ctaSelengkapnya: {
     justifyContent: "center",

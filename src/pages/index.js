@@ -9,6 +9,8 @@ import InfoKosDetail from "./info kos/detail";
 import Emagz from "./emagz/index";
 import Merch from "./merch/index";
 import DetailMerch from "./merch/detail";
+import Bantuan from "./profile/bantuan";
+import LaporEror from "./profile/laporEror";
 
 export {
   Home,
@@ -22,4 +24,6 @@ export {
   Emagz,
   Merch,
   DetailMerch,
+  Bantuan,
+  LaporEror,
 };

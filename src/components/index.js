@@ -7,6 +7,7 @@ import FasilitasKhusus from "./pages/kost/fasilitas";
 import MerchCarousel from "./carousel/merchCarousel";
 import DetailMerchCarousel from "./carousel/detailMerchCarousel";
 import MerchCard from "./common/card/merchCard";
+import RekomendasiProduk from "./common/card/rekomendasiProduk";
 
 export {
   Navbar,
@@ -18,4 +19,5 @@ export {
   MerchCarousel,
   DetailMerchCarousel,
   MerchCard,
+  RekomendasiProduk,
 };

@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import {
   Artikel,
+  Bantuan,
   DetailArtikel,
   DetailMerch,
   Emagz,
@@ -10,6 +11,7 @@ import {
   InfoKos,
   InfoKosDetail,
   LaporAja,
+  LaporEror,
   LayananUnsoed,
   Merch,
   Profile,
@@ -84,6 +86,18 @@ export default function App() {
         <Stack.Screen
           name="DetailMerch"
           component={DetailMerch}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Bantuan"
+          component={Bantuan}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="LaporEror"
+          component={LaporEror}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

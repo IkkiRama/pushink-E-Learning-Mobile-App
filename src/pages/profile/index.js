@@ -17,6 +17,7 @@ import {
 } from "@expo/vector-icons";
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 import { BottomMenu, Navbar } from "../../components";
+import { Pressable } from "react-native";
 
 const Profile = ({ navigation }) => {
   return (
@@ -81,36 +82,48 @@ const Profile = ({ navigation }) => {
 
           {/* Main content */}
           <View style={styles.mainContainer}>
-            <View style={styles.perFitur}>
+            <Pressable
+              onPress={() => navigation.navigate("Bantuan")}
+              style={styles.perFitur}
+            >
               <View style={styles.nameFiturContainer}>
                 <Entypo name="help-with-circle" size={24} color={COLORS.font} />
                 <Text style={styles.profileFitur}>Bantuan</Text>
               </View>
               <FontAwesome name="chevron-right" size={24} color={COLORS.font} />
-            </View>
+            </Pressable>
 
-            <View style={styles.perFitur}>
+            <Pressable
+              onPress={() => navigation.navigate("Bantuan")}
+              style={styles.perFitur}
+            >
               <View style={styles.nameFiturContainer}>
                 <FontAwesome5 name="question" size={24} color={COLORS.font} />
                 <Text style={styles.profileFitur}>FAQ</Text>
               </View>
               <FontAwesome name="chevron-right" size={24} color={COLORS.font} />
-            </View>
-            <View style={styles.perFitur}>
+            </Pressable>
+            <Pressable
+              onPress={() => navigation.navigate("Bantuan")}
+              style={styles.perFitur}
+            >
               <View style={styles.nameFiturContainer}>
                 <FontAwesome5 name="info" size={24} color={COLORS.font} />
                 <Text style={styles.profileFitur}>Tentang Aplikasi</Text>
               </View>
               <FontAwesome name="chevron-right" size={24} color={COLORS.font} />
-            </View>
+            </Pressable>
 
-            <View style={styles.perFitur}>
+            <Pressable
+              onPress={() => navigation.navigate("Bantuan")}
+              style={styles.perFitur}
+            >
               <View style={styles.nameFiturContainer}>
                 <Octicons name="sign-out" size={24} color={COLORS.font} />
                 <Text style={styles.profileFitur}>Keluar</Text>
               </View>
               <FontAwesome name="chevron-right" size={24} color={COLORS.font} />
-            </View>
+            </Pressable>
           </View>
         </View>
       </ScrollView>
