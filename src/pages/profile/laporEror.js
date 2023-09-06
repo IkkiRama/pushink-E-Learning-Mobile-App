@@ -5,21 +5,42 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  Dimensions,
   Pressable,
-  Image,
   Alert,
   TextInput,
   KeyboardAvoidingView,
 } from "react-native";
-import React from "react";
-import * as OpenAnything from "react-native-openanything";
-import { FontAwesome5, FontAwesome, Feather } from "@expo/vector-icons";
+import React, { useState } from "react";
+import { ref, push } from "firebase/database";
 
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 import { Navbar, BottomMenu } from "../../components";
+import { db } from "../../configs/firebase";
 
 const LaporEror = ({ navigation }) => {
+  const [judul, setJudul] = useState("");
+  const [message, setMessage] = useState("");
+
+  const resetData = () => {
+    setJudul("");
+    setMessage("");
+  };
+
+  const submitLaporan = () => {
+    if (judul.trim() === "" || message.trim() == "") {
+      Alert.alert("Error", "Harap isi semua data!");
+    } else {
+      push(ref(db, "Laporan"), {
+        nama: "Rifki Romadhan",
+        email: "Rifkivamaus@gmail.com",
+        judul,
+        message,
+      });
+      resetData();
+      Alert.alert("Sukses", "Data berhasil ditambahkan");
+      navigation.replace("Profile");
+    }
+  };
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar
@@ -41,8 +62,10 @@ const LaporEror = ({ navigation }) => {
                 <Text style={styles.formText}>Judul eror</Text>
                 <KeyboardAvoidingView>
                   <TextInput
+                    value={judul}
                     style={styles.textInput}
                     placeholder="Masukkan judul eror anda..."
+                    onChangeText={(value) => setJudul(value)}
                   ></TextInput>
                 </KeyboardAvoidingView>
               </View>
@@ -51,15 +74,17 @@ const LaporEror = ({ navigation }) => {
                 <Text style={styles.formText}>Terjadi eror seperti apa?</Text>
                 <KeyboardAvoidingView>
                   <TextInput
+                    value={message}
                     multiline={true}
                     numberOfLines={4}
                     style={[styles.textInput, { textAlignVertical: "top" }]}
                     placeholder="Masukkan judul eror anda..."
+                    onChangeText={(value) => setMessage(value)}
                   ></TextInput>
                 </KeyboardAvoidingView>
               </View>
 
-              <Pressable style={styles.ctaKirim}>
+              <Pressable style={styles.ctaKirim} onPress={submitLaporan}>
                 <Text style={styles.ctaKirimText}>Kirim</Text>
               </Pressable>
             </View>
@@ -82,7 +107,6 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 10,
   },
-  formContainer: {},
   perForm: {
     marginVertical: 7,
   },
@@ -96,7 +120,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderRadius: 10,
-    borderColor: COLORS.gray2,
+    borderColor: COLORS.borderColor,
     fontSize: 15,
     fontWeight: "400",
     color: COLORS.font,

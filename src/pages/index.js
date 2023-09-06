@@ -11,6 +11,7 @@ import Merch from "./merch/index";
 import DetailMerch from "./merch/detail";
 import Bantuan from "./profile/bantuan";
 import LaporEror from "./profile/laporEror";
+import TentangAplikasi from "./profile/tentangAplikasi";
 
 export {
   Home,
@@ -26,4 +27,5 @@ export {
   DetailMerch,
   Bantuan,
   LaporEror,
+  TentangAplikasi,
 };

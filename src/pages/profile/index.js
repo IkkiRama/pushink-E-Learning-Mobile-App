@@ -104,7 +104,7 @@ const Profile = ({ navigation }) => {
               <FontAwesome name="chevron-right" size={24} color={COLORS.font} />
             </Pressable>
             <Pressable
-              onPress={() => navigation.navigate("Bantuan")}
+              onPress={() => navigation.navigate("TentangAplikasi")}
               style={styles.perFitur}
             >
               <View style={styles.nameFiturContainer}>
@@ -115,7 +115,7 @@ const Profile = ({ navigation }) => {
             </Pressable>
 
             <Pressable
-              onPress={() => navigation.navigate("Bantuan")}
+              onPress={() => navigation.navigate("TentangAplikasi")}
               style={styles.perFitur}
             >
               <View style={styles.nameFiturContainer}>

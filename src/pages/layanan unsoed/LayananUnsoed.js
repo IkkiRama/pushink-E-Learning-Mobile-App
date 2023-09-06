@@ -9,14 +9,7 @@ import {
   View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import {
-  ref,
-  onValue,
-  remove,
-  query,
-  orderByValue,
-  orderByChild,
-} from "firebase/database";
+import { ref, onValue } from "firebase/database";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as OpenAnything from "react-native-openanything";
 

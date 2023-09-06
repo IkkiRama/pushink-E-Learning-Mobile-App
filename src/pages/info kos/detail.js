@@ -292,11 +292,12 @@ const styles = StyleSheet.create({
   },
   hargaText: {
     fontSize: 23,
-    color: COLORS.font,
     fontWeight: "600",
+    color: COLORS.primary,
   },
   keteranganHarga: {
     fontSize: 16,
+    color: COLORS.font,
   },
 
   peraturanUmumKos: {

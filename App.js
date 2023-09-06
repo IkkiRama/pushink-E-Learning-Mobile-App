@@ -15,6 +15,7 @@ import {
   LayananUnsoed,
   Merch,
   Profile,
+  TentangAplikasi,
 } from "./src/pages";
 
 const Stack = createNativeStackNavigator();
@@ -98,6 +99,12 @@ export default function App() {
         <Stack.Screen
           name="LaporEror"
           component={LaporEror}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="TentangAplikasi"
+          component={TentangAplikasi}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
