@@ -10,6 +10,7 @@ import {
   Home,
   InfoKos,
   InfoKosDetail,
+  Komik,
   LaporAja,
   LaporEror,
   LayananUnsoed,
@@ -105,6 +106,12 @@ export default function App() {
         <Stack.Screen
           name="TentangAplikasi"
           component={TentangAplikasi}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Komik"
+          component={Komik}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

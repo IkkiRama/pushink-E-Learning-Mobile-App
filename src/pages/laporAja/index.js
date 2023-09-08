@@ -20,7 +20,7 @@ const LaporAja = ({ navigation }) => {
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar goBack={() => navigation.goBack()} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
           barStyle={"light-content"}

@@ -24,7 +24,7 @@ const TentangAplikasi = ({ navigation }) => {
         goBack={() => navigation.goBack()}
         isProfile="Tentang aplikasi"
       />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
           barStyle={"light-content"}
@@ -36,7 +36,7 @@ const TentangAplikasi = ({ navigation }) => {
             <View style={styles.imageTentangAplikasiContainer}>
               <Image
                 source={{
-                  uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/Pushink%2Ficon.png?alt=media&token=e637fe86-79cb-443b-831a-c995e3bba17e",
+                  uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/Pushink%2FAbout%20us%2Fundraw_About_us_page_re_2jfm.png?alt=media&token=ca9adfbb-845e-40b0-99c8-d63b5cb0e6a0",
                 }}
                 style={styles.imageTentangAplikasi}
               />
@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   imageTentangAplikasi: {
-    width: 100,
-    height: 100,
+    width: "100%",
+    height: 300,
     borderRadius: 10,
   },
   filosofiAplikasi: {

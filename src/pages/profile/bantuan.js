@@ -23,7 +23,7 @@ const Bantuan = ({ navigation }) => {
         goBack={() => navigation.goBack()}
         isProfile="Bantuan"
       />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
           barStyle={"light-content"}

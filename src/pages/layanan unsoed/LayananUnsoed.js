@@ -20,7 +20,6 @@ import { db } from "../../configs/firebase";
 const LayananUnsoed = ({ navigation }) => {
   const [layanan, setLayanan] = useState({});
   const layananKeys = Object.keys(layanan);
-  const minHeightPage = Dimensions.get("window").height;
 
   useEffect(() => {
     return onValue(ref(db, "Layanan Unsoed"), (querySnapShot) => {
@@ -33,7 +32,7 @@ const LayananUnsoed = ({ navigation }) => {
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar isBack={true} goBack={() => navigation.goBack()} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
           barStyle={"light-content"}
@@ -47,7 +46,6 @@ const LayananUnsoed = ({ navigation }) => {
         >
           <View
             style={{
-              paddingBottom: 20,
               paddingHorizontal: 10,
             }}
           >
@@ -82,7 +80,6 @@ const LayananUnsoed = ({ navigation }) => {
               paddingHorizontal: 10,
               paddingTop: 10,
               marginTop: 20,
-              minHeight: minHeightPage - 100,
             }}
           >
             {/* Perfile */}

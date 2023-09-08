@@ -20,7 +20,7 @@ const Merch = ({ navigation }) => {
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
           barStyle={"light-content"}

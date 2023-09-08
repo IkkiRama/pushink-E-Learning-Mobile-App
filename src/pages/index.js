@@ -12,6 +12,7 @@ import DetailMerch from "./merch/detail";
 import Bantuan from "./profile/bantuan";
 import LaporEror from "./profile/laporEror";
 import TentangAplikasi from "./profile/tentangAplikasi";
+import Komik from "./komik/index";
 
 export {
   Home,
@@ -28,4 +29,5 @@ export {
   Bantuan,
   LaporEror,
   TentangAplikasi,
+  Komik,
 };

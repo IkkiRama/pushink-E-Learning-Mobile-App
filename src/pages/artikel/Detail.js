@@ -7,16 +7,17 @@ import {
   Text,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 import { Navbar } from "../../components";
 import BottomMenu from "./../../components/common/BottomMenu";
 
 const DetailArtikel = ({ navigation }) => {
+  const [refreshing, setRefreshing] = useState(false);
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar isBack={true} goBack={() => navigation.goBack()} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
           barStyle={"light-content"}

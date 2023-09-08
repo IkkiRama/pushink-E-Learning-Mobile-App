@@ -45,7 +45,7 @@ const DetailMerch = ({ navigation }) => {
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar isBack={true} goBack={() => navigation.goBack()} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
           barStyle={"light-content"}

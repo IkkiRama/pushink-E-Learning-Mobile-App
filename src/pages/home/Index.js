@@ -151,8 +151,8 @@ const Home = ({ navigation }) => {
   ]);
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
-      <Navbar></Navbar>
-      <ScrollView>
+      <Navbar />
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
           barStyle={"light-content"}

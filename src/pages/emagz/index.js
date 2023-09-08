@@ -16,25 +16,31 @@ import * as OpenAnything from "react-native-openanything";
 import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
 import { BottomMenu, Navbar } from "../../components";
 import { db } from "../../configs/firebase";
+import { RefreshControl } from "react-native";
 
 const Emagz = ({ navigation }) => {
+  const [refreshing, setRefreshing] = useState(false);
   const [layanan, setLayanan] = useState({});
   const layananKeys = Object.keys(layanan);
   const minHeightPage = Dimensions.get("window").height;
 
-  useEffect(() => {
-    // return onValue(ref(db, "Layanan Unsoed"), (querySnapShot) => {
-    return onValue(ref(db, "E-Magz"), (querySnapShot) => {
+  const getData = () =>
+    onValue(ref(db, "E-Magz"), (querySnapShot) => {
       let data = querySnapShot.val() || {};
       let dataLayanan = { ...data };
       setLayanan(dataLayanan);
     });
-  }, []);
+
+  useEffect(
+    () => getData(),
+    // return onValue(ref(db, "Layanan Unsoed"), (querySnapShot) => {
+    []
+  );
 
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar isBack={true} goBack={() => navigation.goBack()} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
           barStyle={"light-content"}

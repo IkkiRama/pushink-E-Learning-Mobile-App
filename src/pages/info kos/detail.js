@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Foundation, Ionicons } from "@expo/vector-icons";
+import * as OpenAnything from "react-native-openanything";
 
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 import { FasilitasKhusus, KostCarousel, Navbar } from "../../components";
@@ -89,7 +90,7 @@ const InfoKosDetail = ({ route, navigation }) => {
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar isBack={true} goBack={() => navigation.goBack()} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
           barStyle={"light-content"}
@@ -116,13 +117,6 @@ const InfoKosDetail = ({ route, navigation }) => {
                 <Foundation name="marker" size={24} color={COLORS.font} />
                 <Text style={styles.alamatKos}>{kos.region}</Text>
               </View>
-            </View>
-
-            <View style={styles.hargaContainer}>
-              <Text style={styles.hargaText}>
-                {numberFormat(parseInt(kos.price_start))}
-                <Text style={styles.keteranganHarga}> / Tahun</Text>
-              </Text>
             </View>
 
             <View style={styles.peraturanUmumKos}>
@@ -219,10 +213,29 @@ const InfoKosDetail = ({ route, navigation }) => {
             </View>
 
             {/* MAP */}
+            <View style={styles.mapContainer}>
+              <Text style={styles.fasilitasTitle}>Lokasi Kos</Text>
+              <Pressable onPress={() => OpenAnything.Map(kos.address)}>
+                <Image
+                  source={{
+                    uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/Appsoed%2FIcon%2Flocation_kost.png?alt=media&token=ed7d705d-8511-4286-b75e-f725d723cb80",
+                  }}
+                  style={styles.mapImage}
+                  resizeMode="contain"
+                />
+              </Pressable>
+            </View>
           </View>
         </View>
       </ScrollView>
       <View style={styles.hubungiPenjual}>
+        <View style={styles.hargaContainer}>
+          <Text style={styles.keteranganHarga}>Harga per tahun</Text>
+          <Text style={styles.hargaText}>
+            {numberFormat(parseInt(kos.price_start))}
+          </Text>
+        </View>
+
         <Pressable
           style={styles.hubungiPenjualBtn}
           onPress={() =>
@@ -288,16 +301,18 @@ const styles = StyleSheet.create({
   },
 
   hargaContainer: {
-    marginTop: 15,
+    maxWidth: "60%",
+    marginRight: 10,
   },
   hargaText: {
-    fontSize: 23,
+    fontSize: 20,
     fontWeight: "600",
     color: COLORS.primary,
   },
   keteranganHarga: {
-    fontSize: 16,
+    fontSize: 17,
     color: COLORS.font,
+    fontWeight: "500",
   },
 
   peraturanUmumKos: {
@@ -378,10 +393,12 @@ const styles = StyleSheet.create({
 
   hubungiPenjual: {
     padding: 10,
+    flexDirection: "row",
     backgroundColor: COLORS.lightWhite,
     elevation: 5,
   },
   hubungiPenjualBtn: {
+    flex: 1,
     paddingHorizontal: 20,
     paddingVertical: 15,
     backgroundColor: COLORS.primary,
@@ -393,5 +410,14 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 18,
     color: COLORS.white,
+  },
+
+  mapContainer: {
+    marginTop: 20,
+  },
+  mapImage: {
+    marginTop: 20,
+    width: "100%",
+    height: 150,
   },
 });

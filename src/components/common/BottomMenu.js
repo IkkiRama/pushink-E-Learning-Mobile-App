@@ -12,7 +12,7 @@ const BottomMenu = ({ focused, navigationHandle }) => {
     <View style={styles.menuWraper}>
       <TouchableOpacity
         style={styles.menuButton}
-        onPress={() => navigationHandle.replace("Beranda")}
+        onPress={() => navigationHandle.navigate("Beranda")}
       >
         <Foundation
           name="home"
@@ -32,7 +32,7 @@ const BottomMenu = ({ focused, navigationHandle }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.menuButton}
-        onPress={() => navigationHandle.replace("Artikel")}
+        onPress={() => navigationHandle.navigate("Artikel")}
       >
         <MaterialIcons
           name="article"
@@ -53,7 +53,7 @@ const BottomMenu = ({ focused, navigationHandle }) => {
 
       <TouchableOpacity
         style={styles.menuButton}
-        onPress={() => navigationHandle.replace("Merch")}
+        onPress={() => navigationHandle.navigate("Merch")}
       >
         <FontAwesome
           name="opencart"
@@ -74,7 +74,7 @@ const BottomMenu = ({ focused, navigationHandle }) => {
 
       <TouchableOpacity
         style={styles.menuButton}
-        onPress={() => navigationHandle.replace("LaporAja")}
+        onPress={() => navigationHandle.navigate("LaporAja")}
       >
         <FontAwesome
           name="bullhorn"
@@ -94,7 +94,7 @@ const BottomMenu = ({ focused, navigationHandle }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.menuButton}
-        onPress={() => navigationHandle.replace("Profile")}
+        onPress={() => navigationHandle.navigate("Profile")}
       >
         <Ionicons
           name="person"
