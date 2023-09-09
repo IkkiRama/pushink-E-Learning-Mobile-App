@@ -13,6 +13,7 @@ import Bantuan from "./profile/bantuan";
 import LaporEror from "./profile/laporEror";
 import TentangAplikasi from "./profile/tentangAplikasi";
 import Komik from "./komik/index";
+import DetailKomik from "./komik/detail";
 
 export {
   Home,
@@ -30,4 +31,5 @@ export {
   LaporEror,
   TentangAplikasi,
   Komik,
+  DetailKomik,
 };

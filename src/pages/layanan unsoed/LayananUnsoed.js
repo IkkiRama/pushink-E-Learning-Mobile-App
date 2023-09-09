@@ -1,5 +1,4 @@
 import {
-  Dimensions,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -51,7 +50,7 @@ const LayananUnsoed = ({ navigation }) => {
           >
             <Text
               style={{
-                fontSize: 22,
+                fontSize: 23,
                 color: COLORS.white,
                 fontWeight: "600",
                 marginTop: 20,
@@ -62,7 +61,7 @@ const LayananUnsoed = ({ navigation }) => {
 
             <Text
               style={{
-                fontSize: 14,
+                fontSize: 16,
                 color: COLORS.white,
                 fontWeight: "500",
                 marginTop: 10,

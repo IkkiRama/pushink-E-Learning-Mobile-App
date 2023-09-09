@@ -21,7 +21,7 @@ const Bantuan = ({ navigation }) => {
       <Navbar
         isBack={true}
         goBack={() => navigation.goBack()}
-        isProfile="Bantuan"
+        isTitle="Bantuan"
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar

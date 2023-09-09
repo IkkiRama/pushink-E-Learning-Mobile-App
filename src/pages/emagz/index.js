@@ -16,7 +16,6 @@ import * as OpenAnything from "react-native-openanything";
 import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
 import { BottomMenu, Navbar } from "../../components";
 import { db } from "../../configs/firebase";
-import { RefreshControl } from "react-native";
 
 const Emagz = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
@@ -31,11 +30,7 @@ const Emagz = ({ navigation }) => {
       setLayanan(dataLayanan);
     });
 
-  useEffect(
-    () => getData(),
-    // return onValue(ref(db, "Layanan Unsoed"), (querySnapShot) => {
-    []
-  );
+  useEffect(() => getData(), []);
 
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
@@ -54,13 +49,12 @@ const Emagz = ({ navigation }) => {
         >
           <View
             style={{
-              paddingBottom: 20,
               paddingHorizontal: 10,
             }}
           >
             <Text
               style={{
-                fontSize: 22,
+                fontSize: 23,
                 color: COLORS.white,
                 fontWeight: "600",
                 marginTop: 20,
@@ -71,7 +65,7 @@ const Emagz = ({ navigation }) => {
 
             <Text
               style={{
-                fontSize: 14,
+                fontSize: 16,
                 color: COLORS.white,
                 fontWeight: "500",
                 marginTop: 10,

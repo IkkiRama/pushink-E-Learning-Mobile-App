@@ -5,6 +5,7 @@ import {
   Artikel,
   Bantuan,
   DetailArtikel,
+  DetailKomik,
   DetailMerch,
   Emagz,
   Home,
@@ -112,6 +113,12 @@ export default function App() {
         <Stack.Screen
           name="Komik"
           component={Komik}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="DetailKomik"
+          component={DetailKomik}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

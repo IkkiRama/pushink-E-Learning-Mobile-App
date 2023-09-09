@@ -10,7 +10,7 @@ import Bell from "../../../assets/Icons/bell.svg";
 import { Image } from "react-native";
 import { COLORS } from "../../constants";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
-const Navbar = ({ isBack, goBack, withForm = false, isProfile = null }) => {
+const Navbar = ({ isBack, goBack, withForm = false, isTitle = null }) => {
   return (
     <View
       style={{
@@ -38,7 +38,7 @@ const Navbar = ({ isBack, goBack, withForm = false, isProfile = null }) => {
           />
         )}
 
-        {isProfile !== null ? (
+        {isTitle !== null ? (
           <Text
             style={{
               marginLeft: 10,
@@ -47,7 +47,7 @@ const Navbar = ({ isBack, goBack, withForm = false, isProfile = null }) => {
               fontSize: 21,
             }}
           >
-            {isProfile}
+            {isTitle}
           </Text>
         ) : (
           ""

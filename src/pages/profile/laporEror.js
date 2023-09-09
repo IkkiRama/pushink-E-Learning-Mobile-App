@@ -46,7 +46,7 @@ const LaporEror = ({ navigation }) => {
       <Navbar
         isBack={true}
         goBack={() => navigation.goBack()}
-        isProfile="Lapor eror"
+        isTitle="Lapor eror"
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar

@@ -11,10 +11,11 @@ import {
   Pressable,
   FlatList,
   Image,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { FontAwesome5, Foundation } from "@expo/vector-icons";
-import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
+import { COLORS, SAFEAREAVIEW, SHADOWS, images } from "../../constants";
 import { Navbar, BottomMenu } from "../../components";
 import numberFormat from "./../../utils/numberFormat";
 
@@ -26,6 +27,7 @@ const InfoKos = ({ navigation }) => {
   const [filteredKosts, setFilteredKosts] = useState([]);
   const [jenisKelaminAktif, setJenisKelaminAktif] = useState("Semua");
 
+  const [isLoadedImage, setIsLoadedImage] = useState(true);
   const jenisKelamin = [
     {
       id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -110,10 +112,15 @@ const InfoKos = ({ navigation }) => {
         style={styles.perKos}
       >
         <Image
+          onLoad={() => setIsLoadedImage(false)}
           style={styles.imageKos}
-          source={{
-            uri: `https://api.bem-unsoed.com/api/kost/image/${kos.kost_images[0].image}`,
-          }}
+          source={
+            isLoadedImage
+              ? images.defaultBanner
+              : {
+                  uri: `https://api.bem-unsoed.com/api/kost/image/${kos.kost_images[0].image}`,
+                }
+          }
           height={200}
         />
         <View style={styles.kosInfoContainer}>
@@ -210,7 +217,7 @@ const InfoKos = ({ navigation }) => {
                 {renderKos()}
               </>
             ) : (
-              <Text style={styles.isEmpty}>Belum ada data</Text>
+              <ActivityIndicator size="large" color={COLORS.primary} />
             )}
           </View>
         </View>

@@ -22,7 +22,7 @@ const TentangAplikasi = ({ navigation }) => {
       <Navbar
         isBack={true}
         goBack={() => navigation.goBack()}
-        isProfile="Tentang aplikasi"
+        isTitle="Tentang aplikasi"
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar

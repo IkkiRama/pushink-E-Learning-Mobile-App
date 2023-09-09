@@ -1,21 +1,55 @@
 import {
-  Dimensions,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
   Text,
   View,
+  Image,
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
-import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
+import { COLORS, SAFEAREAVIEW, images } from "../../constants";
 import { BottomMenu, Navbar } from "../../components";
 import { ImageBackground } from "react-native";
 
 const Komik = ({ navigation }) => {
-  const [komik, setKomik] = useState({});
+  const [komiks, setKomiks] = useState([]);
+  const [isLoadedImage, setIsLoadedImage] = useState(true);
+
+  const getData = () => {
+    fetch("https://api.bem-unsoed.com/api/comic")
+      .then((response) => response.json())
+      .then((result) => setKomiks(result));
+  };
+
+  useEffect(() => getData(), []);
+
+  const renderKomik = () =>
+    komiks.map((komik) => (
+      <Pressable
+        key={komik.id}
+        onPress={() => navigation.navigate("DetailKomik", { id: komik.id })}
+        style={styles.komik}
+      >
+        <Image
+          onLoad={() => setIsLoadedImage(false)}
+          source={
+            isLoadedImage
+              ? images.defaultBanner
+              : {
+                  uri: `https://api.bem-unsoed.com/api/comic/cover/${komik.cover}`,
+                }
+          }
+          style={styles.komikImage}
+        />
+        <Text numberOfLines={2} style={styles.komikText}>
+          {komik.title}
+        </Text>
+      </Pressable>
+    ));
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar isBack={true} goBack={() => navigation.goBack()} />
@@ -40,11 +74,12 @@ const Komik = ({ navigation }) => {
               justifyContent: "flex-end",
               paddingBottom: 20,
               paddingHorizontal: 10,
+              backgroundColor: COLORS.primary,
             }}
           >
             <Text
               style={{
-                fontSize: 22,
+                fontSize: 23,
                 color: COLORS.white,
                 fontWeight: "600",
                 marginTop: 20,
@@ -55,7 +90,7 @@ const Komik = ({ navigation }) => {
 
             <Text
               style={{
-                fontSize: 14,
+                fontSize: 16,
                 color: COLORS.white,
                 fontWeight: "500",
                 marginTop: 10,
@@ -64,12 +99,54 @@ const Komik = ({ navigation }) => {
               Bacalah komik terbaru kami!
             </Text>
           </ImageBackground>
+
+          {/* Komik */}
+          <View style={styles.komikContainer}>
+            {komiks.length >= 1 ? (
+              renderKomik()
+            ) : (
+              <ActivityIndicator size="large" color={COLORS.primary} />
+            )}
+          </View>
         </View>
       </ScrollView>
+      <BottomMenu focused="Beranda" navigationHandle={navigation} />
     </SafeAreaView>
   );
 };
 
 export default Komik;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  komikContainer: {
+    paddingVertical: 20,
+    flexWrap: "wrap",
+    flexDirection: "row",
+    paddingHorizontal: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    justifyContent: "center",
+    backgroundColor: COLORS.white,
+  },
+  komik: {
+    width: "45%",
+    margin: 7,
+    backgroundColor: COLORS.lightWhite,
+    elevation: 1,
+    borderRadius: 10,
+  },
+  komikImage: {
+    width: "100%",
+    height: 200,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  komikText: {
+    paddingHorizontal: 10,
+    paddingBottom: 15,
+    paddingTop: 10,
+    fontSize: 16,
+    fontWeight: "600",
+    color: COLORS.font,
+  },
+});
