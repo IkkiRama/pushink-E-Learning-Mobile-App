@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   SafeAreaView,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
@@ -61,7 +62,13 @@ const DetailKomik = ({ route, navigation }) => {
         ></StatusBar>
 
         <View style={styles.containerWrapper}>
-          <View style={styles.container}>{renderKomik()}</View>
+          <View style={styles.container}>
+            {imageKomik.length > 0 ? (
+              renderKomik()
+            ) : (
+              <ActivityIndicator size="large" color={COLORS.primary} />
+            )}
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

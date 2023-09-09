@@ -30,53 +30,15 @@ const Profile = ({ navigation }) => {
           backgroundColor="transparent"
         ></StatusBar>
 
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: COLORS.primary,
-          }}
-        >
-          <View
-            style={{
-              paddingVertical: 20,
-              paddingHorizontal: 10,
-              backgroundColor: COLORS.primary,
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <View
-              style={{
-                width: 100,
-                height: 100,
-                borderRadius: 50,
-                backgroundColor: COLORS.white,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+        <View style={styles.containerWrapper}>
+          <View style={styles.container}>
+            <View style={styles.imageContainer}>
               <Ionicons name="person" size={50} color={COLORS.colorShadow} />
             </View>
 
-            <View style={{ marginLeft: 20 }}>
-              <Text
-                style={{
-                  fontSize: 23,
-                  fontWeight: "700",
-                  color: COLORS.white,
-                  marginBottom: 5,
-                }}
-              >
-                Rifki Romadhan
-              </Text>
-              <Text
-                style={{
-                  fontSize: 16,
-                  color: COLORS.white,
-                }}
-              >
-                georgeikkirama@gmail.com
-              </Text>
+            <View style={styles.profileUserContainer}>
+              <Text style={styles.userName}>Rifki Romadhan</Text>
+              <Text style={styles.userEmail}>georgeikkirama@gmail.com</Text>
             </View>
           </View>
 
@@ -135,6 +97,36 @@ const Profile = ({ navigation }) => {
 export default Profile;
 
 const styles = StyleSheet.create({
+  containerWrapper: {
+    flex: 1,
+    backgroundColor: COLORS.primary,
+  },
+  container: {
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    backgroundColor: COLORS.primary,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  imageContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: COLORS.white,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  profileUserContainer: { marginLeft: 20 },
+  userName: {
+    fontSize: 23,
+    fontWeight: "700",
+    color: COLORS.white,
+    marginBottom: 5,
+  },
+  userEmail: {
+    fontSize: 16,
+    color: COLORS.white,
+  },
   mainContainer: {
     backgroundColor: COLORS.white,
     borderTopLeftRadius: 10,

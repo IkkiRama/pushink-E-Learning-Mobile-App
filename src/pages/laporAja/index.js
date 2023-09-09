@@ -27,81 +27,31 @@ const LaporAja = ({ navigation }) => {
           backgroundColor="transparent"
         ></StatusBar>
 
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: COLORS.primary,
-          }}
-        >
-          <View
-            style={{
-              marginVertical: 25,
-              alignItems: "center",
-            }}
-          >
+        <View style={styles.containerWrapper}>
+          <View style={styles.container}>
             <Image
               source={{
                 uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FPelecehan%20Seksual%20Icon.png?alt=media&token=97185caf-b624-483f-b62e-34f9245a1324",
               }}
-              style={{
-                // backgroundColor: COLORS.white,
-                width: 170,
-                height: 170,
-                borderRadius: 50,
-              }}
+              style={styles.mainImage}
               resizeMode="contain"
             />
           </View>
-          <View
-            style={{
-              paddingTop: 30,
-              marginTop: 20,
-              alignItems: "center",
-              borderTopLeftRadius: 10,
-              borderTopRightRadius: 10,
-              backgroundColor: COLORS.white,
-              minHeight: minHeightPage - 400,
-            }}
-          >
-            <Text
-              style={{
-                color: COLORS.font,
-                fontSize: 21,
-                fontWeight: "700",
-                textAlign: "center",
-              }}
-            >
+          <View style={styles.laporAja(minHeightPage)}>
+            <Text style={styles.laporAjaHeading}>
               Layanan Informasi Pelecehan Seksual
             </Text>
-            <View
-              style={{
-                width: "90%",
-                marginTop: 10,
-                marginBottom: 30,
-                color: COLORS.font,
-              }}
-            >
-              <Text
-                style={{ fontSize: 18, textAlign: "center", lineHeight: 25 }}
-              >
+            <View style={styles.laporAjaSubHeadingContainer}>
+              <Text style={styles.laporAjaSubHeading}>
                 Bantu orang-orang disekitarmu dari tindak kejahatan seksual!
                 Kalau bukan kita, siapa lagi?
               </Text>
             </View>
             <Pressable
               onPress={() => Linking.openURL("http://wa.me/6289691944030")}
-              style={{
-                paddingHorizontal: 40,
-                paddingVertical: 15,
-                borderRadius: 10,
-                backgroundColor: COLORS.primary,
-              }}
+              style={styles.laporAjaCTA}
             >
-              <Text
-                style={{ fontSize: 17, color: COLORS.white, fontWeight: "600" }}
-              >
-                Lapor Sekarang
-              </Text>
+              <Text style={styles.laporAjaCTAText}>Lapor Sekarang</Text>
             </Pressable>
           </View>
         </View>
@@ -113,4 +63,49 @@ const LaporAja = ({ navigation }) => {
 
 export default LaporAja;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  containerWrapper: {
+    flex: 1,
+    backgroundColor: COLORS.primary,
+  },
+  container: {
+    marginVertical: 25,
+    alignItems: "center",
+  },
+
+  mainImage: {
+    // backgroundColor: COLORS.white,
+    width: 170,
+    height: 170,
+    borderRadius: 50,
+  },
+  laporAja: (minHeightPage) => ({
+    paddingTop: 30,
+    marginTop: 20,
+    alignItems: "center",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    backgroundColor: COLORS.white,
+    minHeight: minHeightPage - 400,
+  }),
+  laporAjaHeading: {
+    color: COLORS.font,
+    fontSize: 21,
+    fontWeight: "700",
+    textAlign: "center",
+  },
+  laporAjaSubHeadingContainer: {
+    width: "90%",
+    marginTop: 10,
+    marginBottom: 30,
+    color: COLORS.font,
+  },
+  laporAjaSubHeading: { fontSize: 18, textAlign: "center", lineHeight: 25 },
+  laporAjaCTA: {
+    paddingHorizontal: 40,
+    paddingVertical: 15,
+    borderRadius: 10,
+    backgroundColor: COLORS.primary,
+  },
+  laporAjaCTAText: { fontSize: 17, color: COLORS.white, fontWeight: "600" },
+});

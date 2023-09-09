@@ -38,50 +38,16 @@ const LayananUnsoed = ({ navigation }) => {
           barStyle={"light-content"}
           backgroundColor="transparent"
         ></StatusBar>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: COLORS.primary,
-          }}
-        >
-          <View
-            style={{
-              paddingHorizontal: 10,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 23,
-                color: COLORS.white,
-                fontWeight: "600",
-                marginTop: 20,
-              }}
-            >
-              Layanan Unsoed
-            </Text>
+        <View style={styles.containerWrapper}>
+          <View style={styles.container}>
+            <Text style={styles.heading}>Layanan Unsoed</Text>
 
-            <Text
-              style={{
-                fontSize: 16,
-                color: COLORS.white,
-                fontWeight: "500",
-                marginTop: 10,
-              }}
-            >
+            <Text style={styles.subHeading}>
               Dapatkan informasi resmi tanpa takut hoax
             </Text>
           </View>
 
-          <View
-            style={{
-              backgroundColor: COLORS.white,
-              borderTopLeftRadius: 10,
-              borderTopRightRadius: 10,
-              paddingHorizontal: 10,
-              paddingTop: 10,
-              marginTop: 20,
-            }}
-          >
+          <View style={styles.fileContainer}>
             {/* Perfile */}
             {layananKeys.length > 0 ? (
               layananKeys.map((key) => (
@@ -123,6 +89,33 @@ const LayananUnsoed = ({ navigation }) => {
 export default LayananUnsoed;
 
 const styles = StyleSheet.create({
+  containerWrapper: {
+    flex: 1,
+    backgroundColor: COLORS.primary,
+  },
+  container: {
+    paddingHorizontal: 10,
+  },
+  heading: {
+    fontSize: 23,
+    color: COLORS.white,
+    fontWeight: "600",
+    marginTop: 20,
+  },
+  subHeading: {
+    fontSize: 16,
+    color: COLORS.white,
+    fontWeight: "500",
+    marginTop: 10,
+  },
+  fileContainer: {
+    backgroundColor: COLORS.white,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    paddingHorizontal: 10,
+    paddingTop: 10,
+    marginTop: 20,
+  },
   layananContainer: {
     flexDirection: "row",
     alignItems: "center",

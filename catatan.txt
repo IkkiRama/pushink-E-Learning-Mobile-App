@@ -1,3 +1,7 @@
+Komik cek lagi image nya ada atau tidak di komik selain terbaru & tentang toleransi 
+
+Detail komik dikasih Rekomendasi
+
 Rekomendasi Produk pakai index di method map
 
 Lapor eror kurang nanti pas nambah auth, emailnya diganti, sama dikasih nama

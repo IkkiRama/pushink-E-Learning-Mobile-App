@@ -11,45 +11,47 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
-import { COLORS, SAFEAREAVIEW, images } from "../../constants";
+import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
 import { BottomMenu, Navbar } from "../../components";
 import { ImageBackground } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 
-const Komik = ({ navigation }) => {
-  const [komiks, setKomiks] = useState([]);
+const TilikFakultas = ({ navigation }) => {
+  const [fakultas, setFakultas] = useState([]);
   const [isLoadedImage, setIsLoadedImage] = useState(true);
 
   const getData = () => {
-    fetch("https://api.bem-unsoed.com/api/comic")
+    fetch("https://api.bem-unsoed.com/api/faculty")
       .then((response) => response.json())
-      .then((result) => setKomiks(result));
+      .then((result) => setFakultas(result));
   };
 
   useEffect(() => getData(), []);
-
-  const renderKomik = () =>
-    komiks.map((komik) => (
+  const renderFakultas = () =>
+    fakultas.map((item) => (
       <Pressable
-        key={komik.id}
-        onPress={() => navigation.navigate("DetailKomik", { id: komik.id })}
-        style={styles.komik}
+        key={item.id}
+        onPress={() => navigation.navigate("DetailFakultas", { id: item.id })}
+        style={styles.fakultas}
       >
         <Image
-          onLoad={() => setIsLoadedImage(false)}
-          source={
-            isLoadedImage
-              ? images.defaultBanner
-              : {
-                  uri: `https://api.bem-unsoed.com/api/comic/cover/${komik.cover}`,
-                }
-          }
-          style={styles.komikImage}
+          source={{
+            uri: `https://api.bem-unsoed.com/api/faculty/image/${item.image}`,
+          }}
+          style={styles.fakultasImage}
         />
-        <Text numberOfLines={2} style={styles.komikText}>
-          {komik.title}
-        </Text>
+        <View style={styles.fakultasProfile}>
+          <Text style={styles.fakultasAlias} numberOfLines={1}>
+            {item.alias}
+          </Text>
+          <Text style={styles.fakultasName} numberOfLines={2}>
+            {item.name}
+          </Text>
+        </View>
+        <FontAwesome name="chevron-right" size={24} color={COLORS.font} />
       </Pressable>
     ));
+
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar isBack={true} goBack={() => navigation.goBack()} />
@@ -72,9 +74,9 @@ const Komik = ({ navigation }) => {
           </ImageBackground>
 
           {/* Komik */}
-          <View style={styles.komikContainer}>
-            {komiks.length >= 1 ? (
-              renderKomik()
+          <View style={styles.fakultasContainer}>
+            {fakultas.length >= 1 ? (
+              renderFakultas()
             ) : (
               <ActivityIndicator size="large" color={COLORS.primary} />
             )}
@@ -86,7 +88,7 @@ const Komik = ({ navigation }) => {
   );
 };
 
-export default Komik;
+export default TilikFakultas;
 
 const styles = StyleSheet.create({
   containerWrapper: {
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     marginTop: 10,
   },
-  komikContainer: {
+  fakultasContainer: {
     paddingVertical: 20,
     flexWrap: "wrap",
     flexDirection: "row",
@@ -122,25 +124,38 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: COLORS.white,
   },
-  komik: {
-    width: "45%",
-    margin: 7,
+
+  fakultas: {
+    width: "100%",
+    padding: 15,
+    borderWidth: 1,
+    borderRadius: 10,
+    ...SHADOWS.medium,
+    marginVertical: 5,
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderColor: COLORS.borderColor,
     backgroundColor: COLORS.lightWhite,
-    elevation: 1,
+  },
+  fakultasImage: {
+    width: 140,
+    height: 85,
     borderRadius: 10,
   },
-  komikImage: {
-    width: "100%",
-    height: 200,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+  fakultasProfile: {
+    flex: 1,
+    marginHorizontal: 10,
   },
-  komikText: {
-    paddingHorizontal: 10,
-    paddingBottom: 15,
-    paddingTop: 10,
-    fontSize: 16,
-    fontWeight: "600",
+  fakultasAlias: {
     color: COLORS.font,
+    fontWeight: "600",
+    fontSize: 23,
+    marginBottom: 5,
+  },
+  fakultasName: {
+    color: COLORS.font,
+    fontWeight: "400",
+    fontSize: 16,
   },
 });

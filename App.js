@@ -18,6 +18,7 @@ import {
   Merch,
   Profile,
   TentangAplikasi,
+  TilikFakultas,
 } from "./src/pages";
 
 const Stack = createNativeStackNavigator();
@@ -119,6 +120,12 @@ export default function App() {
         <Stack.Screen
           name="DetailKomik"
           component={DetailKomik}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="TilikFakultas"
+          component={TilikFakultas}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -10,7 +10,7 @@ const MerchCard = ({ navigation, merchData }) => {
   return (
     <Pressable
       onPress={() =>
-        navigation.navigate("DetailMerch", {
+        navigation.replace("DetailMerch", {
           merchData,
           hargaCoretProduk,
           diskonProduk,

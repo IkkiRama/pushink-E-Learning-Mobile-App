@@ -23,13 +23,7 @@ const DetailArtikel = ({ navigation }) => {
           barStyle={"light-content"}
           backgroundColor="transparent"
         ></StatusBar>
-        <View
-          style={{
-            flex: 1,
-            padding: 10,
-            backgroundColor: COLORS.lightWhite,
-          }}
-        >
+        <View style={styles.containerWrapper}>
           <Text style={styles.titleArtikel}>
             Cara Membuat Auth Login Dengan Laravel
           </Text>
@@ -100,6 +94,11 @@ const DetailArtikel = ({ navigation }) => {
 export default DetailArtikel;
 
 const styles = StyleSheet.create({
+  containerWrapper: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: COLORS.lightWhite,
+  },
   titleArtikel: {
     fontWeight: "800",
     fontSize: 28,

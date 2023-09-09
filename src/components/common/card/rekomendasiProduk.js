@@ -3,34 +3,44 @@ import { StyleSheet, Text, View, Pressable, Image } from "react-native";
 
 import { COLORS } from "../../../constants";
 
-const RekomendasiProduk = ({ navigation }) => {
+const RekomendasiProduk = ({ navigation, merchData }) => {
+  const hargaCoretProduk = (130 / 100) * merchData.harga;
+  const diskonProduk =
+    ((hargaCoretProduk - merchData.harga) / hargaCoretProduk) * 100;
   return (
     <Pressable
-      onPress={() => navigation.navigate("DetailMerch")}
+      onPress={() =>
+        navigation.replace("DetailMerch", {
+          merchData,
+          hargaCoretProduk,
+          diskonProduk,
+        })
+      }
       style={styles.perProduk}
     >
       <Image
         source={{
-          uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FMerch%2Fpaket2-1.jpeg?alt=media&token=d71b676a-d612-4064-aee3-157590bf0b78",
+          uri: merchData.images[0].image,
         }}
         style={styles.imageProduk}
       />
       <View style={styles.infoProduk}>
         <Text style={styles.namaProduk} numberOfLines={2}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
-          facere.
+          {merchData.nama}
         </Text>
         <View style={styles.hargaContainer}>
           <View style={styles.hargaProduk}>
             <Text numberOfLines={1} style={styles.hargaAsliProduk}>
-              {numberFormat(100000)}
+              {numberFormat(merchData.harga)}
             </Text>
             <View style={styles.diskonProdukContainer}>
               <Text numberOfLines={1} style={styles.hargaCoretProduk}>
-                {numberFormat(345000)}
+                {numberFormat(hargaCoretProduk)}
               </Text>
               <View style={styles.diskonProduk}>
-                <Text style={styles.diskonProdukText}>6%</Text>
+                <Text style={styles.diskonProdukText}>{`${diskonProduk.toFixed(
+                  0
+                )}%`}</Text>
               </View>
             </View>
           </View>

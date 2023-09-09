@@ -14,7 +14,6 @@ const DetailMerchCarousel = ({ ImageKos = [] }) => {
   const flatlistRef = useRef();
   const widthCarousel = Dimensions.get("window").width;
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isLoadedImage, setIsLoadedImage] = useState(true);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -49,16 +48,10 @@ const DetailMerchCarousel = ({ ImageKos = [] }) => {
           <ImageBackground source={images.defaultBanner}>
             <Image
               key={item.id}
-              onLoad={() => setIsLoadedImage(false)}
-              source={
-                isLoadedImage
-                  ? images.defaultBanner
-                  : {
-                      uri: item.image,
-                    }
-              }
+              source={{
+                uri: item.image,
+              }}
               style={{ height: "100%", width: widthCarousel }}
-              resizeMode={isLoadedImage ? "contain" : "cover"}
             />
           </ImageBackground>
         )}

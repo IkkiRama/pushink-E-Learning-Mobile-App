@@ -9,12 +9,16 @@ import {
   Pressable,
   FlatList,
   Image,
+  ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ref, onValue } from "firebase/database";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons, Foundation } from "@expo/vector-icons";
 import * as OpenAnything from "react-native-openanything";
 
+import { db } from "../../configs/firebase";
+import numberFormat from "./../../utils/numberFormat";
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 import {
   Navbar,
@@ -22,15 +26,36 @@ import {
   MerchCard,
   RekomendasiProduk,
 } from "../../components";
-import numberFormat from "./../../utils/numberFormat";
 
 const DetailMerch = ({ route, navigation }) => {
-  const { merchData, hargaCoretProduk, diskonProduk } = route.params;
+  const [merch, setMerch] = useState({});
+  const merchKeys = Object.keys(merch);
   const [isSelengkapnya, setIsSelengkapnya] = useState(false);
+  const { merchData, hargaCoretProduk, diskonProduk } = route.params;
+  let merchRekomendasiKeys = [];
+  let merchMungkinKamuSukaKeys = [];
+
+  useEffect(() => {
+    return onValue(ref(db, "Merch"), (querySnapShot) => {
+      let data = querySnapShot.val() || {};
+      let dataMerch = { ...data };
+      setMerch(dataMerch);
+    });
+  }, []);
+
+  merchKeys.map((key, index) => {
+    if (merch[key].nama !== merchData.nama && index <= 5) {
+      merchRekomendasiKeys.push(key);
+    }
+    if (merch[key].nama !== merchData.nama && index >= 5) {
+      merchMungkinKamuSukaKeys.push(key);
+    }
+    return true;
+  });
 
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
-      <Navbar isBack={true} goBack={() => navigation.goBack()} />
+      <Navbar isBack={true} goBack={() => navigation.navigate("Merch")} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
@@ -129,14 +154,23 @@ const DetailMerch = ({ route, navigation }) => {
               <Text style={styles.rekomendasiProdukTitle}>
                 Rekomendasi Produk
               </Text>
-              <FlatList
-                style={styles.rekomendasiProduk}
-                horizontal
-                data={[1, 2, 3, 4]}
-                renderItem={({ item }) => (
-                  <RekomendasiProduk key={item} navigation={navigation} />
-                )}
-              />
+              {merchRekomendasiKeys.length > 0 ? (
+                <FlatList
+                  style={styles.rekomendasiProduk}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  data={merchRekomendasiKeys}
+                  renderItem={({ item }) => (
+                    <RekomendasiProduk
+                      key={item}
+                      navigation={navigation}
+                      merchData={merch[item]}
+                    />
+                  )}
+                />
+              ) : (
+                <ActivityIndicator size="large" color={COLORS.primary} />
+              )}
             </View>
 
             {/* Mungkin anda suka */}
@@ -145,11 +179,17 @@ const DetailMerch = ({ route, navigation }) => {
                 Mungkin anda suka
               </Text>
               <View style={styles.mungkinAndaSukaProduk}>
-                {/* <MerchCard navigation={navigation} />
-                <MerchCard navigation={navigation} />
-                <MerchCard navigation={navigation} />
-                <MerchCard navigation={navigation} />
-                <MerchCard navigation={navigation} /> */}
+                {merchMungkinKamuSukaKeys.length > 0 ? (
+                  merchMungkinKamuSukaKeys.map((key) => (
+                    <MerchCard
+                      key={key}
+                      navigation={navigation}
+                      merchData={merch[key]}
+                    />
+                  ))
+                ) : (
+                  <ActivityIndicator size="large" color={COLORS.primary} />
+                )}
               </View>
             </View>
           </View>
