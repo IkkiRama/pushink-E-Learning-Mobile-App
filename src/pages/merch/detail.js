@@ -10,9 +10,10 @@ import {
   FlatList,
   Image,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons, Foundation } from "@expo/vector-icons";
+import * as OpenAnything from "react-native-openanything";
 
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 import {
@@ -23,25 +24,10 @@ import {
 } from "../../components";
 import numberFormat from "./../../utils/numberFormat";
 
-const DetailMerch = ({ navigation }) => {
+const DetailMerch = ({ route, navigation }) => {
+  const { merchData, hargaCoretProduk, diskonProduk } = route.params;
   const [isSelengkapnya, setIsSelengkapnya] = useState(false);
-  const [merch_images, setMerch_images] = useState([
-    {
-      id: "i4Ko2tNO8oBD1d3occ98",
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FMerch%2Fpaket2-1.jpeg?alt=media&token=d71b676a-d612-4064-aee3-157590bf0b78",
-    },
-    {
-      id: "iFd4btUCDbOMUIUnrOCD",
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FMerch%2Fpaket2-2.jpeg?alt=media&token=88f990fe-eea8-4d64-be78-1ad39b98a1d5",
-    },
-    {
-      id: "Q4cUfTVGnVO80SlUx5t6",
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FMerch%2Fpaket2-3.jpeg?alt=media&token=3487ff1a-688f-42b4-b798-e18d881ad9fc",
-    },
-  ]);
+
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar isBack={true} goBack={() => navigation.goBack()} />
@@ -53,25 +39,25 @@ const DetailMerch = ({ navigation }) => {
         ></StatusBar>
 
         <View style={styles.containerWrapper}>
-          <DetailMerchCarousel ImageKos={merch_images} />
+          <DetailMerchCarousel ImageKos={merchData.images} />
           <View style={styles.container}>
             <Text style={styles.namaProduk} numberOfLines={2}>
-              Paket 2 Gensoed Merch Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Facere, hic labore voluptatum distinctio eius
-              impedit cumque odio recusandae? Voluptatem, animi.
+              {merchData.nama}
             </Text>
 
             <View style={styles.hargaContainer}>
               <View style={styles.hargaProduk}>
                 <Text numberOfLines={1} style={styles.hargaAsliProduk}>
-                  {numberFormat(100000)}
+                  {numberFormat(merchData.harga)}
                 </Text>
                 <View style={styles.diskonProdukContainer}>
                   <Text numberOfLines={1} style={styles.hargaCoretProduk}>
-                    {numberFormat(345000)}
+                    {numberFormat(hargaCoretProduk)}
                   </Text>
                   <View style={styles.diskonProduk}>
-                    <Text style={styles.diskonProdukText}>6%</Text>
+                    <Text style={styles.diskonProdukText}>
+                      {diskonProduk.toFixed(0)}%
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -81,7 +67,9 @@ const DetailMerch = ({ navigation }) => {
               <Text
                 numberOfLines={isSelengkapnya ? 0 : 3}
                 style={styles.deskripsiProdukText}
-              >{`Dengan jaket dan baju Gensoed "EcoVision" ini, kami menggabungkan gaya Gen Z yang kreatif dengan komitmen kami terhadap tujuan pembangunan berkelanjutan. Terbuat dari bahan ramah lingkungan yang berkualitas tinggi, jaket ini memberikan tampilan modern yang mendukung perubahan positif. Ketika Anda mengenakannya, Anda merayakan kreativitas dan berkontribusi pada perjalanan menuju terwujudnya Tujuan Pembangunan Berkelanjutan. Bersiaplah menjadi agen perubahan!\n\nPAKET GENSOED MERCH 2\n\nWhat will you get?\n- 1 pcs Jaket Gensoed\n- 2 pcs Kaos Gensoed (Pilih design)\n \nFREE RANDOM KEYRING AND STICKER\nSIZE HARAP DICANTUMKAN DI NOTES\n`}</Text>
+              >
+                {merchData.deskripsi}
+              </Text>
 
               <LinearGradient
                 colors={
@@ -157,11 +145,11 @@ const DetailMerch = ({ navigation }) => {
                 Mungkin anda suka
               </Text>
               <View style={styles.mungkinAndaSukaProduk}>
+                {/* <MerchCard navigation={navigation} />
                 <MerchCard navigation={navigation} />
                 <MerchCard navigation={navigation} />
                 <MerchCard navigation={navigation} />
-                <MerchCard navigation={navigation} />
-                <MerchCard navigation={navigation} />
+                <MerchCard navigation={navigation} /> */}
               </View>
             </View>
           </View>
@@ -178,7 +166,10 @@ const DetailMerch = ({ navigation }) => {
           />
         </Pressable>
         {/* CTA to link */}
-        <Pressable style={styles.ctaBeliSekarang}>
+        <Pressable
+          style={styles.ctaBeliSekarang}
+          onPress={() => OpenAnything.Web(merchData.link)}
+        >
           <Text style={styles.ctaBeliSekarangText}>Beli Sekarang</Text>
         </Pressable>
       </View>

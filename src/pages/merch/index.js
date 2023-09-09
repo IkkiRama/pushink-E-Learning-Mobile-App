@@ -1,22 +1,32 @@
 import {
   StyleSheet,
-  Text,
   View,
   SafeAreaView,
   ScrollView,
   StatusBar,
   Dimensions,
-  Pressable,
-  FlatList,
-  Image,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import { ref, onValue } from "firebase/database";
+
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 import { Navbar, BottomMenu, MerchCarousel, MerchCard } from "../../components";
-import numberFormat from "./../../utils/numberFormat";
+import { db } from "../../configs/firebase";
 
 const Merch = ({ navigation }) => {
+  const [merch, setMerch] = useState({});
+  const merchKeys = Object.keys(merch);
   const widthCarousel = Dimensions.get("window").width;
+
+  useEffect(() => {
+    return onValue(ref(db, "Merch"), (querySnapShot) => {
+      let data = querySnapShot.val() || {};
+      let dataMerch = { ...data };
+      setMerch(dataMerch);
+    });
+  }, []);
+
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar />
@@ -37,20 +47,17 @@ const Merch = ({ navigation }) => {
             </View>
             {/* Produk */}
             <View style={styles.produkContainer}>
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
-              <MerchCard navigation={navigation} />
+              {merchKeys.length > 0 ? (
+                merchKeys.map((key) => (
+                  <MerchCard
+                    merchData={merch[key]}
+                    key={key}
+                    navigation={navigation}
+                  />
+                ))
+              ) : (
+                <ActivityIndicator size="large" color={COLORS.primary} />
+              )}
             </View>
           </View>
         </View>

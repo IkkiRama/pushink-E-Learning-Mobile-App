@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -109,17 +110,7 @@ const LayananUnsoed = ({ navigation }) => {
                 </Pressable>
               ))
             ) : (
-              <Text
-                style={{
-                  marginTop: 10,
-                  fontSize: 26,
-                  fontWeight: "600",
-                  color: COLORS.gray,
-                  textAlign: "center",
-                }}
-              >
-                Belum ada data
-              </Text>
+              <ActivityIndicator size="large" color={COLORS.primary} />
             )}
           </View>
         </View>

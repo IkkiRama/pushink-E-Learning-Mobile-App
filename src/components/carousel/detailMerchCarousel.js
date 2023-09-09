@@ -48,6 +48,7 @@ const DetailMerchCarousel = ({ ImageKos = [] }) => {
         ) : (
           <ImageBackground source={images.defaultBanner}>
             <Image
+              key={item.id}
               onLoad={() => setIsLoadedImage(false)}
               source={
                 isLoadedImage
@@ -101,7 +102,7 @@ const DetailMerchCarousel = ({ ImageKos = [] }) => {
         renderItem={renderCarouselItem}
         keyExtractor={(item) => item.id}
         showsHorizontalScrollIndicator={false}
-        style={{ height: 300, position: "relative" }}
+        style={{ height: 370, position: "relative" }}
       />
       <View
         style={{
