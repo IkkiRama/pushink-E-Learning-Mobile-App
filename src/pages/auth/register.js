@@ -9,77 +9,147 @@ import {
   TouchableOpacity,
   StatusBar,
   Alert,
+  KeyboardAvoidingView,
 } from "react-native";
-import React, { useEffect, useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import React, { useState } from "react";
+import { ref, push } from "firebase/database";
 
 import { COLORS } from "../../constants";
 import { db } from "../../configs/firebase";
 const backImage = require("../../../assets/Images/backImage.png");
 
 const Register = ({ navigation }) => {
+  const [nama, setNama] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const auth = getAuth();
+
+  const reset = () => {
+    // Reset the state of our inputs after logging in or out
+    setNama("");
+    setEmail("");
+    setPassword("");
+  };
+
+  const validation = () => {
+    if (nama.trim() === "" || email.trim() === "" || password.trim() === "") {
+      Alert.alert("Mohon isi semua data");
+      return false;
+    }
+
+    if (!email.includes("@")) {
+      Alert.alert("Harap memasukan email yang benar");
+      return false;
+    }
+
+    if (password.length <= 8) {
+      Alert.alert("Mohon isi password minimal 8 karakter");
+      return false;
+    }
+
+    return true;
+  };
+
   const onHandleSignup = () => {
-    if (email !== "" && password !== "") {
+    if (validation()) {
       createUserWithEmailAndPassword(auth, email, password)
-        .then(() => console.log("Signup success"))
-        .catch((err) => Alert.alert("Login error", err.message));
+        .then((userCredentials) => {
+          push(ref(db, "User"), {
+            nama,
+            email,
+            password,
+          });
+          reset();
+          Alert.alert("Kamu berhasil mendaftar!");
+          return navigation.replace("Beranda");
+        })
+        .catch((error) => {
+          if (error.message == "Firebase: Error (auth/email-already-in-use).") {
+            Alert.alert("Email sudah digunakan!");
+          } else {
+            Alert.alert(error.message);
+          }
+        });
     }
   };
 
   return (
     <View style={styles.container}>
       <Image source={backImage} style={styles.backImage} />
-      <View style={styles.whiteSheet} />
-      <SafeAreaView style={styles.form}>
-        <Text style={styles.title}>Sign Up</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter email"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          textContentType="emailAddress"
-          autoFocus={true}
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter password"
-          autoCapitalize="none"
-          autoCorrect={false}
-          secureTextEntry={true}
-          textContentType="password"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
-        <TouchableOpacity style={styles.button} onPress={onHandleSignup}>
-          <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 18 }}>
-            {" "}
-            Sign Up
-          </Text>
-        </TouchableOpacity>
-        <View
-          style={{
-            marginTop: 20,
-            flexDirection: "row",
-            alignItems: "center",
-            alignSelf: "center",
-          }}
-        >
-          <Text style={{ color: "gray", fontWeight: "600", fontSize: 14 }}>
-            Don't have an account?{" "}
-          </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-            <Text style={{ color: "#f57c00", fontWeight: "600", fontSize: 14 }}>
-              {" "}
-              Log In
+      <View style={styles.whiteSheet}>
+        <SafeAreaView style={styles.form}>
+          <Text style={styles.title}>Daftar di Pushink</Text>
+
+          <KeyboardAvoidingView>
+            <TextInput
+              style={styles.input}
+              placeholder="Nama"
+              autoCapitalize="none"
+              autoFocus={true}
+              value={nama}
+              onChangeText={(text) => setNama(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              textContentType="emailAddress"
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              autoCapitalize="none"
+              autoCorrect={false}
+              secureTextEntry={true}
+              textContentType="password"
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+            />
+          </KeyboardAvoidingView>
+          <TouchableOpacity style={styles.button} onPress={onHandleSignup}>
+            <Text
+              style={{
+                fontWeight: "bold",
+                color: COLORS.lightWhite,
+                fontSize: 18,
+              }}
+            >
+              Daftar
             </Text>
           </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+          <View
+            style={{
+              marginTop: 20,
+              flexDirection: "row",
+              alignItems: "center",
+              alignSelf: "center",
+            }}
+          >
+            <Text
+              style={{ color: COLORS.gray, fontWeight: "600", fontSize: 14 }}
+            >
+              Sudah mempunyai akun?{" "}
+            </Text>
+            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+              <Text
+                style={{
+                  color: COLORS.primary,
+                  fontWeight: "600",
+                  fontSize: 14,
+                }}
+              >
+                {" "}
+                Log In
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
+      </View>
       <StatusBar barStyle="light-content" />
     </View>
   );
@@ -90,17 +160,17 @@ export default Register;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.lightWhite,
   },
   title: {
-    fontSize: 36,
+    fontSize: 30,
     fontWeight: "bold",
-    color: "orange",
+    color: COLORS.primary,
     alignSelf: "center",
     paddingBottom: 24,
   },
   input: {
-    backgroundColor: "#F6F7FB",
+    backgroundColor: COLORS.borderColor,
     height: 58,
     marginBottom: 20,
     fontSize: 16,
@@ -109,30 +179,24 @@ const styles = StyleSheet.create({
   },
   backImage: {
     width: "100%",
-    height: 340,
-    position: "absolute",
-    top: 0,
-    resizeMode: "cover",
+    height: 270,
   },
   whiteSheet: {
-    width: "100%",
-    height: "75%",
-    position: "absolute",
-    bottom: 0,
-    backgroundColor: "#fff",
+    height: "100%",
+    backgroundColor: COLORS.white,
     borderTopLeftRadius: 60,
+    marginTop: -100,
+    paddingTop: 20,
   },
   form: {
-    flex: 1,
     justifyContent: "center",
     marginHorizontal: 30,
   },
   button: {
-    backgroundColor: "#f57c00",
+    backgroundColor: COLORS.primary,
     height: 58,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 40,
   },
 });

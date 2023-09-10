@@ -8,7 +8,7 @@ import {
   Dimensions,
   Alert,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Ionicons,
   FontAwesome,
@@ -17,20 +17,38 @@ import {
   Entypo,
 } from "@expo/vector-icons";
 import { Pressable } from "react-native";
+import { ref, onValue } from "firebase/database";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
+import { db } from "../../configs/firebase";
 import { BottomMenu, Navbar } from "../../components";
 import { COLORS, SAFEAREAVIEW } from "../../constants";
+import * as OpenAnything from "react-native-openanything";
 
 const Profile = ({ navigation }) => {
   const auth = getAuth();
+  let userLogin;
+  const [dataUser, setDataUser] = useState({});
+  const dataUserKeys = Object.keys(dataUser);
 
   useEffect(() => {
     if (auth.currentUser == null) {
       Alert.alert("Kamu belum login, silahkan login terlebih dahulu");
-      navigation.replace("Login");
+      return navigation.replace("Login");
+    } else {
+      return onValue(ref(db, "User"), (querySnapShot) => {
+        let data = querySnapShot.val() || {};
+        let dataUser = { ...data };
+        setDataUser(dataUser);
+      });
     }
   }, []);
+
+  dataUserKeys.map((key) => {
+    if (dataUser[key].email === auth.currentUser.email) {
+      JSON.stringify((userLogin = dataUser[key]));
+    }
+  });
 
   const handleLogout = () => {
     signOut(auth);
@@ -54,13 +72,26 @@ const Profile = ({ navigation }) => {
             </View>
 
             <View style={styles.profileUserContainer}>
-              <Text style={styles.userName}>Rifki Romadhan</Text>
+              <Text style={styles.userName}>{userLogin?.nama}</Text>
               <Text style={styles.userEmail}>{auth.currentUser?.email}</Text>
             </View>
           </View>
 
           {/* Main content */}
           <View style={styles.mainContainer}>
+            {/* <Pressable
+              onPress={() =>
+                OpenAnything.Web("https://sociabuzz.com/georgeikki/tribe")
+              }
+              style={styles.perFitur}
+            >
+              <View style={styles.nameFiturContainer}>
+                <FontAwesome5 name="fly" size={24} color={COLORS.font} />
+                <Text style={styles.profileFitur}>Dukung Kami</Text>
+              </View>
+              <FontAwesome name="chevron-right" size={24} color={COLORS.font} />
+            </Pressable> */}
+
             <Pressable
               onPress={() => navigation.navigate("Bantuan")}
               style={styles.perFitur}

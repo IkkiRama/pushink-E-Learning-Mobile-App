@@ -27,6 +27,7 @@ const backImage = require("../../../assets/Images/backImage.png");
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isClick, setIsClick] = useState(false);
 
   const auth = getAuth();
 
@@ -52,9 +53,11 @@ const Login = ({ navigation }) => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        Alert.alert("Kamu sudah login");
-        navigation.replace("Home");
+      if (validation === false) {
+        if (user) {
+          Alert.alert("Kamu sudah login");
+          navigation.replace("Beranda");
+        }
       }
     });
   }, []);
@@ -67,7 +70,13 @@ const Login = ({ navigation }) => {
           Alert.alert("Kamu berhasil login");
           return navigation.replace("Beranda");
         })
-        .catch((error) => alert(error.message));
+        .catch((error) => {
+          if (error.message == "Firebase: Error (auth/user-not-found).") {
+            Alert.alert("User tidak ditemukan!");
+          } else {
+            Alert.alert(error.message);
+          }
+        });
     }
   };
 
@@ -76,11 +85,11 @@ const Login = ({ navigation }) => {
       <Image source={backImage} style={styles.backImage} />
       <View style={styles.whiteSheet}>
         <SafeAreaView style={styles.form}>
-          <Text style={styles.title}>Log In</Text>
+          <Text style={styles.title}>Masuk ke akunmu</Text>
           <KeyboardAvoidingView>
             <TextInput
               style={styles.input}
-              placeholder="Enter email"
+              placeholder="Email"
               autoCapitalize="none"
               keyboardType="email-address"
               textContentType="emailAddress"
@@ -90,7 +99,7 @@ const Login = ({ navigation }) => {
             />
             <TextInput
               style={styles.input}
-              placeholder="Enter password"
+              placeholder="Password"
               autoCapitalize="none"
               autoCorrect={false}
               secureTextEntry={true}
@@ -100,8 +109,14 @@ const Login = ({ navigation }) => {
             />
           </KeyboardAvoidingView>
           <TouchableOpacity style={styles.button} onPress={onHandleLogin}>
-            <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 18 }}>
-              Log In
+            <Text
+              style={{
+                fontWeight: "bold",
+                color: COLORS.lightWhite,
+                fontSize: 18,
+              }}
+            >
+              Masuk
             </Text>
           </TouchableOpacity>
           <View
@@ -112,8 +127,10 @@ const Login = ({ navigation }) => {
               alignSelf: "center",
             }}
           >
-            <Text style={{ color: "gray", fontWeight: "600", fontSize: 14 }}>
-              Don't have an account?{" "}
+            <Text
+              style={{ color: COLORS.gray, fontWeight: "600", fontSize: 14 }}
+            >
+              Tidak punya akun?{" "}
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate("Register")}>
               <Text
@@ -123,7 +140,7 @@ const Login = ({ navigation }) => {
                   fontSize: 14,
                 }}
               >
-                Sign Up
+                Daftar
               </Text>
             </TouchableOpacity>
           </View>
@@ -139,10 +156,10 @@ export default Login;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.lightWhite,
   },
   title: {
-    fontSize: 36,
+    fontSize: 30,
     fontWeight: "bold",
     color: COLORS.primary,
     alignSelf: "center",
