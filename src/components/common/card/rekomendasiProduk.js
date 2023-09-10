@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Pressable, Image } from "react-native";
 
-import { COLORS } from "../../../constants";
+import { COLORS, images } from "../../../constants";
+
+const RenderImage = ({ merchData }) => {
+  const [isLoadedImage, setIsLoadedImage] = useState(true);
+  return (
+    <Image
+      onLoad={() => setIsLoadedImage(false)}
+      source={
+        isLoadedImage
+          ? images.defaultBanner
+          : {
+              uri: merchData.images[0].image,
+            }
+      }
+      style={styles.imageProduk}
+    />
+  );
+};
 
 const RekomendasiProduk = ({ navigation, merchData }) => {
   const hargaCoretProduk = (130 / 100) * merchData.harga;
@@ -18,12 +35,8 @@ const RekomendasiProduk = ({ navigation, merchData }) => {
       }
       style={styles.perProduk}
     >
-      <Image
-        source={{
-          uri: merchData.images[0].image,
-        }}
-        style={styles.imageProduk}
-      />
+      <RenderImage merchData={merchData} />
+
       <View style={styles.infoProduk}>
         <Text style={styles.namaProduk} numberOfLines={2}>
           {merchData.nama}

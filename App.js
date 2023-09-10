@@ -5,18 +5,22 @@ import {
   Artikel,
   Bantuan,
   DetailArtikel,
+  DetailFakultas,
   DetailKomik,
   DetailMerch,
   Emagz,
   Home,
   InfoKos,
   InfoKosDetail,
+  InfoUKM,
   Komik,
   LaporAja,
   LaporEror,
   LayananUnsoed,
+  Login,
   Merch,
   Profile,
+  Register,
   TentangAplikasi,
   TilikFakultas,
 } from "./src/pages";
@@ -126,6 +130,30 @@ export default function App() {
         <Stack.Screen
           name="TilikFakultas"
           component={TilikFakultas}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="DetailFakultas"
+          component={DetailFakultas}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="InfoUKM"
+          component={InfoUKM}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Register"
+          component={Register}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

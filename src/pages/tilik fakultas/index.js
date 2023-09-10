@@ -11,14 +11,32 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
-import { COLORS, SAFEAREAVIEW, SHADOWS } from "../../constants";
-import { BottomMenu, Navbar } from "../../components";
 import { ImageBackground } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
+import { BottomMenu, Navbar } from "../../components";
+import { COLORS, SAFEAREAVIEW, SHADOWS, images } from "../../constants";
+
+const RenderImage = ({ item }) => {
+  const [isLoadedImage, setIsLoadedImage] = useState(true);
+
+  return (
+    <Image
+      onLoad={() => setIsLoadedImage(false)}
+      source={
+        isLoadedImage
+          ? images.defaultBanner
+          : {
+              uri: `https://api.bem-unsoed.com/api/faculty/image/${item.image}`,
+            }
+      }
+      style={styles.fakultasImage}
+    />
+  );
+};
+
 const TilikFakultas = ({ navigation }) => {
   const [fakultas, setFakultas] = useState([]);
-  const [isLoadedImage, setIsLoadedImage] = useState(true);
 
   const getData = () => {
     fetch("https://api.bem-unsoed.com/api/faculty")
@@ -34,12 +52,7 @@ const TilikFakultas = ({ navigation }) => {
         onPress={() => navigation.navigate("DetailFakultas", { id: item.id })}
         style={styles.fakultas}
       >
-        <Image
-          source={{
-            uri: `https://api.bem-unsoed.com/api/faculty/image/${item.image}`,
-          }}
-          style={styles.fakultasImage}
-        />
+        <RenderImage item={item} />
         <View style={styles.fakultasProfile}>
           <Text style={styles.fakultasAlias} numberOfLines={1}>
             {item.alias}
@@ -64,13 +77,15 @@ const TilikFakultas = ({ navigation }) => {
         <View style={styles.containerWrapper}>
           <ImageBackground
             source={{
-              uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/Pushink%2FKomikHero.jpg?alt=media&token=1b5b88be-c1da-46c7-a524-55cfc8ca420b",
+              uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/Pushink%2FTILIK%20FAKULTAS%20HERO.jpg?alt=media&token=386b9c69-4298-4ae5-b66e-ada2f875f94f",
             }}
             style={styles.container}
           >
-            <Text style={styles.heading}>Komik</Text>
+            <Text style={styles.heading}>Taukah kamu ?</Text>
 
-            <Text style={styles.subHeading}>Bacalah komik terbaru kami!</Text>
+            <Text style={styles.subHeading}>
+              Ada 16 Fakultas di UNSOED lohh
+            </Text>
           </ImageBackground>
 
           {/* Komik */}
@@ -142,6 +157,7 @@ const styles = StyleSheet.create({
     width: 140,
     height: 85,
     borderRadius: 10,
+    backgroundColor: COLORS.primary,
   },
   fakultasProfile: {
     flex: 1,

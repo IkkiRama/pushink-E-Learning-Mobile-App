@@ -15,9 +15,25 @@ import { COLORS, SAFEAREAVIEW, images } from "../../constants";
 import { BottomMenu, Navbar } from "../../components";
 import { ImageBackground } from "react-native";
 
+const RenderImage = ({ komik }) => {
+  const [isLoadedImage, setIsLoadedImage] = useState(true);
+  return (
+    <Image
+      onLoad={() => setIsLoadedImage(false)}
+      source={
+        isLoadedImage
+          ? images.defaultBanner
+          : {
+              uri: `https://api.bem-unsoed.com/api/comic/cover/${komik.cover}`,
+            }
+      }
+      style={styles.komikImage}
+    />
+  );
+};
+
 const Komik = ({ navigation }) => {
   const [komiks, setKomiks] = useState([]);
-  const [isLoadedImage, setIsLoadedImage] = useState(true);
 
   const getData = () => {
     fetch("https://api.bem-unsoed.com/api/comic")
@@ -34,17 +50,7 @@ const Komik = ({ navigation }) => {
         onPress={() => navigation.navigate("DetailKomik", { id: komik.id })}
         style={styles.komik}
       >
-        <Image
-          onLoad={() => setIsLoadedImage(false)}
-          source={
-            isLoadedImage
-              ? images.defaultBanner
-              : {
-                  uri: `https://api.bem-unsoed.com/api/comic/cover/${komik.cover}`,
-                }
-          }
-          style={styles.komikImage}
-        />
+        <RenderImage komik={komik} />
         <Text numberOfLines={2} style={styles.komikText}>
           {komik.title}
         </Text>

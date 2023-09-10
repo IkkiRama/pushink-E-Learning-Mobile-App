@@ -19,6 +19,23 @@ import { COLORS, SAFEAREAVIEW, SHADOWS, images } from "../../constants";
 import { Navbar, BottomMenu } from "../../components";
 import numberFormat from "./../../utils/numberFormat";
 
+const RenderImage = ({ kos }) => {
+  const [isLoadedImage, setIsLoadedImage] = useState(true);
+  return (
+    <Image
+      onLoad={() => setIsLoadedImage(false)}
+      style={styles.imageKos}
+      source={
+        isLoadedImage
+          ? images.defaultBanner
+          : {
+              uri: `https://api.bem-unsoed.com/api/kost/image/${kos.kost_images[0].image}`,
+            }
+      }
+    />
+  );
+};
+
 const InfoKos = ({ navigation }) => {
   const minHeightPage = Dimensions.get("window").height;
 
@@ -27,7 +44,6 @@ const InfoKos = ({ navigation }) => {
   const [filteredKosts, setFilteredKosts] = useState([]);
   const [jenisKelaminAktif, setJenisKelaminAktif] = useState("Semua");
 
-  const [isLoadedImage, setIsLoadedImage] = useState(true);
   const jenisKelamin = [
     {
       id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -111,18 +127,7 @@ const InfoKos = ({ navigation }) => {
         onPress={() => navigation.navigate("InfoKosDetail", { id: kos.id })}
         style={styles.perKos}
       >
-        <Image
-          onLoad={() => setIsLoadedImage(false)}
-          style={styles.imageKos}
-          source={
-            isLoadedImage
-              ? images.defaultBanner
-              : {
-                  uri: `https://api.bem-unsoed.com/api/kost/image/${kos.kost_images[0].image}`,
-                }
-          }
-          height={200}
-        />
+        <RenderImage kos={kos} />
         <View style={styles.kosInfoContainer}>
           <View style={styles.namaKosContainer}>
             <Text style={styles.namaKos} numberOfLines={1}>
@@ -239,13 +244,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   heading: {
-    fontSize: 22,
+    fontSize: 23,
     color: COLORS.white,
     fontWeight: "600",
     marginTop: 20,
   },
   subHeading: {
-    fontSize: 14,
+    fontSize: 16,
     color: COLORS.white,
     fontWeight: "500",
     marginTop: 10,
@@ -326,6 +331,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   imageKos: {
+    width: "100%",
+    height: 200,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   },

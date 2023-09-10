@@ -1,4 +1,4 @@
-Komik cek lagi image nya ada atau tidak di komik selain terbaru & tentang toleransi 
+Kasih alert dulu sebelum logout
 
 Detail komik dikasih Rekomendasi
 

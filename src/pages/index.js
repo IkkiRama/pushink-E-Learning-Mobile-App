@@ -15,6 +15,10 @@ import TentangAplikasi from "./profile/tentangAplikasi";
 import Komik from "./komik/index";
 import DetailKomik from "./komik/detail";
 import TilikFakultas from "./tilik fakultas/index";
+import DetailFakultas from "./tilik fakultas/detail";
+import InfoUKM from "./info ukm/index";
+import Login from "./auth/login";
+import Register from "./auth/register";
 
 export {
   Home,
@@ -34,4 +38,8 @@ export {
   Komik,
   DetailKomik,
   TilikFakultas,
+  DetailFakultas,
+  InfoUKM,
+  Login,
+  Register,
 };

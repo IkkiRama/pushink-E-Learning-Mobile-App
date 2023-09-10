@@ -13,7 +13,7 @@ import React, { useEffect, useState } from "react";
 import { Foundation, Ionicons } from "@expo/vector-icons";
 import * as OpenAnything from "react-native-openanything";
 
-import { COLORS, SAFEAREAVIEW } from "../../constants";
+import { COLORS, SAFEAREAVIEW, images } from "../../constants";
 import { FasilitasKhusus, KostCarousel, Navbar } from "../../components";
 
 const InfoKosDetail = ({ route, navigation }) => {
@@ -217,9 +217,14 @@ const InfoKosDetail = ({ route, navigation }) => {
               <Text style={styles.fasilitasTitle}>Lokasi Kos</Text>
               <Pressable onPress={() => OpenAnything.Web(kos.location)}>
                 <Image
-                  source={{
-                    uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/Appsoed%2FIcon%2Flocation_kost.png?alt=media&token=ed7d705d-8511-4286-b75e-f725d723cb80",
-                  }}
+                  onLoad={() => setIsLoadedImage(false)}
+                  source={
+                    isLoadedImage
+                      ? images.defaultBanner
+                      : {
+                          uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/Appsoed%2FIcon%2Flocation_kost.png?alt=media&token=ed7d705d-8511-4286-b75e-f725d723cb80",
+                        }
+                  }
                   style={styles.mapImage}
                   resizeMode="contain"
                 />

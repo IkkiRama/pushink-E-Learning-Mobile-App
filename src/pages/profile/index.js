@@ -6,8 +6,9 @@ import {
   StatusBar,
   ScrollView,
   Dimensions,
+  Alert,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Ionicons,
   FontAwesome,
@@ -15,11 +16,27 @@ import {
   Octicons,
   Entypo,
 } from "@expo/vector-icons";
-import { COLORS, SAFEAREAVIEW } from "../../constants";
-import { BottomMenu, Navbar } from "../../components";
 import { Pressable } from "react-native";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+
+import { BottomMenu, Navbar } from "../../components";
+import { COLORS, SAFEAREAVIEW } from "../../constants";
 
 const Profile = ({ navigation }) => {
+  const auth = getAuth();
+
+  useEffect(() => {
+    if (auth.currentUser == null) {
+      Alert.alert("Kamu belum login, silahkan login terlebih dahulu");
+      navigation.replace("Login");
+    }
+  }, []);
+
+  const handleLogout = () => {
+    signOut(auth);
+    navigation.replace("Login");
+    Alert.alert("Kamu berhasil logout");
+  };
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar />
@@ -38,7 +55,7 @@ const Profile = ({ navigation }) => {
 
             <View style={styles.profileUserContainer}>
               <Text style={styles.userName}>Rifki Romadhan</Text>
-              <Text style={styles.userEmail}>georgeikkirama@gmail.com</Text>
+              <Text style={styles.userEmail}>{auth.currentUser?.email}</Text>
             </View>
           </View>
 
@@ -76,10 +93,7 @@ const Profile = ({ navigation }) => {
               <FontAwesome name="chevron-right" size={24} color={COLORS.font} />
             </Pressable>
 
-            <Pressable
-              onPress={() => navigation.navigate("TentangAplikasi")}
-              style={styles.perFitur}
-            >
+            <Pressable onPress={() => handleLogout()} style={styles.perFitur}>
               <View style={styles.nameFiturContainer}>
                 <Octicons name="sign-out" size={24} color={COLORS.font} />
                 <Text style={styles.profileFitur}>Keluar</Text>

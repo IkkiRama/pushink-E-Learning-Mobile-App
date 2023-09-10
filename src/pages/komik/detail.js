@@ -12,11 +12,29 @@ import React, { useEffect, useState } from "react";
 import { COLORS, SAFEAREAVIEW, images } from "../../constants";
 import { Navbar } from "../../components";
 
+const RenderImage = ({ imgKomik }) => {
+  const [isLoadedImage, setIsLoadedImage] = useState(true);
+  return (
+    <Image
+      onLoad={() => setIsLoadedImage(false)}
+      key={imgKomik.id}
+      // resizeMode="contain"
+      style={styles.imageKomik}
+      source={
+        isLoadedImage
+          ? images.defaultBanner
+          : {
+              uri: `https://api.bem-unsoed.com/api/comic/content/${imgKomik.image}`,
+            }
+      }
+    />
+  );
+};
+
 const DetailKomik = ({ route, navigation }) => {
   const { id } = route.params;
   const [komik, setKomik] = useState([]);
   const [imageKomik, setImageKomik] = useState([]);
-  const [isLoadedImage, setIsLoadedImage] = useState(true);
 
   const getData = () => {
     fetch(`https://api.bem-unsoed.com/api/comic/${id}`)
@@ -32,21 +50,7 @@ const DetailKomik = ({ route, navigation }) => {
   }, []);
 
   const renderKomik = () =>
-    imageKomik.map((imgKomik) => (
-      <Image
-        onLoad={() => setIsLoadedImage(false)}
-        key={imageKomik.id}
-        resizeMode="contain"
-        style={styles.imageKomik}
-        source={
-          isLoadedImage
-            ? images.defaultBanner
-            : {
-                uri: `https://api.bem-unsoed.com/api/comic/content/${imgKomik.image}`,
-              }
-        }
-      />
-    ));
+    imageKomik.map((imgKomik) => <RenderImage imgKomik={imgKomik} />);
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar
@@ -88,5 +92,6 @@ const styles = StyleSheet.create({
   imageKomik: {
     width: "100%",
     height: 500,
+    backgroundColor: COLORS.primary,
   },
 });
