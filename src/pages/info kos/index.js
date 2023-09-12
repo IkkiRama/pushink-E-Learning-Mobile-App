@@ -227,7 +227,7 @@ const InfoKos = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
-      <BottomMenu focused="Beranda" navigationHandle={navigation}></BottomMenu>
+      <BottomMenu focused="Beranda" navigationHandle={navigation}/>
     </SafeAreaView>
   );
 };

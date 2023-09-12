@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dimensions, Image, ImageBackground, Pressable } from "react-native";
 import {
   StatusBar,
@@ -10,15 +10,39 @@ import {
   SafeAreaView,
 } from "react-native";
 
-import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+import { getAuth } from "firebase/auth";
+import { ref, onValue } from "firebase/database";
 
+import { db } from "../../configs/firebase";
 import { BottomMenu, Fiturs, Navbar } from "../../components";
 import numberFormat from "../../utils/numberFormat";
 import Carousel from "./../../components/carousel/index";
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 
 const Home = ({ navigation }) => {
+  const auth = getAuth();
+  let userLogin;
+  const [dataUser, setDataUser] = useState({});
+  const dataUserKeys = Object.keys(dataUser);
+
+  useEffect(() => {
+    if (auth.currentUser !== null) {
+      return onValue(ref(db, "User"), (querySnapShot) => {
+        let data = querySnapShot.val() || {};
+        let dataUser = { ...data };
+        setDataUser(dataUser);
+      });
+    }
+  }, []);
+
+  dataUserKeys.map((key) => {
+    if (dataUser[key].email === auth.currentUser.email) {
+      JSON.stringify((userLogin = dataUser[key]));
+    }
+  });
+
   const [Merchandise, setMerchandise] = useState([
     {
       image: require("../../../assets/Images/Merch/merch1.jpg"),
@@ -179,7 +203,9 @@ const Home = ({ navigation }) => {
                 marginTop: 20,
               }}
             >
-              Hii, Rifki Romadhan
+              {dataUserKeys.length === 0
+                ? "Hii, Selamat Datang 👋"
+                : `Hii, ${userLogin?.nama}👋`}
             </Text>
           </View>
 

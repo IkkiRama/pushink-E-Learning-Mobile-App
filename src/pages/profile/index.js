@@ -18,7 +18,7 @@ import {
 } from "@expo/vector-icons";
 import { Pressable } from "react-native";
 import { ref, onValue } from "firebase/database";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 
 import { db } from "../../configs/firebase";
 import { BottomMenu, Navbar } from "../../components";
@@ -73,7 +73,7 @@ const Profile = ({ navigation }) => {
 
             <View style={styles.profileUserContainer}>
               <Text style={styles.userName}>{userLogin?.nama}</Text>
-              <Text style={styles.userEmail}>{auth.currentUser?.email}</Text>
+              <Text style={styles.userEmail}>{userLogin?.email}</Text>
             </View>
           </View>
 

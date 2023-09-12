@@ -19,6 +19,8 @@ import DetailFakultas from "./tilik fakultas/detail";
 import InfoUKM from "./info ukm/index";
 import Login from "./auth/login";
 import Register from "./auth/register";
+import Komunitas from "./komunitas/index";
+import DetailUKM from "./info ukm/detail";
 
 export {
   Home,
@@ -42,4 +44,6 @@ export {
   InfoUKM,
   Login,
   Register,
+  Komunitas,
+  DetailUKM,
 };

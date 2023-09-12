@@ -8,12 +8,14 @@ import {
   DetailFakultas,
   DetailKomik,
   DetailMerch,
+  DetailUKM,
   Emagz,
   Home,
   InfoKos,
   InfoKosDetail,
   InfoUKM,
   Komik,
+  Komunitas,
   LaporAja,
   LaporEror,
   LayananUnsoed,
@@ -154,6 +156,18 @@ export default function App() {
         <Stack.Screen
           name="Register"
           component={Register}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Komunitas"
+          component={Komunitas}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="DetailUKM"
+          component={DetailUKM}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
