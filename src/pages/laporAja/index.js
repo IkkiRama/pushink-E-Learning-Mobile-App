@@ -48,7 +48,8 @@ const LaporAja = ({ navigation }) => {
               </Text>
             </View>
             <Pressable
-              onPress={() => Linking.openURL("http://wa.me/6289691944030")}
+              onPress={() => navigation.navigate("FormLaporan")}
+              // onPress={() => Linking.openURL("http://wa.me/6289691944030")}
               style={styles.laporAjaCTA}
             >
               <Text style={styles.laporAjaCTAText}>Lapor Sekarang</Text>

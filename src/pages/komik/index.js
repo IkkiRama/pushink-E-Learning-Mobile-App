@@ -8,12 +8,12 @@ import {
   ScrollView,
   SafeAreaView,
   ActivityIndicator,
+  ImageBackground,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
 import { COLORS, SAFEAREAVIEW, images } from "../../constants";
 import { BottomMenu, Navbar } from "../../components";
-import { ImageBackground } from "react-native";
 
 const RenderImage = ({ komik }) => {
   const [isLoadedImage, setIsLoadedImage] = useState(true);

@@ -10,16 +10,40 @@ import {
   TextInput,
   KeyboardAvoidingView,
 } from "react-native";
-import React, { useState } from "react";
-import { ref, push } from "firebase/database";
+import React, { useState, useEffect } from "react";
+import { getAuth } from "firebase/auth";
+import { ref, push, onValue } from "firebase/database";
 
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 import { Navbar, BottomMenu } from "../../components";
 import { db } from "../../configs/firebase";
 
 const LaporEror = ({ navigation }) => {
+  let userLogin;
+  const auth = getAuth();
   const [judul, setJudul] = useState("");
   const [message, setMessage] = useState("");
+  const [dataUser, setDataUser] = useState({});
+  const dataUserKeys = Object.keys(dataUser);
+
+  useEffect(() => {
+    if (auth.currentUser == null) {
+      Alert.alert("Kamu belum login, silahkan login terlebih dahulu");
+      return navigation.replace("Login");
+    } else {
+      return onValue(ref(db, "User"), (querySnapShot) => {
+        let data = querySnapShot.val() || {};
+        let dataUser = { ...data };
+        setDataUser(dataUser);
+      });
+    }
+  }, []);
+
+  dataUserKeys.map((key) => {
+    if (dataUser[key].email === auth.currentUser.email) {
+      JSON.stringify((userLogin = dataUser[key]));
+    }
+  });
 
   const resetData = () => {
     setJudul("");
@@ -31,13 +55,16 @@ const LaporEror = ({ navigation }) => {
       Alert.alert("Error", "Harap isi semua data!");
     } else {
       push(ref(db, "Laporan"), {
-        nama: "Rifki Romadhan",
-        email: "Rifkivamaus@gmail.com",
+        nama: userLogin.nama,
+        email: userLogin.email,
         judul,
         message,
       });
       resetData();
-      Alert.alert("Sukses", "Data berhasil ditambahkan");
+      Alert.alert(
+        "Laporan berhasil dikirim",
+        "Kami akan menjawabnya sesegera mungkin lewat email 😊"
+      );
       navigation.replace("Profile");
     }
   };

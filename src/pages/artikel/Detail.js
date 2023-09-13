@@ -52,16 +52,13 @@ const DetailArtikel = ({ navigation }) => {
           <Image
             style={styles.imageArtikel}
             source={require("../../../assets/Images/Artikel/BABI.jpg")}
+            resizeMode="contain"
           />
 
           <View style={styles.kontent}>
-            <Text style={styles.textKonten}>
-              Pertumbuhan ekonomi adalah konsep yang sangat penting dalam studi
-              ekonomi dan kebijakan publik. Ini mencerminkan perkembangan suatu
-              negara atau wilayah dari segi produksi, pendapatan, dan
-              kemakmuran. Artikel ini akan membahas definisi pertumbuhan
-              ekonomi, faktor-faktor yang mempengaruhinya, serta dampaknya pada
-              masyarakat secara lebih mendalam.
+            <Text style={styles.headerKonten}>
+              Kemendikbud Dorong Perguruan Tinggi Perangi Kekerasan Seksual di
+              Kampus
             </Text>
             <Text style={styles.headerKonten}>
               Definisi Pertumbuhan Ekonomi:
@@ -79,9 +76,32 @@ const DetailArtikel = ({ navigation }) => {
             <Text style={styles.headerKonten}>
               Faktor-faktor yang Mempengaruhi Pertumbuhan Ekonomi:
             </Text>
-            <Text style={styles.textKonten}></Text>
-            <Text style={styles.headerKonten}>
+            <Text style={styles.subHeaderKonten}>
               2. Melakukan Konfigurasi Database
+            </Text>
+
+            <Text style={styles.textKonten}>
+              {`Chatarina Muliana Girsang Inspektur Jenderal Kementerian Pendidikan dan Kebudayaan Republik Indonesia (Kemendikbud RI) menegaskan, tidak boleh ada kekerasan seksual di lingkup perguruan tinggi. \n\n\nOleh karena itu, ia menekankan pada seluruh Satuan Tugas Pencegahan dan Penanganan Kekerasan Seksual (Satgas PPKS) di setiap perguruan tinggi baik negeri maupun swasta agar terus bergerak mengatasi masalah tersebut. “Pencegahan ini jauh lebih penting untuk mencegah berulangnya kasus ini, dan dalam hal penanganan ini juga harus ada respons atas semua laporan-laporan yang dilaporkan,” ucapnya seusai launching dan diskusi program inovasi “Pengembangan dan Implementasi Indikator Kampus Bebas Kekerasan Seksual” di Universitas Surabaya (Ubaya) pada Rabu(9/8/2022). \n Untuk mengatasi masalah kekerasan seksual, ia
+              menegaskan, perlu keterlibatan civitas akademik agar tidak
+              menutup-nutupi dan memberikan kekuatan pada korban, sekaligus
+              membantu speak up untuk menyelesaikan masalah tersebut. \n Ia
+              mengatakan bahwa Satgas PPKS juga harus dapat meyakinkan pelapor
+              dan korban dalam menindak melanjuti laporan, serta memberikan
+              pemahaman terkait konsekuensi apa yang akan terjadi jika kasus
+              justru ditutupi-tutupi. \n “Karena itu akan bisa menimbulkan
+              korban-korban baru, dan akan mengganggu suasana pembelajaran,
+              menimbulkan rasa tidak aman, tidak nyaman, berada di dekat pelaku
+              dan lain sebagainya,” tuturnya. \n Sehingga yang menjadi tantangan
+              saat ini, kata dia, yakni bagaimana bisa meyakinkan untuk
+              melaporkan kasus kekerasan seksual tersebut. \n Sementara itu,
+              Endah Triwijati Psikolog dari Satgas PPKS Ubaya mengatakan,
+              diadakannya diskusi indikator kampus bebas kekerasan seksual
+              tersebut merupakan bentuk penguatan serta evaluasi dalam
+              pencegahan dan penanganan kekerasan seksual di kampus. \n “Sebagai
+              upaya untuk bisa sebanyak mungkin mengungkapkan keadilan bagi
+              korban dan mencegah keberulangan,” ujarnya. \n Dalam kegiatan
+              tersebut, dihadiri oleh perwakilan Satgas PPKS dari berbagai
+              perguruan tinggi yang ada di Surabaya, baik negeri maupun swasta.`}
             </Text>
           </View>
         </View>
@@ -145,10 +165,16 @@ const styles = StyleSheet.create({
     color: COLORS.font,
     lineHeight: 27,
     textAlign: "justify",
+    marginVertical: 5,
   },
   headerKonten: {
     marginVertical: 5,
     fontSize: 23,
     fontWeight: "700",
+  },
+  subHeaderKonten: {
+    marginVertical: 5,
+    fontSize: 18,
+    fontWeight: "500",
   },
 });

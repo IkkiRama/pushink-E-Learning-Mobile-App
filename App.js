@@ -10,6 +10,7 @@ import {
   DetailMerch,
   DetailUKM,
   Emagz,
+  FormLaporan,
   Home,
   InfoKos,
   InfoKosDetail,
@@ -168,6 +169,12 @@ export default function App() {
         <Stack.Screen
           name="DetailUKM"
           component={DetailUKM}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="FormLaporan"
+          component={FormLaporan}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

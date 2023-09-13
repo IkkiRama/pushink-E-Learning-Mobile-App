@@ -28,7 +28,7 @@ const DetailUKM = ({ route, navigation }) => {
           <Image
             source={{ uri: ukm.image }}
             style={styles.imageUKM}
-            // resizeMode="contain"
+            resizeMode="contain"
           />
 
           <View style={styles.UKMProfil}>
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   imageUKM: {
     height: 300,
     width: "100%",
+    backgroundColor: COLORS.lightWhite,
   },
   UKMProfil: {
     paddingHorizontal: 10,

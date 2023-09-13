@@ -50,7 +50,9 @@ const DetailKomik = ({ route, navigation }) => {
   }, []);
 
   const renderKomik = () =>
-    imageKomik.map((imgKomik) => <RenderImage imgKomik={imgKomik} />);
+    imageKomik.map((imgKomik) => (
+      <RenderImage key={imgKomik.id} imgKomik={imgKomik} />
+    ));
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar

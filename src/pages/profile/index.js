@@ -7,6 +7,7 @@ import {
   ScrollView,
   Dimensions,
   Alert,
+  Pressable,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import {
@@ -16,7 +17,6 @@ import {
   Octicons,
   Entypo,
 } from "@expo/vector-icons";
-import { Pressable } from "react-native";
 import { ref, onValue } from "firebase/database";
 import { getAuth, signOut } from "firebase/auth";
 

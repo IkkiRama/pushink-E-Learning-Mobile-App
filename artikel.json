@@ -1,0 +1,8 @@
+{
+  "judul": "",
+  "penulis": "",
+  "publish": "",
+  "image": "",
+  "kategori": ["", "", ""],
+  "konten": "<Text style={styles.textKonten}>1. Tanpa kemiskinan â€” Mengentaskan segala bentuk kemiskinan di seluruh tempat.\n2. Tanpa kelaparan â€” Mengakhiri kelaparan, mencapai ketahanan pangan dan perbaikan nutrisi, serta menggalakkan pertanian yang berkelanjutan. \n</Text><Text style={styles.headerKonten}>Definisi Pertumbuhan Ekonomi:</Text><Text style={styles.textKonten}> Pertumbuhan ekonomi mengacu pada peningkatan nilai produk domestik bruto (PDB) suatu negara atau wilayah dalam suatu periode waktu tertentu. PDB mencakup nilai total barang dan jasa yang dihasilkan dalam perekonomian. Pertumbuhan ekonomi diukur dalam persentase dan merupakan indikator utama kesehatan ekonomi suatu negara. Peningkatan pertumbuhan ekonomi menunjukkan bahwa perekonomian sedang berkembang, sementara pertumbuhan yang rendah atau negatif dapat mengindikasikan perlambatan atau resesi.</Text>"
+}
