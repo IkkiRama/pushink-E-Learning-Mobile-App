@@ -8,6 +8,8 @@ import MerchCarousel from "./carousel/merchCarousel";
 import DetailMerchCarousel from "./carousel/detailMerchCarousel";
 import MerchCard from "./common/card/merchCard";
 import RekomendasiProduk from "./common/card/rekomendasiProduk";
+import ArtikelCard from "./common/card/artikelCard";
+import RekomendasiArtikel from "./common/card/rekomendasiArtikel";
 
 export {
   Navbar,
@@ -20,4 +22,6 @@ export {
   DetailMerchCarousel,
   MerchCard,
   RekomendasiProduk,
+  ArtikelCard,
+  RekomendasiArtikel,
 };
