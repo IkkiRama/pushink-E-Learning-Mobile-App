@@ -31,7 +31,8 @@ const DetailMerch = ({ route, navigation }) => {
   const [merch, setMerch] = useState({});
   const merchKeys = Object.keys(merch);
   const [isSelengkapnya, setIsSelengkapnya] = useState(false);
-  const { merchData, hargaCoretProduk, diskonProduk } = route.params;
+  const { merchData, hargaCoretProduk, diskonProduk, isFromHome } =
+    route.params;
   let merchRekomendasiKeys = [];
   let merchMungkinKamuSukaKeys = [];
 
@@ -55,7 +56,14 @@ const DetailMerch = ({ route, navigation }) => {
 
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
-      <Navbar isBack={true} goBack={() => navigation.navigate("Merch")} />
+      <Navbar
+        isBack={true}
+        goBack={() =>
+          isFromHome
+            ? navigation.navigate("Beranda")
+            : navigation.navigate("Merch")
+        }
+      />
       <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent

@@ -8,14 +8,40 @@ import {
   Pressable,
   Alert,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getAuth } from "firebase/auth";
+import { ref, onValue } from "firebase/database";
 import * as OpenAnything from "react-native-openanything";
 import { FontAwesome5, FontAwesome, Feather } from "@expo/vector-icons";
 
+import { db } from "../../configs/firebase";
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 import { Navbar, BottomMenu } from "../../components";
 
 const Bantuan = ({ navigation }) => {
+  const auth = getAuth();
+  let userLogin;
+  const [dataUser, setDataUser] = useState({});
+  const dataUserKeys = Object.keys(dataUser);
+
+  useEffect(() => {
+    if (auth.currentUser == null) {
+      Alert.alert("Kamu belum login, silahkan login terlebih dahulu");
+      return navigation.replace("Login");
+    } else {
+      return onValue(ref(db, "User"), (querySnapShot) => {
+        let data = querySnapShot.val() || {};
+        let dataUser = { ...data };
+        setDataUser(dataUser);
+      });
+    }
+  }, []);
+
+  dataUserKeys.map((key) => {
+    if (dataUser[key].email === auth.currentUser.email) {
+      JSON.stringify((userLogin = dataUser[key]));
+    }
+  });
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar
@@ -42,7 +68,7 @@ const Bantuan = ({ navigation }) => {
               <Pressable
                 onPress={() =>
                   OpenAnything.Open(
-                    "https://wa.me/+6282133320489?text=Hallo,%20saya%20ingin%20menyampaikan%20keluhan%20saya%20mengenai%20aplikasi%20Pushink"
+                    `https://api.whatsapp.com/send/?phone=%2B6282133320489&text=Hallo%2C++nama+saya+${userLogin.nama}%2C+saya+ingin+menyampaikan+keluhan+saya+mengenai+aplikasi+Pushink`
                   )
                 }
                 style={styles.perBantuan}
@@ -120,7 +146,7 @@ const Bantuan = ({ navigation }) => {
                   OpenAnything.Email(
                     "georgeikkirama@gmail.com",
                     "Hallo, saya ingin sampaikan keluhan saya di aplikasi pushink!",
-                    "Hallo, nama saya AAA, saya ingin menyampaikan bahwa di aplikasi Pushink itu ....."
+                    `Hallo, nama saya ${userLogin.nama}, saya ingin menyampaikan bahwa di aplikasi Pushink itu .....`
                   )
                 }
                 style={styles.perBantuan}

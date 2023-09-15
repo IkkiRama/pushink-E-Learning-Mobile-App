@@ -39,7 +39,7 @@ const Fiturs = ({ navigation }) => {
       </Pressable>
       <Pressable
         style={Styles.perFitur}
-        onPress={() => navigation.navigate("Komunitas")}
+        onPress={() => navigation.navigate("Artikel")}
       >
         <View
           style={[
@@ -49,9 +49,9 @@ const Fiturs = ({ navigation }) => {
             },
           ]}
         >
-          <FontAwesome5 name="users" size={24} color="#F6A316" />
+          <MaterialIcons name="article" size={30} color="#F6A316" />
         </View>
-        <Text style={Styles.textFitur}>Komunitas</Text>
+        <Text style={Styles.textFitur}>Artikel</Text>
       </Pressable>
       <Pressable
         style={Styles.perFitur}
@@ -160,9 +160,9 @@ const Fiturs = ({ navigation }) => {
 const Styles = StyleSheet.create({
   perFitur: {
     width: "20%",
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
-    marginVertical: 7,
+    marginVertical: 8,
     marginHorizontal: 5,
   },
 

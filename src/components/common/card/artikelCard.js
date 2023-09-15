@@ -2,25 +2,24 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { COLORS } from "../../../constants";
 
-const ArtikelCard = ({ navigation }) => {
+const ArtikelCard = ({ navigation, artikel }) => {
   return (
     <Pressable
-      onPress={() => navigation.navigate("DetailArtikel")}
+      onPress={() => navigation.navigate("DetailArtikel", { artikel })}
       style={styles.artikel}
     >
       <Image
         source={{
-          uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FArtikel%2FArtikelSatu.jpg?alt=media&token=403be7ef-fe73-4d88-857b-5b604e72b46e",
+          uri: artikel.image,
         }}
         style={styles.imageArtikel}
         resizeMode="contain"
       />
       <View style={styles.textContainer}>
         <Text style={styles.titleArtikel} numberOfLines={3}>
-          Ganjar, Prabowo, Anies Berebut Suara di Jawa Timur Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Unde, magni.
+          {artikel.judul}
         </Text>
-        <Text style={styles.tanggalArtikel}>Ditulis pada 12 November 2098</Text>
+        <Text style={styles.tanggalArtikel}>Ditulis pada {artikel.terbit}</Text>
       </View>
     </Pressable>
   );

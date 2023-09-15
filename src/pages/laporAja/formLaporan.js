@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -14,14 +14,20 @@ import {
   TextInput,
   Alert,
 } from "react-native";
+import { getAuth } from "firebase/auth";
 import { Ionicons } from "@expo/vector-icons";
-import { ref, push } from "firebase/database";
+import { ref, push, onValue } from "firebase/database";
 
 import { db } from "../../configs/firebase";
 import { Navbar, BottomMenu } from "../../components";
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 
 const FormLaporan = ({ navigation }) => {
+  const auth = getAuth();
+  let userLogin;
+  const [dataUser, setDataUser] = useState({});
+  const dataUserKeys = Object.keys(dataUser);
+
   const [nama, setNama] = useState("");
   const [nomerKorban, setNomerKorban] = useState("");
   const [kronologi, setKronologi] = useState("");
@@ -44,6 +50,10 @@ const FormLaporan = ({ navigation }) => {
         nama,
         "Nomer Korban": nomerKorban,
         kronologi,
+        pengirim: {
+          nama: userLogin.nama,
+          email: userLogin.email,
+        },
       });
       reset();
       Alert.alert(
@@ -53,6 +63,25 @@ const FormLaporan = ({ navigation }) => {
       navigation.replace("LaporAja");
     }
   };
+
+  useEffect(() => {
+    if (auth.currentUser == null) {
+      Alert.alert("Kamu belum login, silahkan login terlebih dahulu");
+      return navigation.replace("Login");
+    } else {
+      return onValue(ref(db, "User"), (querySnapShot) => {
+        let data = querySnapShot.val() || {};
+        let dataUser = { ...data };
+        setDataUser(dataUser);
+      });
+    }
+  }, []);
+
+  dataUserKeys.map((key) => {
+    if (dataUser[key].email === auth.currentUser.email) {
+      JSON.stringify((userLogin = dataUser[key]));
+    }
+  });
 
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
@@ -69,7 +98,11 @@ const FormLaporan = ({ navigation }) => {
               Form Laporan Tindak Pelecehan Seksual
             </Text>
             <Text style={styles.laporanSubTitle}>
-              {`Kami berkomitmen untuk menciptakan lingkungan kampus yang aman, inklusif, dan bebas dari pelecehan. Jika Anda melihat atau mengalami tindak pelecehan seksual, kirim laporan melalui form dibawah agar kami mengetahuinya!. Anda tidak sendirian. Kami mendukung Anda.\n`}
+              Kami berkomitmen untuk menciptakan lingkungan kampus yang aman,
+              inklusif, dan bebas dari pelecehan. Jika Anda melihat atau
+              mengalami tindak pelecehan seksual, kirim laporan melalui form
+              dibawah agar kami mengetahuinya!. Anda tidak sendirian. Kami
+              mendukung Anda.
             </Text>
 
             {/* Form */}
@@ -172,6 +205,7 @@ const styles = StyleSheet.create({
   laporanSubTitle: {
     fontSize: 15,
     color: COLORS.font,
+    lineHeight: 23,
   },
 
   noteTitle: {

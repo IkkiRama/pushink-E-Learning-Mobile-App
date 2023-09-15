@@ -22,6 +22,7 @@ import Register from "./auth/register";
 import Komunitas from "./komunitas/index";
 import DetailUKM from "./info ukm/detail";
 import FormLaporan from "./laporAja/formLaporan";
+import FAQ from "./profile/faq";
 
 export {
   Home,
@@ -48,4 +49,5 @@ export {
   Komunitas,
   DetailUKM,
   FormLaporan,
+  FAQ,
 };

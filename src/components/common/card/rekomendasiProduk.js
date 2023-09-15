@@ -16,11 +16,12 @@ const RenderImage = ({ merchData }) => {
             }
       }
       style={styles.imageProduk}
+      resizeMode="cover"
     />
   );
 };
 
-const RekomendasiProduk = ({ navigation, merchData }) => {
+const RekomendasiProduk = ({ navigation, merchData, isFromHome = false }) => {
   const hargaCoretProduk = (130 / 100) * merchData.harga;
   const diskonProduk =
     ((hargaCoretProduk - merchData.harga) / hargaCoretProduk) * 100;
@@ -31,6 +32,7 @@ const RekomendasiProduk = ({ navigation, merchData }) => {
           merchData,
           hargaCoretProduk,
           diskonProduk,
+          isFromHome,
         })
       }
       style={styles.perProduk}
@@ -88,6 +90,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: COLORS.font,
+    height: 40,
   },
   hargaContainer: {
     marginTop: 10,

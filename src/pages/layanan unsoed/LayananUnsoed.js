@@ -31,7 +31,7 @@ const LayananUnsoed = ({ navigation }) => {
 
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
-      <Navbar isBack={true} goBack={() => navigation.goBack()} />
+      <Navbar />
       <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent

@@ -22,7 +22,90 @@
     "publish": "Hermanto",
     "image": "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FArtikel%2Fartikel2.jpg?alt=media&token=f4874627-78a9-43f9-8813-2759f487e635",
     "kategori": ["Kampus", "Mahasiswa", "Pelecehan Seksual"],
-    "konten": "<Text style={styles.headerKonten}>Terungkapnya Pengurus BEM FEB Unsoed Terseret Kasus Pelecehan Seksual</Text><Text style={styles.textKonten}>Mendagri BEM FEB Universitas Jenderal Soedirman (Unsoed) Purwokerto berinisial AHM terseret kasus pelecehan seksual. AHM dipecah dari jabatannya dan terancam drop out (DO). Berikut sejumlah fakta soal kasus tersebut.</Text><Text style={styles.subHeaderKonten}>Dipecat dari BEM</Text><Text style={styles.textKonten}>Kasus pelecehan seksual itu terungkap ke publik setelah akun Twitter @Unsoedfess1963 mengunggah salinan SK pemecatan AHM pada Minggu (5/3/2023). Dalam SK tersebut tertulis nama terang jabatan yang bersangkutan.'Secara resmi diberhentikan secara tidak hormat karena tindak pelecehan seksual yang dilakukan oleh yang bersangkutan. Surat ini berlaku mulai tanggal 5 Maret 2023,' sebagaimana tertulis di SK tersebut, dikutip detikJateng, Selasa (7/3/2023).\nSurat itu ditandatangani Presiden BEM FEB Unsoed 2023 Rafi Muhammad Warits.\nSaat dimintai konfirmasi, Rafi membenarkan pihaknya yang mengeluarkan surat tersebut.\n'Betul,' kata Rafi, Selasa (7/3).\nNamun Rafi menolak menjelaskan lebih lanjut terkait kasus tersebut. Dia menyampaikan kasus tersebut saat ini sudah ditangani oleh Satgas Pencegahan dan Penanganan Kekerasan Seksual (PPKS) Unsoed.'Untuk informasi lebih lanjut bisa ditanyakan kepada Satgas PPKS saja ya, semua informasi ada di sana,' ujarnya.\n'Sudah diserahkan penanganannya ke Satgas dan untuk pemulihan korban perlu tenang dan tidak mau banyak informasi terkait kasusnya,' lanjutnya.</Text><Text style={styles.subHeaderKonten}>Terancam DO</Text><Text style={styles.textKonten}>AHM juga terancam dikeluarkan dari kampus atau DO. Hal itu disampaikan Ketua Satgas PPKS Unsoed, Tri Wuryaningsih.\nMenurutnya, AHM akan direkomendasikan DO jika terbukti yang dilakukannya adalah pelanggaran berat.\nNanti jika secara sah dia terbukti melakukan pelanggaran, karena kita kan diatur melalui Peraturan Menteri dan Peraturan Rektor ya, bila terbukti jenis pelanggarannya pelanggaran berat ya ancamannya adalah DO,' kata Tri saat dihubungi, Selasa (7/3).\nNamun, hal itu belum bisa disimpulkan mengingat psikologis korban masih belum stabil dan belum bisa memberikan keterangan penuh. Hingga saat ini, Satgas PPKS juga belum meminta keterangan dari pelaku.\nBelum semua disampaikan karena kan korban kondisinya masih belum siap secara mental, jadi kita belum bisa mengambil kesimpulan, jelasnya.\nMeski demikian, dia menyebut sejak dibentuk pada 1 November 2022, Satgas PPKS Unsoed sudah menangani empat kasus. Dari empat kasus itu, satu mahasiswa sudah di-DO.\nIni bukan kasus pertama jadi sejak kami berdiri itu sudah ada empat kasus. (DO) Ada satu, akhir tahun 2022,' jelasnya.\nTri memastikan akan memproses pelaku sesuai prosedur yang ada. Korban juga sudah diberikan pendampingan dan akan diberikan layanan psikologi.\nPada intinya kami sudah terima laporan itu kemudian korban akan kita dampingi ya, need assessment juga, kita identifikasi kebutuhan-kebutuhan yang harus kami berikan kepada korban, pendampingan, dan pelakunya tentu kami akan proses,' jelas Tri.\nKorban disebut juga merupakan mahasiswa Unsoed. Kasus ini terjadi beberapa bulan lalu dan terungkap usai bercerita kepada temannya.\nTri mengatakan korban sempat takut untuk melapor. Dia mulai berani bercerita karena melihat pelaku terlihat tak merasa bersalah.\n'2022, tapi baru ya, di akhir, cuma dia karena memang takut gitu kalau ngomong dikiranya nggak percaya nanti dikiranya menyudutkan. Karena kan korban itu memang tidak bisa langsung seketika itu kemudian menyampaikan, tapi melihat kemudian pelakunya kayaknya tidak ada rasa bersalah, fine-fine saja, kan jadi gemes nah itu kemudian muncul untuk cerita ke temannya,' lanjutnya.</Text><Text style={styles.subHeaderKonten}>Korban Masih Syok</Text><Text style={styles.textKonten}>Ketua Satgas PPKS Unsoed, Tri Wuryaningsih mengatakan korban syok. 'Kondisinya kan agak syok juga, kondisinya membutuhkan pendampingan lebih lanjut untuk layanan psikologisnya,' ujarnya.\nPihaknya mendapat laporan dari BEM FEB Unsoed beberapa waktu lalu bahwa korban sudah dimintai keterangan namun belum lengkap karena kondisinya masih belum stabil.\n'Kalau anak ini sudah siap memberikan keterangan penuh seperti apa nanti, baru kita untuk memanggil pelakunya,' jelasnya.</Text>"
+    "konten": "<Text style={styles.textKonten}>Mendagri BEM FEB Universitas Jenderal Soedirman (Unsoed) Purwokerto berinisial AHM terseret kasus pelecehan seksual. AHM dipecah dari jabatannya dan terancam drop out (DO). Berikut sejumlah fakta soal kasus tersebut.</Text><Text style={styles.headerKonten}>Dipecat dari BEM</Text><Text style={styles.textKonten}>Kasus pelecehan seksual itu terungkap ke publik setelah akun Twitter @Unsoedfess1963 mengunggah salinan SK pemecatan AHM pada Minggu (5/3/2023). Dalam SK tersebut tertulis nama terang jabatan yang bersangkutan.'Secara resmi diberhentikan secara tidak hormat karena tindak pelecehan seksual yang dilakukan oleh yang bersangkutan. Surat ini berlaku mulai tanggal 5 Maret 2023,' sebagaimana tertulis di SK tersebut, dikutip detikJateng, Selasa (7/3/2023). </Text> <Text style={styles.textKonten}> Surat itu ditandatangani Presiden BEM FEB Unsoed 2023 Rafi Muhammad Warits. </Text><Text style={styles.textKonten}>Saat dimintai konfirmasi, Rafi membenarkan pihaknya yang mengeluarkan surat tersebut.</Text><Text style={styles.textKonten}>'Betul,' kata Rafi, Selasa (7/3).</Text><Text style={styles.textKonten}>Namun Rafi menolak menjelaskan lebih lanjut terkait kasus tersebut. Dia menyampaikan kasus tersebut saat ini sudah ditangani oleh Satgas Pencegahan dan Penanganan Kekerasan Seksual (PPKS) Unsoed.'Untuk informasi lebih lanjut bisa ditanyakan kepada Satgas PPKS saja ya, semua informasi ada di sana,' ujarnya.</Text><Text style={styles.textKonten}>
+              'Sudah diserahkan penanganannya ke Satgas dan untuk pemulihan
+              korban perlu tenang dan tidak mau banyak informasi terkait
+              kasusnya,' lanjutnya.
+            </Text>
+
+            <Text style={styles.headerKonten}>Terancam DO</Text>
+            <Text style={styles.textKonten}>
+              AHM juga terancam dikeluarkan dari kampus atau DO. Hal itu
+              disampaikan Ketua Satgas PPKS Unsoed, Tri Wuryaningsih.
+            </Text>
+            <Text style={styles.textKonten}>
+              Menurutnya, AHM akan direkomendasikan DO jika terbukti yang
+              dilakukannya adalah pelanggaran berat.
+            </Text>
+            <Text style={styles.textKonten}>
+              Nanti jika secara sah dia terbukti melakukan pelanggaran, karena
+              kita kan diatur melalui Peraturan Menteri dan Peraturan Rektor ya,
+              bila terbukti jenis pelanggarannya pelanggaran berat ya ancamannya
+              adalah DO,' kata Tri saat dihubungi, Selasa (7/3).
+            </Text>
+            <Text style={styles.textKonten}>
+              Namun, hal itu belum bisa disimpulkan mengingat psikologis korban
+              masih belum stabil dan belum bisa memberikan keterangan penuh.
+              Hingga saat ini, Satgas PPKS juga belum meminta keterangan dari
+              pelaku.
+            </Text>
+            <Text style={styles.textKonten}>
+              Belum semua disampaikan karena kan korban kondisinya masih belum
+              siap secara mental, jadi kita belum bisa mengambil kesimpulan,
+              jelasnya.
+            </Text>
+            <Text style={styles.textKonten}>
+              Meski demikian, dia menyebut sejak dibentuk pada 1 November 2022,
+              Satgas PPKS Unsoed sudah menangani empat kasus. Dari empat kasus
+              itu, satu mahasiswa sudah di-DO.
+            </Text>
+            <Text style={styles.textKonten}>
+              Ini bukan kasus pertama jadi sejak kami berdiri itu sudah ada
+              empat kasus. (DO) Ada satu, akhir tahun 2022,' jelasnya.
+            </Text>
+            <Text style={styles.textKonten}>
+              Tri memastikan akan memproses pelaku sesuai prosedur yang ada.
+              Korban juga sudah diberikan pendampingan dan akan diberikan
+              layanan psikologi.
+            </Text>
+            <Text style={styles.textKonten}>
+              Pada intinya kami sudah terima laporan itu kemudian korban akan
+              kita dampingi ya, need assessment juga, kita identifikasi
+              kebutuhan-kebutuhan yang harus kami berikan kepada korban,
+              pendampingan, dan pelakunya tentu kami akan proses,' jelas Tri.
+            </Text>
+            <Text style={styles.textKonten}>
+              Korban disebut juga merupakan mahasiswa Unsoed. Kasus ini terjadi
+              beberapa bulan lalu dan terungkap usai bercerita kepada temannya.
+            </Text>
+            <Text style={styles.textKonten}>
+              Tri mengatakan korban sempat takut untuk melapor. Dia mulai berani
+              bercerita karena melihat pelaku terlihat tak merasa bersalah.
+            </Text>
+            <Text style={styles.textKonten}>
+              '2022, tapi baru ya, di akhir, cuma dia karena memang takut gitu
+              kalau ngomong dikiranya nggak percaya nanti dikiranya menyudutkan.
+              Karena kan korban itu memang tidak bisa langsung seketika itu
+              kemudian menyampaikan, tapi melihat kemudian pelakunya kayaknya
+              tidak ada rasa bersalah, fine-fine saja, kan jadi gemes nah itu
+              kemudian muncul untuk cerita ke temannya,' lanjutnya.
+            </Text>
+
+            <Text style={styles.headerKonten}>Korban Masih Syok</Text>
+            <Text style={styles.textKonten}>
+              Ketua Satgas PPKS Unsoed, Tri Wuryaningsih mengatakan korban syok.
+              'Kondisinya kan agak syok juga, kondisinya membutuhkan
+              pendampingan lebih lanjut untuk layanan psikologisnya,' ujarnya.
+            </Text>
+            <Text style={styles.textKonten}>
+              Pihaknya mendapat laporan dari BEM FEB Unsoed beberapa waktu lalu
+              bahwa korban sudah dimintai keterangan namun belum lengkap karena
+              kondisinya masih belum stabil.
+            </Text>
+            <Text style={styles.textKonten}>
+              'Kalau anak ini sudah siap memberikan keterangan penuh seperti apa
+              nanti, baru kita untuk memanggil pelakunya,' jelasnya.
+            </Text>"
   },
   "IJz5hSJmzJfwDzyzsdoZ": {
     "judul": "Pengertian Pembangunan Berkelanjutan",
@@ -31,5 +114,17 @@
     "image": "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FArtikel%2Fartikel3.jpg?alt=media&token=d53a1148-7083-4772-a373-61eddb39229f",
     "kategori": ["Informasi", "Pengetahuan", "Pembangunan"],
     "konten": "<Text style={styles.headerKonten}>Pengertian Pembangunan Berkelanjutan</Text><Text style={styles.textKonten}>Istilah pembangunan berkelanjutan, muncul pertama kali dalam World Conservation of Nature yang dipakai oleh salah satu pakar, Lester R Brown.\nSemenjak saat itu, istilah pembangunan berkelanjutan menjadi popuiler dan mengarah pada refleksi tentang konsekuensi masalah lingkungan hidup untuk ekonomi.\nDalam buku Relasi dengan Dunia: Alam, Iptek, dan Kerja (2005) karya Antonina Panca Yuni Wulandari, pengertian pembangunan berkelanjutan adalah pembangunan yang memenuhi kebutuhan dari generasi sekarang tanpa membahayakan kesanggupang generasi mendatang untuk memenuhi kebutuhan mereka sendiri.\nArtinya pembangunan ekonomi, selalu memanfaatkan sumber daya alam, dijalankan sedemekian rupa, sehingga generasi mendatang dapat melanjutkan pembangunan yang dijalankan sekarang.\nTerdapat beberapa definisi pembangunan berkelanjutan dari para ahli, di antaranya:</Text><Text style={styles.subHeaderKonten}>Emil Salim</Text><Text style={styles.textKonten}>Definisi pembangunan berkelanjutan atau suistanable development adalah suatu proses pembangunan yang mengoptimalkan manfaat dari sumber daya alam dan manusia\nPengoptimalan tersebut dengan menyerasikan sumber alam dengan manusia dalam pembangunan.</Text><Text style={styles.subHeaderKonten}>Ignas Kleden</Text><Text style={styles.textKonten}>Pembangunan berkelanjutan sebagai jenis pembangunan yang di satu pihak mengacu pada pemanfaatan sumber-sumber alam maupun sumber daya manusia secara optimal.\nDi lain pihak serta pada saat yang sama memelihara keseimbangan optimal di antara berbagai tuntutan yang saling bertentangan terhadap sumber daya tersebut.</Text><Text style={styles.subHeaderKonten}>Sofyan Effendi</Text><Text style={styles.textKonten}>Pembangunan berkelanjutan artinya suatu proses pembangunan yang memanfaatkan sumber daya, arah invesinya, orientasi pengembangan teknologi dan perubahan kelembagaan dilakukan secara harmonis dan memperhatikan potensi saat ini dan masa depan.\nKemampuan generasi masa depan untuk melanjutkan pembangunan sangat bergantung dari sumber daya alam yang tersedia.\nSehingga dalam melaksanakan pembangunan ekonomi saat ini tidak boleh merusak atau mengurangi kualitas lingkungan hidup.\nSetiap generasi harus mewariskan lingkungan hidup yang sehat dan utuh, dengan sumber daya alam yang cukup bagi generasi berikutnya.\nDengan pembangunan berkelanjutan, maka memberi peluang di masa depan untuk pertumbuhan yang sama. Karena memberikan ketersediaan sumber daya alam yang memadai, tetap terpelihara.</Text>"
-  }
+  },
+
+  
+"asasdds":{
+  "judul": "Sukses di 100% PTN, Kemdikbud Dorong Satgas Kekerasan Seksual di 100% PTS",
+  "penulis": "Hermanto",
+  "publish": "Hermanto",
+  "image": "", 
+  "kategori": ["Kampus", "Mahasiswa", "Pelecehan Seksual"],
+  "konten": "",
+
+
+}
 }

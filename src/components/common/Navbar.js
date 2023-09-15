@@ -10,7 +10,14 @@ import Bell from "../../../assets/Icons/bell.svg";
 import { Image } from "react-native";
 import { COLORS } from "../../constants";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
-const Navbar = ({ isBack, goBack, withForm = false, isTitle = null }) => {
+const Navbar = ({
+  isBack,
+  goBack,
+  withForm = false,
+  isTitle = null,
+  goHome,
+  isFromHome = false,
+}) => {
   return (
     <View
       style={{
@@ -25,7 +32,7 @@ const Navbar = ({ isBack, goBack, withForm = false, isTitle = null }) => {
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         {isBack ? (
-          <Pressable onPress={goBack}>
+          <Pressable onPress={isFromHome ? goHome : goBack}>
             <FontAwesome name="chevron-left" size={24} color={COLORS.white} />
           </Pressable>
         ) : (

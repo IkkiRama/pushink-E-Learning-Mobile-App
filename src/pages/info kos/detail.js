@@ -18,8 +18,9 @@ import { FasilitasKhusus, KostCarousel, Navbar } from "../../components";
 
 const InfoKosDetail = ({ route, navigation }) => {
   const { id } = route.params;
-  const [isLihatSelengkapnya, setIsLihatSelengkapnya] = useState(false);
   const [kos, setKos] = useState({});
+  const [isLoadedImage, setIsLoadedImage] = useState(true);
+  const [isLihatSelengkapnya, setIsLihatSelengkapnya] = useState(false);
 
   useEffect(() => {
     fetch(`https://api.bem-unsoed.com/api/kost/${id}`)

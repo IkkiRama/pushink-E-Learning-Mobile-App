@@ -104,7 +104,7 @@ const Profile = ({ navigation }) => {
             </Pressable>
 
             <Pressable
-              onPress={() => navigation.navigate("Bantuan")}
+              onPress={() => navigation.navigate("FAQ")}
               style={styles.perFitur}
             >
               <View style={styles.nameFiturContainer}>

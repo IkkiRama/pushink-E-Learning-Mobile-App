@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { Dimensions, Image, ImageBackground, Pressable } from "react-native";
+import {
+  ActivityIndicator,
+  Dimensions,
+  Image,
+  ImageBackground,
+  Pressable,
+} from "react-native";
 import {
   StatusBar,
   ScrollView,
@@ -16,7 +22,13 @@ import { getAuth } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
 
 import { db } from "../../configs/firebase";
-import { BottomMenu, Fiturs, Navbar } from "../../components";
+import {
+  BottomMenu,
+  Fiturs,
+  Navbar,
+  RekomendasiKos,
+  RekomendasiProduk,
+} from "../../components";
 import numberFormat from "../../utils/numberFormat";
 import Carousel from "./../../components/carousel/index";
 import { COLORS, SAFEAREAVIEW } from "../../constants";
@@ -27,65 +39,44 @@ const Home = ({ navigation }) => {
   const [dataUser, setDataUser] = useState({});
   const dataUserKeys = Object.keys(dataUser);
 
+  const [Merchandise, setMerchandise] = useState({});
+  const MerchandiseKeys = Object.keys(Merchandise);
+  let showMerchandiseKeys = [];
+
+  const [dataKos, setDataKos] = useState([]);
+
   useEffect(() => {
     if (auth.currentUser !== null) {
-      return onValue(ref(db, "User"), (querySnapShot) => {
+      onValue(ref(db, "User"), (querySnapShot) => {
         let data = querySnapShot.val() || {};
         let dataUser = { ...data };
         setDataUser(dataUser);
       });
+    } else {
+      onValue(ref(db, "Merch"), (querySnapShot) => {
+        let data = querySnapShot.val() || {};
+        let dataMerch = { ...data };
+        setMerchandise(dataMerch);
+      });
+
+      fetch("https://api.bem-unsoed.com/api/kost")
+        .then((response) => response.json())
+        .then((result) => setDataKos(result));
     }
   }, []);
+
+  MerchandiseKeys.map((key, index) => {
+    if (index <= 5) {
+      showMerchandiseKeys.push(key);
+    }
+    return true;
+  });
 
   dataUserKeys.map((key) => {
     if (dataUser[key].email === auth.currentUser.email) {
       JSON.stringify((userLogin = dataUser[key]));
     }
   });
-
-  const [Merchandise, setMerchandise] = useState([
-    {
-      image: require("../../../assets/Images/Merch/merch1.jpg"),
-      nama: "Baju Programmer anti murtad",
-      hargaAsli: 200000,
-      hargaDiskon: 130000,
-    },
-
-    {
-      image: require("../../../assets/Images/Merch/merch2.jpg"),
-      nama: "Kaos Gensoed",
-      hargaAsli: 120000,
-      hargaDiskon: 90000,
-    },
-
-    {
-      image: require("../../../assets/Images/Merch/merch3.jpg"),
-      nama: "Kaos Lengan Panjang Gensoed",
-      hargaAsli: 140000,
-      hargaDiskon: 100000,
-    },
-
-    {
-      image: require("../../../assets/Images/Merch/merch4.jpg"),
-      nama: "Paket 5 Gensoed Merch",
-      hargaAsli: 280000,
-      hargaDiskon: 200000,
-    },
-
-    {
-      image: require("../../../assets/Images/Merch/merch5.jpg"),
-      nama: "Paket 6 Gensoed Merch",
-      hargaAsli: 300000,
-      hargaDiskon: 210000,
-    },
-
-    {
-      image: require("../../../assets/Images/Merch/merch6.jpg"),
-      nama: "Paket 3 Gensoed Merch",
-      hargaAsli: 200000,
-      hargaDiskon: 130000,
-    },
-  ]);
 
   const [SeriesArtikel, setSeriesArtikel] = useState([
     {
@@ -130,49 +121,6 @@ const Home = ({ navigation }) => {
     },
   ]);
 
-  const [Podcast, setPodcast] = useState([
-    {
-      image: require("../../../assets/Images/Podcast/Podcast1.jpeg"),
-      nama: "Menjelajahi Dunia Kuliner: Makanan, Minuman, dan Resep-resep Lezat",
-      author: "Rifki Romadhan",
-    },
-
-    {
-      image: require("../../../assets/Images/Podcast/Podcast2.jpeg"),
-      nama: "Mendiskusikan Isu-isu Kesehatan Mental dan Kesejahteraan Emosional",
-      author: "Athar Rizki Yudistira",
-    },
-
-    {
-      image: require("../../../assets/Images/Podcast/Podcast3.jpeg"),
-      nama: "Mendiskusikan Isu-isu Feminisme dan Kesetaraan Gender",
-      author: "Feillany Maemu Rizki",
-    },
-
-    {
-      image: require("../../../assets/Images/Podcast/Podcast4.jpeg"),
-      nama: "Membahas Berbagai Aspek Pariwisata: Destinasi Wisata, Pengalaman, dan Tips Bepergian",
-      author: "Raditya Dika",
-    },
-
-    {
-      image: require("../../../assets/Images/Podcast/Podcast5.jpeg"),
-      nama: "Menggali Sejarah dan Budaya Populer di Berbagai Negara",
-      author: "Dedi Botak",
-    },
-
-    {
-      image: require("../../../assets/Images/Podcast/Podcast6.png"),
-      nama: "Membahas Berbagai Macam Genre Musik dari Masa ke Masa",
-      author: "Raynold Chin",
-    },
-
-    {
-      image: require("../../../assets/Images/Podcast/Podcast7.jpeg"),
-      nama: "Membahas Berbagai Teknologi Terapan: Internet of Things, Artificial Intelligence, dan Lain-lain",
-      author: "Chairul Tanjung",
-    },
-  ]);
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar />
@@ -228,7 +176,7 @@ const Home = ({ navigation }) => {
             <View style={{ marginTop: 20 }}>
               <Text style={styles.headerSection}>Series Artikel</Text>
               <Text style={styles.paragrafSection}>
-                Nikmati Series Artikel dari BEM UNSOED
+                Nikmati Series Artikel dari Unsoed
               </Text>
 
               <FlatList
@@ -333,66 +281,24 @@ const Home = ({ navigation }) => {
                 Beli merchandise spesial dari BEM UNSOED
               </Text>
 
-              <FlatList
-                data={Merchandise}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                style={{ marginTop: 15 }}
-                renderItem={({ item }) => (
-                  <Pressable style={{ width: 170, marginHorizontal: 5 }}>
-                    <Image
-                      resizeMode="cover"
-                      style={{
-                        width: "100%",
-                        height: 170,
-                        borderTopLeftRadius: 10,
-                        borderTopRightRadius: 10,
-                      }}
-                      source={item.image}
-                    ></Image>
-                    <Text
-                      numberOfLines={1}
-                      style={{
-                        fontWeight: "700",
-                        fontSize: 17,
-                        marginBottom: 5,
-                        color: COLORS.font,
-                      }}
-                    >
-                      {item.nama}
-                    </Text>
-
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text
-                        style={{
-                          textDecorationLine: "line-through",
-                          color: COLORS.merah,
-                          fontWeight: "600",
-                          fontSize: 11,
-                        }}
-                      >
-                        {numberFormat(item.hargaAsli)}
-                      </Text>
-
-                      <Text
-                        style={{
-                          color: COLORS.font,
-                          fontWeight: "600",
-                          marginLeft: 10,
-                          fontSize: 13,
-                        }}
-                      >
-                        {numberFormat(item.hargaDiskon)}
-                      </Text>
-                    </View>
-                  </Pressable>
-                )}
-              ></FlatList>
+              {MerchandiseKeys.length > 0 ? (
+                <FlatList
+                  data={showMerchandiseKeys}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  style={{ marginTop: 15 }}
+                  renderItem={({ item, index }) => (
+                    <RekomendasiProduk
+                      key={item}
+                      navigation={navigation}
+                      merchData={Merchandise[item]}
+                      isFromHome={true}
+                    />
+                  )}
+                ></FlatList>
+              ) : (
+                <ActivityIndicator size="large" color={COLORS.primary} />
+              )}
             </View>
           </View>
         </View>
@@ -410,98 +316,30 @@ const Home = ({ navigation }) => {
             style={{
               fontWeight: "700",
               fontSize: 22,
-              padding: 10,
+              paddingTop: 10,
               paddingBottom: 0,
               color: COLORS.white,
             }}
           >
-            Rekomendasi Podcast
+            Rekomendasi Kos
           </Text>
-          <Text style={{ fontSize: 14, color: COLORS.white, paddingLeft: 10 }}>
-            Jangan Kelewatan Podcast Favorit Gensoed
+          <Text style={{ fontSize: 14, color: COLORS.white }}>
+            Temukan kos-kosan terdekat tanpa harus ada rasa khawatir
           </Text>
 
-          <FlatList
-            data={Podcast}
-            horizontal
-            style={{ marginTop: 15 }}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <Pressable
-                style={{
-                  width: 220,
-                  borderRadius: 10,
-                  borderWidth: 1,
-                  borderColor: COLORS.gray,
-                  elevation: 1,
-                  backgroundColor: COLORS.white,
-                  margin: 5,
-                }}
-              >
-                <Image
-                  style={{
-                    width: "100%",
-                    height: 200,
-                    borderTopLeftRadius: 10,
-                    borderTopRightRadius: 10,
-                    marginBottom: 10,
-                  }}
-                  source={item.image}
-                ></Image>
-                <View
-                  style={{
-                    width: "100%",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    padding: 10,
-                  }}
-                >
-                  <View style={{ width: "80%", paddingRight: 5 }}>
-                    <Text
-                      style={{
-                        fontSize: 20,
-                        color: COLORS.font,
-                        fontWeight: "700",
-                      }}
-                      numberOfLines={1}
-                    >
-                      {item.nama}
-                    </Text>
-                    <Text
-                      style={{
-                        marginTop: 5,
-                        fontSize: 14,
-                        fontWeight: "500",
-                        color: COLORS.font,
-                      }}
-                    >
-                      {item.author}
-                    </Text>
-                  </View>
-
-                  <View
-                    style={{
-                      width: "20%",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Ionicons
-                      name="play-outline"
-                      size={24}
-                      color="black"
-                      style={{
-                        padding: 7,
-                        elevation: 3,
-                        borderRadius: 50,
-                        backgroundColor: COLORS.white,
-                      }}
-                    />
-                  </View>
-                </View>
-              </Pressable>
-            )}
-          ></FlatList>
+          {dataKos.length > 0 ? (
+            <FlatList
+              data={[1, 2, 3, 4]}
+              horizontal
+              style={{ marginTop: 15 }}
+              showsHorizontalScrollIndicator={false}
+              renderItem={({ index }) => (
+                <RekomendasiKos kos={dataKos[index]} navigation={navigation} />
+              )}
+            ></FlatList>
+          ) : (
+            <ActivityIndicator size="large" color={COLORS.primary} />
+          )}
         </View>
       </ScrollView>
       <BottomMenu focused="Beranda" navigationHandle={navigation} />

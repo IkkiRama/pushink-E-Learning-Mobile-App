@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Button,
   FlatList,
   Image,
@@ -10,16 +11,30 @@ import {
   Text,
   View,
 } from "react-native";
-import React from "react";
-import { COLORS, SAFEAREAVIEW } from "../../constants";
+import React, { useEffect, useState } from "react";
+import { ref, onValue } from "firebase/database";
+
 import {
   Navbar,
   BottomMenu,
   ArtikelCard,
   RekomendasiArtikel,
 } from "../../components";
+import { db } from "../../configs/firebase";
+import { COLORS, SAFEAREAVIEW } from "../../constants";
 
 const Artikel = ({ navigation }) => {
+  const [dataArtikel, setDataArtikel] = useState({});
+  const dataArtikelKeys = Object.keys(dataArtikel);
+
+  useEffect(() => {
+    return onValue(ref(db, "Artikel"), (querySnapShot) => {
+      let data = querySnapShot.val() || {};
+      let semuaArtikel = { ...data };
+      setDataArtikel(semuaArtikel);
+    });
+  }, []);
+
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
       <Navbar />
@@ -61,9 +76,9 @@ const Artikel = ({ navigation }) => {
                 </View>
               </Pressable>
               <View style={styles.artikelBaru}>
-                <ArtikelCard navigation={navigation} />
-                <ArtikelCard navigation={navigation} />
-                <ArtikelCard navigation={navigation} />
+                {/* <ArtikelCard navigation={navigation} /> */}
+                {/* <ArtikelCard navigation={navigation} /> */}
+                {/* <ArtikelCard navigation={navigation} /> */}
               </View>
             </View>
 
@@ -83,11 +98,22 @@ const Artikel = ({ navigation }) => {
             <View style={styles.artikelPopulerContainer}>
               <Text style={styles.sectionTitle}>Artikel Terpopuler</Text>
               <View style={styles.artikelPopuler}>
+                {dataArtikelKeys.length > 0 ? (
+                  dataArtikelKeys.map((key) => (
+                    <ArtikelCard
+                      key={key}
+                      navigation={navigation}
+                      artikel={dataArtikel[key]}
+                    />
+                  ))
+                ) : (
+                  <ActivityIndicator size="large" color={COLORS.primary} />
+                )}
+
+                {/* <ArtikelCard navigation={navigation} />
                 <ArtikelCard navigation={navigation} />
                 <ArtikelCard navigation={navigation} />
-                <ArtikelCard navigation={navigation} />
-                <ArtikelCard navigation={navigation} />
-                <ArtikelCard navigation={navigation} />
+                <ArtikelCard navigation={navigation} /> */}
               </View>
             </View>
           </View>
