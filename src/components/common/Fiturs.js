@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
 import {
+  FontAwesome,
   FontAwesome5,
   MaterialIcons,
   Fontisto,
@@ -68,9 +69,10 @@ const Fiturs = ({ navigation }) => {
         </View>
         <Text style={Styles.textFitur}>Info UKM</Text>
       </Pressable>
+
       <Pressable
         style={Styles.perFitur}
-        onPress={() => navigation.navigate("Emagz")}
+        onPress={() => navigation.navigate("Merch")}
       >
         <View
           style={[
@@ -80,10 +82,11 @@ const Fiturs = ({ navigation }) => {
             },
           ]}
         >
-          <Feather name="book-open" size={24} color="#448BDE" />
+          <FontAwesome name="opencart" size={24} color="#448BDE" />
         </View>
-        <Text style={Styles.textFitur}>E-Magz</Text>
+        <Text style={Styles.textFitur}>Merch</Text>
       </Pressable>
+
       <Pressable
         style={Styles.perFitur}
         onPress={() => navigation.navigate("LayananUnsoed")}
@@ -116,9 +119,10 @@ const Fiturs = ({ navigation }) => {
         </View>
         <Text style={Styles.textFitur}>Info Kos</Text>
       </Pressable>
+
       <Pressable
         style={Styles.perFitur}
-        onPress={() => navigation.navigate("Podcast")}
+        onPress={() => navigation.navigate("Emagz")}
       >
         <View
           style={[
@@ -128,10 +132,11 @@ const Fiturs = ({ navigation }) => {
             },
           ]}
         >
-          <Fontisto name="podcast" size={24} color="#DE644A" />
+          <Feather name="book-open" size={24} color="#DE644A" />
         </View>
-        <Text style={Styles.textFitur}>Podcast</Text>
+        <Text style={Styles.textFitur}>E-Magz</Text>
       </Pressable>
+
       <Pressable
         style={Styles.perFitur}
         onPress={() => navigation.navigate("Komik")}

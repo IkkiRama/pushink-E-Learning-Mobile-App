@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
-// Firebase config
+// Firebase config 
 const firebaseConfig = {
   apiKey: "AIzaSyBv3_vyVJnest7hjDU-8lVpASKPp9quc1g",
   authDomain: "react-native-crud-fireba-ea6c9.firebaseapp.com",

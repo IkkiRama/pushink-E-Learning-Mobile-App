@@ -56,52 +56,97 @@ const DetailArtikel = ({ navigation }) => {
           />
 
           <View style={styles.kontent}>
-            <Text style={styles.headerKonten}>
-              Kemendikbud Dorong Perguruan Tinggi Perangi Kekerasan Seksual di
-              Kampus
+            <Text style={styles.textKonten}>
+              Mendagri BEM FEB Universitas Jenderal Soedirman (Unsoed)
+              Purwokerto berinisial AHM terseret kasus pelecehan seksual. AHM
+              dipecah dari jabatannya dan terancam drop out (DO). Berikut
+              sejumlah fakta soal kasus tersebut.
             </Text>
-            <Text style={styles.headerKonten}>
-              Definisi Pertumbuhan Ekonomi:
+            <Text style={styles.headerKonten}>Dipecat dari BEM</Text>
+            <Text style={styles.textKonten}>
+              Kasus pelecehan seksual itu terungkap ke publik setelah akun
+              Twitter @Unsoedfess1963 mengunggah salinan SK pemecatan AHM pada
+              Minggu (5/3/2023). Dalam SK tersebut tertulis nama terang jabatan
+              yang bersangkutan.'Secara resmi diberhentikan secara tidak hormat
+              karena tindak pelecehan seksual yang dilakukan oleh yang
+              bersangkutan. Surat ini berlaku mulai tanggal 5 Maret 2023,'
+              sebagaimana tertulis di SK tersebut, dikutip detikJateng, Selasa
+              (7/3/2023).
             </Text>
             <Text style={styles.textKonten}>
-              Pertumbuhan ekonomi mengacu pada peningkatan nilai produk domestik
-              bruto (PDB) suatu negara atau wilayah dalam suatu periode waktu
-              tertentu. PDB mencakup nilai total barang dan jasa yang dihasilkan
-              dalam perekonomian. Pertumbuhan ekonomi diukur dalam persentase
-              dan merupakan indikator utama kesehatan ekonomi suatu negara.
-              Peningkatan pertumbuhan ekonomi menunjukkan bahwa perekonomian
-              sedang berkembang, sementara pertumbuhan yang rendah atau negatif
-              dapat mengindikasikan perlambatan atau resesi.
+              Surat itu ditandatangani Presiden BEM FEB Unsoed 2023 Rafi
+              Muhammad Warits.
             </Text>
-            <Text style={styles.headerKonten}>
-              Faktor-faktor yang Mempengaruhi Pertumbuhan Ekonomi:
+            <Text style={styles.textKonten}>
+              Saat dimintai konfirmasi, Rafi membenarkan pihaknya yang
+              mengeluarkan surat tersebut.
             </Text>
-            <Text style={styles.subHeaderKonten}>
-              2. Melakukan Konfigurasi Database
+            <Text style={styles.textKonten}>
+              'Betul,' kata Rafi, Selasa (7/3).
+            </Text>
+            <Text style={styles.textKonten}>
+              Namun Rafi menolak menjelaskan lebih lanjut terkait kasus
+              tersebut. Dia menyampaikan kasus tersebut saat ini sudah ditangani
+              oleh Satgas Pencegahan dan Penanganan Kekerasan Seksual (PPKS)
+              Unsoed.'Untuk informasi lebih lanjut bisa ditanyakan kepada Satgas
+              PPKS saja ya, semua informasi ada di sana,' ujarnya.
+            </Text>
+            <Text style={styles.textKonten}>
+              'Sudah diserahkan penanganannya ke Satgas dan untuk pemulihan
+              korban perlu tenang dan tidak mau banyak informasi terkait
+              kasusnya,' lanjutnya.
             </Text>
 
+            <Text style={styles.headerKonten}>Terancam DO</Text>
             <Text style={styles.textKonten}>
-              {`Chatarina Muliana Girsang Inspektur Jenderal Kementerian Pendidikan dan Kebudayaan Republik Indonesia (Kemendikbud RI) menegaskan, tidak boleh ada kekerasan seksual di lingkup perguruan tinggi. \n\n\nOleh karena itu, ia menekankan pada seluruh Satuan Tugas Pencegahan dan Penanganan Kekerasan Seksual (Satgas PPKS) di setiap perguruan tinggi baik negeri maupun swasta agar terus bergerak mengatasi masalah tersebut. “Pencegahan ini jauh lebih penting untuk mencegah berulangnya kasus ini, dan dalam hal penanganan ini juga harus ada respons atas semua laporan-laporan yang dilaporkan,” ucapnya seusai launching dan diskusi program inovasi “Pengembangan dan Implementasi Indikator Kampus Bebas Kekerasan Seksual” di Universitas Surabaya (Ubaya) pada Rabu(9/8/2022). \n Untuk mengatasi masalah kekerasan seksual, ia
-              menegaskan, perlu keterlibatan civitas akademik agar tidak
-              menutup-nutupi dan memberikan kekuatan pada korban, sekaligus
-              membantu speak up untuk menyelesaikan masalah tersebut. \n Ia
-              mengatakan bahwa Satgas PPKS juga harus dapat meyakinkan pelapor
-              dan korban dalam menindak melanjuti laporan, serta memberikan
-              pemahaman terkait konsekuensi apa yang akan terjadi jika kasus
-              justru ditutupi-tutupi. \n “Karena itu akan bisa menimbulkan
-              korban-korban baru, dan akan mengganggu suasana pembelajaran,
-              menimbulkan rasa tidak aman, tidak nyaman, berada di dekat pelaku
-              dan lain sebagainya,” tuturnya. \n Sehingga yang menjadi tantangan
-              saat ini, kata dia, yakni bagaimana bisa meyakinkan untuk
-              melaporkan kasus kekerasan seksual tersebut. \n Sementara itu,
-              Endah Triwijati Psikolog dari Satgas PPKS Ubaya mengatakan,
-              diadakannya diskusi indikator kampus bebas kekerasan seksual
-              tersebut merupakan bentuk penguatan serta evaluasi dalam
-              pencegahan dan penanganan kekerasan seksual di kampus. \n “Sebagai
-              upaya untuk bisa sebanyak mungkin mengungkapkan keadilan bagi
-              korban dan mencegah keberulangan,” ujarnya. \n Dalam kegiatan
-              tersebut, dihadiri oleh perwakilan Satgas PPKS dari berbagai
-              perguruan tinggi yang ada di Surabaya, baik negeri maupun swasta.`}
+              AHM juga terancam dikeluarkan dari kampus atau DO. Hal itu
+              disampaikan Ketua Satgas PPKS Unsoed, Tri Wuryaningsih.\nnNanti
+              jika secara sah dia terbukti melakukan pelanggaran, karena kita
+              kan diatur melalui Peraturan Menteri dan Peraturan Rektor ya, bila
+              terbukti jenis pelanggarannya pelanggaran berat ya ancamannya
+              adalah DO,' kata Tri saat dihubungi, Selasa (7/3).\nNamun, hal itu
+              belum bisa disimpulkan mengingat psikologis korban masih belum
+              stabil dan belum bisa memberikan keterangan penuh. Hingga saat
+              ini, Satgas PPKS juga belum meminta keterangan dari pelaku.\nBelum
+              semua disampaikan karena kan korban kondisinya masih belum siap
+              secara mental, jadi kita belum bisa mengambil kesimpulan,
+              jelasnya.\nMeski demikian, dia menyebut sejak dibentuk pada 1
+              November 2022, Satgas PPKS Unsoed sudah menangani empat kasus.
+              Dari empat kasus itu, satu mahasiswa sudah di-DO.\nIni bukan kasus
+              pertama jadi sejak kami berdiri itu sudah ada empat kasus. (DO)
+              Ada satu, akhir tahun 2022,' jelasnya.\nTri memastikan akan
+              memproses pelaku sesuai prosedur yang ada. Korban juga sudah
+              diberikan pendampingan dan akan diberikan layanan psikologi.\nPada
+              intinya kami sudah terima laporan itu kemudian korban akan kita
+              dampingi ya, need assessment juga, kita identifikasi
+              kebutuhan-kebutuhan yang harus kami berikan kepada korban,
+              pendampingan, dan pelakunya tentu kami akan proses,' jelas
+              Tri.\nKorban disebut juga merupakan mahasiswa Unsoed. Kasus ini
+              terjadi beberapa bulan lalu dan terungkap usai bercerita kepada
+              temannya.\nTri mengatakan korban sempat takut untuk melapor. Dia
+              mulai berani bercerita karena melihat pelaku terlihat tak merasa
+              bersalah.\n'2022, tapi baru ya, di akhir, cuma dia karena memang
+              takut gitu kalau ngomong dikiranya nggak percaya nanti dikiranya
+              menyudutkan. Karena kan korban itu memang tidak bisa langsung
+              seketika itu kemudian menyampaikan, tapi melihat kemudian
+              pelakunya kayaknya tidak ada rasa bersalah, fine-fine saja, kan
+              jadi gemes nah itu kemudian muncul untuk cerita ke temannya,'
+              lanjutnya.
+            </Text>
+            <Text style={styles.textKategori}>
+              Menurutnya, AHM akan direkomendasikan DO jika terbukti yang
+              dilakukannya adalah pelanggaran berat.
+            </Text>
+            <Text style={styles.headerKonten}>Korban Masih Syok</Text>
+            <Text style={styles.textKonten}>
+              Ketua Satgas PPKS Unsoed, Tri Wuryaningsih mengatakan korban syok.
+              'Kondisinya kan agak syok juga, kondisinya membutuhkan
+              pendampingan lebih lanjut untuk layanan psikologisnya,'
+              ujarnya.\nPihaknya mendapat laporan dari BEM FEB Unsoed beberapa
+              waktu lalu bahwa korban sudah dimintai keterangan namun belum
+              lengkap karena kondisinya masih belum stabil.\n'Kalau anak ini
+              sudah siap memberikan keterangan penuh seperti apa nanti, baru
+              kita untuk memanggil pelakunya,' jelasnya.
             </Text>
           </View>
         </View>
