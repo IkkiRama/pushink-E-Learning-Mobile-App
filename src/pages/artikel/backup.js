@@ -11,7 +11,7 @@ import React, { Fragment, useState } from "react";
 import HTML from "react-native-render-html";
 import { COLORS, SAFEAREAVIEW } from "../../constants";
 import { Navbar } from "../../components";
-import BottomMenu from "./../../components/common/BottomMenu";
+import BottomMenu from "../../components/common/BottomMenu";
 
 const DetailArtikel = ({ route, navigation }) => {
   const [refreshing, setRefreshing] = useState(false);

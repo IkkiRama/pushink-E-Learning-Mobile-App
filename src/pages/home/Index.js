@@ -45,6 +45,10 @@ const Home = ({ navigation }) => {
 
   const [dataKos, setDataKos] = useState([]);
 
+  const [SeriesArtikel, setSeriesArtikel] = useState({});
+  const SeriesArtikelKeys = Object.keys(SeriesArtikel);
+  const showSeriesArtikelKeys = [];
+
   useEffect(() => {
     if (auth.currentUser !== null) {
       onValue(ref(db, "User"), (querySnapShot) => {
@@ -57,6 +61,11 @@ const Home = ({ navigation }) => {
         let data = querySnapShot.val() || {};
         let dataMerch = { ...data };
         setMerchandise(dataMerch);
+      });
+      onValue(ref(db, "Artikel"), (querySnapShot) => {
+        let data = querySnapShot.val() || {};
+        let dataArtikel = { ...data };
+        setSeriesArtikel(dataArtikel);
       });
 
       fetch("https://api.bem-unsoed.com/api/kost")
@@ -78,48 +87,12 @@ const Home = ({ navigation }) => {
     }
   });
 
-  const [SeriesArtikel, setSeriesArtikel] = useState([
-    {
-      image: require("../../../assets/Images/Artikel/Series1.jpg"),
-      nama: "Mengupas Tuntas Perkembangan Teknologi Terkini",
-      jumlah: 20,
-    },
-    {
-      image: require("../../../assets/Images/Artikel/series2.jpeg"),
-      nama: "Menggali Potensi Bisnis Online: Strategi dan Tips Sukses",
-      jumlah: 24,
-    },
-
-    {
-      image: require("../../../assets/Images/Artikel/series3.jpeg"),
-      nama: "Membangun Karir di Era Digital: Tantangan dan Peluang",
-      jumlah: 44,
-    },
-
-    {
-      image: require("../../../assets/Images/Artikel/series4.jpg"),
-      nama: "Menjelajahi Budaya Populer Dunia: Film, Musik, dan Game",
-      jumlah: 17,
-    },
-
-    {
-      image: require("../../../assets/Images/Artikel/BABI.jpg"),
-      nama: "Membangun Kemandirian Finansial: Tips dan Trik Mengelola Uang",
-      jumlah: 19,
-    },
-
-    {
-      image: require("../../../assets/Images/Artikel/Series6.jpg"),
-      nama: "Menjaga Kesehatan Mental di Tengah Kesibukan Modern",
-      jumlah: 31,
-    },
-
-    {
-      image: require("../../../assets/Images/Artikel/Series7.jpg"),
-      nama: "Membangun Hidup yang Berkelanjutan: Ide dan Inovasi Ramah Lingkungan",
-      jumlah: 42,
-    },
-  ]);
+  SeriesArtikelKeys.map((key, index) => {
+    if (index <= 5) {
+      showSeriesArtikelKeys.push(key);
+    }
+    return true;
+  });
 
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
@@ -176,18 +149,26 @@ const Home = ({ navigation }) => {
             <View style={{ marginTop: 20 }}>
               <Text style={styles.headerSection}>Series Artikel</Text>
               <Text style={styles.paragrafSection}>
-                Nikmati Series Artikel dari Unsoed
+                Nikmati Artikel dari Unsoed
               </Text>
 
               <FlatList
-                data={SeriesArtikel}
+                data={showSeriesArtikelKeys}
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 style={{ marginTop: 15 }}
                 renderItem={({ item }) => (
-                  <Pressable style={{ margin: 5 }}>
+                  <Pressable
+                    key={item}
+                    style={{ margin: 5 }}
+                    onPress={() =>
+                      navigation.navigate("DetailArtikel", {
+                        artikel: SeriesArtikel[item],
+                      })
+                    }
+                  >
                     <ImageBackground
-                      source={item.image}
+                      source={{ uri: SeriesArtikel[item].image }}
                       resizeMode="cover"
                       style={{
                         width: 170,
@@ -200,15 +181,16 @@ const Home = ({ navigation }) => {
                       <LinearGradient
                         colors={[
                           "transparent",
+                          "#767676e9",
+                          "#5c5c5c",
                           "#3d3d3d",
-                          "#3a3a3a",
-                          "#303030",
                         ]}
                         style={{
                           width: "100%",
                           height: 170,
                           padding: 10,
-                          paddingTop: 60,
+                          justifyContent: "flex-end",
+                          paddingBottom: 30,
                           borderBottomLeftRadius: 10,
                           borderBottomRightRadius: 10,
                         }}
@@ -221,17 +203,7 @@ const Home = ({ navigation }) => {
                           }}
                           numberOfLines={2}
                         >
-                          {item.nama}
-                        </Text>
-                        <Text
-                          style={{
-                            marginTop: 7,
-                            fontSize: 12,
-                            fontWeight: "600",
-                            color: COLORS.white,
-                          }}
-                        >
-                          {item.jumlah} Artikel
+                          {SeriesArtikel[item].judul}
                         </Text>
                       </LinearGradient>
                     </ImageBackground>

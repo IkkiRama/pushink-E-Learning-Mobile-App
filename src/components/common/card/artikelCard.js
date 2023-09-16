@@ -1,17 +1,24 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { COLORS } from "../../../constants";
+import { COLORS, images } from "../../../constants";
+import { useState } from "react";
 
 const ArtikelCard = ({ navigation, artikel }) => {
+  const [isLoadedImage, setIsLoadedImage] = useState(true);
   return (
     <Pressable
       onPress={() => navigation.navigate("DetailArtikel", { artikel })}
       style={styles.artikel}
     >
       <Image
-        source={{
-          uri: artikel.image,
-        }}
+        onLoad={() => setIsLoadedImage(false)}
+        source={
+          isLoadedImage
+            ? images.defaultBanner
+            : {
+                uri: artikel.image,
+              }
+        }
         style={styles.imageArtikel}
         resizeMode="contain"
       />
@@ -37,6 +44,7 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 10,
     marginRight: 10,
+    backgroundColor: COLORS.primary,
   },
   textContainer: {
     flex: 1,

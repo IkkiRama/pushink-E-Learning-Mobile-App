@@ -1,25 +1,31 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { COLORS } from "../../../constants";
+import { COLORS, images } from "../../../constants";
+import { useState } from "react";
 
-const RekomendasiArtikel = ({ navigation }) => {
+const RekomendasiArtikel = ({ navigation, artikel }) => {
+  const [isLoadedImage, setIsLoadedImage] = useState(true);
   return (
     <Pressable
-      onPress={() => navigation.navigate("DetailArtikel")}
+      onPress={() => navigation.navigate("DetailArtikel", { artikel })}
       style={styles.rekomendasiArtikel}
     >
       <Image
-        source={{
-          uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FArtikel%2FArtikelSatu.jpg?alt=media&token=403be7ef-fe73-4d88-857b-5b604e72b46e",
-        }}
+        onLoad={() => setIsLoadedImage(false)}
+        source={
+          isLoadedImage
+            ? images.defaultBanner
+            : {
+                uri: artikel.image,
+              }
+        }
         style={styles.imageArtikel}
       />
       <View style={styles.textContainer}>
-        <Text style={styles.titleArtikel} numberOfLines={3}>
-          Ganjar, Prabowo, Anies Berebut Suara di Jawa Timur Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Unde, magni.
+        <Text style={styles.titleArtikel} numberOfLines={2}>
+          {artikel.judul}
         </Text>
-        <Text style={styles.tanggalArtikel}>Ditulis pada 12 November 2098</Text>
+        <Text style={styles.tanggalArtikel}>Ditulis pada {artikel.terbit}</Text>
       </View>
     </Pressable>
   );
@@ -44,6 +50,7 @@ const styles = StyleSheet.create({
     color: COLORS.font,
     fontWeight: "600",
     marginBottom: 5,
+    height: 40,
   },
   tanggalArtikel: {
     color: COLORS.font,

@@ -21,11 +21,17 @@ import {
   RekomendasiArtikel,
 } from "../../components";
 import { db } from "../../configs/firebase";
-import { COLORS, SAFEAREAVIEW } from "../../constants";
+import { COLORS, SAFEAREAVIEW, images } from "../../constants";
 
 const Artikel = ({ navigation }) => {
+  const [isLoadedImage, setIsLoadedImage] = useState(true);
   const [dataArtikel, setDataArtikel] = useState({});
   const dataArtikelKeys = Object.keys(dataArtikel);
+
+  let artikelPalingBaruKeys = [];
+  let artikelTerbaruKeys = [];
+  let artikelRekomendasiKeys = [];
+  let artikelPopulerKeys = [];
 
   useEffect(() => {
     return onValue(ref(db, "Artikel"), (querySnapShot) => {
@@ -34,6 +40,22 @@ const Artikel = ({ navigation }) => {
       setDataArtikel(semuaArtikel);
     });
   }, []);
+
+  dataArtikelKeys.map((key, index) => {
+    if (index === 0) {
+      artikelPalingBaruKeys.push(key);
+    }
+    if (index > 0 && index <= 5) {
+      artikelTerbaruKeys.push(key);
+    }
+    if (index > 5 && index <= 10) {
+      artikelRekomendasiKeys.push(key);
+    }
+    if (index > 10) {
+      artikelPopulerKeys.push(key);
+    }
+    return true;
+  });
 
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
@@ -46,76 +68,86 @@ const Artikel = ({ navigation }) => {
         ></StatusBar>
         <View style={styles.wrapper}>
           <View style={styles.container}>
-            <View style={styles.artikelBaruContainer}>
-              <Text style={styles.sectionTitle}>Artikel Terbaru</Text>
-              <Pressable
-                onPress={() => navigation.navigate("DetailArtikel")}
-                style={styles.artikelPalingBaru}
-              >
-                <Image
-                  source={{
-                    uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FArtikel%2FArtikelSatu.jpg?alt=media&token=403be7ef-fe73-4d88-857b-5b604e72b46e",
-                  }}
-                  style={styles.imageArtikelPalingBaru}
-                  resizeMode="contain"
-                />
-                <View style={styles.textContainer}>
-                  <Text numberOfLines={3} style={styles.titleArtikel}>
-                    Jaksa Pertanyakan Mobil untuk Brigita Manohara Kasus Ricky
-                    HAM Pagawak
-                  </Text>
-                  <Text numberOfLines={3} style={styles.excerptArtikel}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Culpa quam fugit dolorem voluptates esse dolor, dolores amet
-                    perspiciatis tenetur beatae rem mollitia doloremque
-                    nesciunt, saepe molestias soluta. Ad laborum excepturi natus
-                    enim ullam rerum, pro<View></View>vident nemo harum ipsa
-                    nobis possimus quis alias autem libero similique sed amet!
-                    Reiciendis, eveniet commodi.
-                  </Text>
-                </View>
-              </Pressable>
-              <View style={styles.artikelBaru}>
-                {/* <ArtikelCard navigation={navigation} /> */}
-                {/* <ArtikelCard navigation={navigation} /> */}
-                {/* <ArtikelCard navigation={navigation} /> */}
-              </View>
-            </View>
-
-            <View style={styles.rekomendasiArtikelContainer}>
-              <Text style={styles.sectionTitle}>Rekomendasi Artikel</Text>
-              <FlatList
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                style={styles.rekomendasiArtikel}
-                data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
-                renderItem={(item) => (
-                  <RekomendasiArtikel navigation={navigation} />
-                )}
-              />
-            </View>
-
-            <View style={styles.artikelPopulerContainer}>
-              <Text style={styles.sectionTitle}>Artikel Terpopuler</Text>
-              <View style={styles.artikelPopuler}>
-                {dataArtikelKeys.length > 0 ? (
-                  dataArtikelKeys.map((key) => (
-                    <ArtikelCard
+            {dataArtikelKeys.length > 0 ? (
+              <>
+                <View style={styles.artikelBaruContainer}>
+                  <Text style={styles.sectionTitle}>Artikel Terbaru</Text>
+                  {artikelPalingBaruKeys.map((key) => (
+                    <Pressable
                       key={key}
-                      navigation={navigation}
-                      artikel={dataArtikel[key]}
-                    />
-                  ))
-                ) : (
-                  <ActivityIndicator size="large" color={COLORS.primary} />
-                )}
+                      onPress={() =>
+                        navigation.navigate("DetailArtikel", {
+                          artikel: dataArtikel[key],
+                        })
+                      }
+                      style={styles.artikelPalingBaru}
+                    >
+                      <Image
+                        onLoad={() => setIsLoadedImage(false)}
+                        source={
+                          isLoadedImage
+                            ? images.defaultBanner
+                            : {
+                                uri: dataArtikel[key].image,
+                              }
+                        }
+                        style={styles.imageArtikelPalingBaru}
+                        resizeMode="contain"
+                      />
+                      <View style={styles.textContainer}>
+                        <Text numberOfLines={3} style={styles.titleArtikel}>
+                          {dataArtikel[key].judul}
+                        </Text>
+                        <Text numberOfLines={3} style={styles.excerptArtikel}>
+                          {dataArtikel[key].konten}
+                        </Text>
+                      </View>
+                    </Pressable>
+                  ))}
+                  <View style={styles.artikelBaru}>
+                    {artikelTerbaruKeys.map((key) => (
+                      <ArtikelCard
+                        key={key}
+                        navigation={navigation}
+                        artikel={dataArtikel[key]}
+                      />
+                    ))}
+                  </View>
+                </View>
 
-                {/* <ArtikelCard navigation={navigation} />
-                <ArtikelCard navigation={navigation} />
-                <ArtikelCard navigation={navigation} />
-                <ArtikelCard navigation={navigation} /> */}
-              </View>
-            </View>
+                <View style={styles.rekomendasiArtikelContainer}>
+                  <Text style={styles.sectionTitle}>Rekomendasi Artikel</Text>
+                  <FlatList
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={styles.rekomendasiArtikel}
+                    data={artikelRekomendasiKeys}
+                    renderItem={({ item }) => (
+                      <RekomendasiArtikel
+                        artikel={dataArtikel[item]}
+                        key={item}
+                        navigation={navigation}
+                      />
+                    )}
+                  />
+                </View>
+
+                <View style={styles.artikelPopulerContainer}>
+                  <Text style={styles.sectionTitle}>Artikel Terpopuler</Text>
+                  <View style={styles.artikelPopuler}>
+                    {artikelPopulerKeys.map((key) => (
+                      <ArtikelCard
+                        key={key}
+                        navigation={navigation}
+                        artikel={dataArtikel[key]}
+                      />
+                    ))}
+                  </View>
+                </View>
+              </>
+            ) : (
+              <ActivityIndicator size="large" color={COLORS.primary} />
+            )}
           </View>
         </View>
       </ScrollView>
@@ -154,7 +186,6 @@ const styles = StyleSheet.create({
   textContainer: {
     paddingHorizontal: 10,
     paddingTop: 10,
-    paddingBottom: 20,
   },
   titleArtikel: {
     fontSize: 23,
