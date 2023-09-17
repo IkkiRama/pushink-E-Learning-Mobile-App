@@ -206,7 +206,12 @@ const DetailMerch = ({ route, navigation }) => {
 
       <View style={styles.ctaContainer}>
         {/* Chat */}
-        <Pressable style={styles.ctaChat}>
+        <Pressable
+          onPress={() =>
+            OpenAnything.Web("https://www.instagram.com/gensoed.merch/?hl=en")
+          }
+          style={styles.ctaChat}
+        >
           <Ionicons
             name="chatbox-ellipses-outline"
             size={24}

@@ -56,22 +56,21 @@ const Home = ({ navigation }) => {
         let dataUser = { ...data };
         setDataUser(dataUser);
       });
-    } else {
-      onValue(ref(db, "Merch"), (querySnapShot) => {
-        let data = querySnapShot.val() || {};
-        let dataMerch = { ...data };
-        setMerchandise(dataMerch);
-      });
-      onValue(ref(db, "Artikel"), (querySnapShot) => {
-        let data = querySnapShot.val() || {};
-        let dataArtikel = { ...data };
-        setSeriesArtikel(dataArtikel);
-      });
-
-      fetch("https://api.bem-unsoed.com/api/kost")
-        .then((response) => response.json())
-        .then((result) => setDataKos(result));
     }
+    onValue(ref(db, "Merch"), (querySnapShot) => {
+      let data = querySnapShot.val() || {};
+      let dataMerch = { ...data };
+      setMerchandise(dataMerch);
+    });
+    onValue(ref(db, "Artikel"), (querySnapShot) => {
+      let data = querySnapShot.val() || {};
+      let dataArtikel = { ...data };
+      setSeriesArtikel(dataArtikel);
+    });
+
+    fetch("https://api.bem-unsoed.com/api/kost")
+      .then((response) => response.json())
+      .then((result) => setDataKos(result));
   }, []);
 
   MerchandiseKeys.map((key, index) => {
@@ -152,64 +151,68 @@ const Home = ({ navigation }) => {
                 Nikmati Artikel dari Unsoed
               </Text>
 
-              <FlatList
-                data={showSeriesArtikelKeys}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                style={{ marginTop: 15 }}
-                renderItem={({ item }) => (
-                  <Pressable
-                    key={item}
-                    style={{ margin: 5 }}
-                    onPress={() =>
-                      navigation.navigate("DetailArtikel", {
-                        artikel: SeriesArtikel[item],
-                      })
-                    }
-                  >
-                    <ImageBackground
-                      source={{ uri: SeriesArtikel[item].image }}
-                      resizeMode="cover"
-                      style={{
-                        width: 170,
-                        height: 250,
-                        overflow: "hidden",
-                        justifyContent: "flex-end",
-                      }}
-                      imageStyle={{ borderRadius: 10 }}
+              {SeriesArtikelKeys.length > 0 ? (
+                <FlatList
+                  data={showSeriesArtikelKeys}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  style={{ marginTop: 15 }}
+                  renderItem={({ item }) => (
+                    <Pressable
+                      key={item}
+                      style={{ margin: 5 }}
+                      onPress={() =>
+                        navigation.navigate("DetailArtikel", {
+                          artikel: SeriesArtikel[item],
+                        })
+                      }
                     >
-                      <LinearGradient
-                        colors={[
-                          "transparent",
-                          "#767676e9",
-                          "#5c5c5c",
-                          "#3d3d3d",
-                        ]}
+                      <ImageBackground
+                        source={{ uri: SeriesArtikel[item].image }}
+                        resizeMode="cover"
                         style={{
-                          width: "100%",
-                          height: 170,
-                          padding: 10,
+                          width: 170,
+                          height: 250,
+                          overflow: "hidden",
                           justifyContent: "flex-end",
-                          paddingBottom: 30,
-                          borderBottomLeftRadius: 10,
-                          borderBottomRightRadius: 10,
                         }}
+                        imageStyle={{ borderRadius: 10 }}
                       >
-                        <Text
+                        <LinearGradient
+                          colors={[
+                            "transparent",
+                            "#767676e9",
+                            "#5c5c5c",
+                            "#3d3d3d",
+                          ]}
                           style={{
-                            fontSize: 20,
-                            color: COLORS.white,
-                            fontWeight: "700",
+                            width: "100%",
+                            height: 170,
+                            padding: 10,
+                            justifyContent: "flex-end",
+                            paddingBottom: 30,
+                            borderBottomLeftRadius: 10,
+                            borderBottomRightRadius: 10,
                           }}
-                          numberOfLines={2}
                         >
-                          {SeriesArtikel[item].judul}
-                        </Text>
-                      </LinearGradient>
-                    </ImageBackground>
-                  </Pressable>
-                )}
-              ></FlatList>
+                          <Text
+                            style={{
+                              fontSize: 20,
+                              color: COLORS.white,
+                              fontWeight: "700",
+                            }}
+                            numberOfLines={2}
+                          >
+                            {SeriesArtikel[item].judul}
+                          </Text>
+                        </LinearGradient>
+                      </ImageBackground>
+                    </Pressable>
+                  )}
+                ></FlatList>
+              ) : (
+                <ActivityIndicator size="large" color={COLORS.primary} />
+              )}
             </View>
 
             {/* Sekarang Unsoed Dalam Genggamanmu */}
