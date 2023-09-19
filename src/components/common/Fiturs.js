@@ -179,6 +179,7 @@ const Styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 5,
     color: COLORS.font,
+    textAlign: "center",
   },
 });
 

@@ -70,7 +70,10 @@ const Home = ({ navigation }) => {
 
     fetch("https://api.bem-unsoed.com/api/kost")
       .then((response) => response.json())
-      .then((result) => setDataKos(result));
+      .then((result) => setDataKos(result))
+      .catch((error) =>
+        console.log(`Terjadi error saat get kos di halaman home ${error}`)
+      );
   }, []);
 
   MerchandiseKeys.map((key, index) => {

@@ -9,7 +9,11 @@ import Search from "../../../assets/Icons/search.svg";
 import Bell from "../../../assets/Icons/bell.svg";
 import { Image } from "react-native";
 import { COLORS } from "../../constants";
-import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  FontAwesome,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 const Navbar = ({
   isBack,
   goBack,
@@ -17,6 +21,9 @@ const Navbar = ({
   isTitle = null,
   goHome,
   isFromHome = false,
+  isArtikel = false,
+  changeFontSize,
+  setChangeFontSize,
 }) => {
   return (
     <View
@@ -89,11 +96,23 @@ const Navbar = ({
         )}
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
+        {isArtikel ? (
+          <Pressable onPress={() => setChangeFontSize(!changeFontSize)}>
+            <MaterialIcons
+              name="text-fields"
+              size={24}
+              color={COLORS.lightWhite}
+            />
+          </Pressable>
+        ) : (
+          ""
+        )}
+
         <View style={{ position: "relative", marginLeft: 15 }}>
           <Bell
             width={27}
             height={27}
-            style={{ color: COLORS.white, backgroundColor: "transparent" }}
+            style={{ color: COLORS.lightWhite, backgroundColor: "transparent" }}
           ></Bell>
           <View
             style={{
@@ -119,24 +138,6 @@ const Navbar = ({
             </Text>
           </View>
         </View>
-
-        {/* <View
-          style={{
-            width: 37,
-            height: 37,
-            borderRadius: 50,
-            backgroundColor: COLORS.white,
-            justifyContent: "center",
-            alignItems: "center",
-            marginLeft: 20,
-          }}
-        >
-          <Image
-            style={{ width: 33, height: 33, borderRadius: 50 }}
-            source={images.fotoRifki}
-            // resizeMode="cover"
-          ></Image>
-        </View> */}
       </View>
     </View>
   );

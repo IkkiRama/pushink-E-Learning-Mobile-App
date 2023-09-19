@@ -148,6 +148,7 @@ const InfoKos = ({ navigation }) => {
                 <View style={styles.jenisKelaminWrapper}>
                   <FlatList
                     horizontal
+                    showsHorizontalScrollIndicator={false}
                     data={jenisKelamin}
                     renderItem={({ item }) => (
                       <Pressable

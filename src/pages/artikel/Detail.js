@@ -1,5 +1,7 @@
 import {
+  FlatList,
   Image,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -9,28 +11,88 @@ import {
 } from "react-native";
 import React, { Fragment, useState } from "react";
 import { COLORS, SAFEAREAVIEW, images } from "../../constants";
-import { Navbar } from "../../components";
-import BottomMenu from "../../components/common/BottomMenu";
+import { Navbar, BottomMenu } from "../../components";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const DetailArtikel = ({ route, navigation }) => {
+  const [changeFontSize, setChangeFontSize] = useState(false);
   const [isLoadedImage, setIsLoadedImage] = useState(true);
+  const [isArtikel, setIsArtikel] = useState(false);
   const { artikel } = route.params;
+  const ukuranFont = [
+    {
+      fontSize: 14,
+      title: "Kecil",
+    },
+    {
+      fontSize: 16,
+      title: "Sedang",
+    },
+    {
+      fontSize: 20,
+      title: "Besar",
+    },
+  ];
+  const [ukuranFontActive, setUkuranFontActive] = useState({
+    fontSize: 16,
+    title: "Sedang",
+  });
+
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
-      <Navbar isBack={true} goBack={() => navigation.goBack()} />
+      <Navbar
+        isBack={true}
+        goBack={() => navigation.goBack()}
+        isArtikel={true}
+        changeFontSize={changeFontSize}
+        setChangeFontSize={setChangeFontSize}
+      />
       <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar
           translucent
           barStyle={"light-content"}
           backgroundColor="transparent"
         ></StatusBar>
+        {changeFontSize ? (
+          <View style={styles.changeFontSize}>
+            <View style={styles.changeFontSizeTitleContainer}>
+              <MaterialIcons name="text-fields" size={30} color={COLORS.font} />
+              <Text style={styles.changeFontSizeTitle}>Ukuran Font</Text>
+            </View>
+            <View style={styles.changeFontSizeButtonContainer}>
+              {ukuranFont.map((ukuran, i) => (
+                <Pressable
+                  onPress={() => setUkuranFontActive(ukuran)}
+                  key={i}
+                  style={styles.changeFontSizeButton(
+                    ukuranFontActive.title,
+                    ukuran.title
+                  )}
+                >
+                  <Text
+                    style={styles.changeFontSizeText(
+                      ukuranFontActive.title,
+                      ukuran.title
+                    )}
+                  >
+                    {ukuran.title}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          </View>
+        ) : (
+          ""
+        )}
+
         <View style={styles.containerWrapper}>
+          {/* change font isArtikel */}
           <Text style={styles.titleArtikel} numberOfLines={3}>
             {artikel.judul}
           </Text>
           <Text style={styles.authorArtikelContainer}>
             Ditulis oleh{" "}
-            <Text style={styles.authorArtikel}>{artikel.penulis}</Text>{" "}
+            <Text style={styles.authorArtikel}>{artikel.penulis}, </Text>{" "}
             {artikel.terbit}
           </Text>
           <View style={styles.kategoriContainer}>
@@ -49,7 +111,9 @@ const DetailArtikel = ({ route, navigation }) => {
             resizeMode="contain"
           />
           <View style={styles.kontent}>
-            <Text style={styles.textKonten}>{artikel.konten}</Text>
+            <Text style={styles.textKonten(ukuranFontActive.fontSize)}>
+              {artikel.konten}
+            </Text>
           </View>
         </View>
       </ScrollView>
@@ -66,6 +130,42 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: COLORS.lightWhite,
   },
+
+  changeFontSize: {
+    padding: 10,
+    backgroundColor: COLORS.borderColor,
+  },
+  changeFontSizeTitleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  changeFontSizeTitle: {
+    color: COLORS.font,
+    fontWeight: "600",
+    marginLeft: 10,
+    fontSize: 21,
+  },
+  changeFontSizeButtonContainer: {
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  changeFontSizeButton: (ukuranFontActive, ukuran) => ({
+    flex: 1,
+    borderWidth: 1,
+    borderColor: ukuranFontActive === ukuran ? COLORS.primary : COLORS.gray,
+    borderRadius: 8,
+    paddingVertical: 7,
+    marginHorizontal: 5,
+    alignItems: "center",
+    backgroundColor:
+      ukuranFontActive === ukuran ? COLORS.primary : COLORS.borderColor,
+  }),
+  changeFontSizeText: (ukuranFontActive, ukuran) => ({
+    color: ukuranFontActive === ukuran ? COLORS.lightWhite : COLORS.font,
+    fontWeight: "600",
+    fontSize: 16,
+  }),
   titleArtikel: {
     fontWeight: "800",
     fontSize: 28,
@@ -108,12 +208,12 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
   },
   kontent: {},
-  textKonten: {
-    fontSize: 16,
+  textKonten: (ukuranFontActive) => ({
+    fontSize: ukuranFontActive,
     color: COLORS.font,
     lineHeight: 27,
     marginVertical: 5,
-  },
+  }),
   headerKonten: {
     marginVertical: 5,
     fontSize: 23,
