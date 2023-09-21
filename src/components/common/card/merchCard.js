@@ -88,10 +88,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: COLORS.font,
-    height: 40,
+    height: 50,
   },
   hargaContainer: {
-    marginTop: 10,
     flexDirection: "row",
     alignItems: "center",
   },
