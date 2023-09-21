@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
   containerWrapper: {
     flex: 1,
     backgroundColor: COLORS.white,
+    paddingHorizontal: 10,
   },
   imageKomik: {
     width: "100%",

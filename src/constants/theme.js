@@ -12,6 +12,8 @@ const COLORS = {
   diskon: "#DA4549",
   merah: "#dc3545",
 
+  btnHijau: "#1ee592",
+
   gray: "#83829A",
   gray2: "#C1C0C8",
 

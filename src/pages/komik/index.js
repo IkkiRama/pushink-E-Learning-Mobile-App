@@ -47,7 +47,7 @@ const Komik = ({ navigation }) => {
     komiks.map((komik) => (
       <Pressable
         key={komik.id}
-        onPress={() => navigation.navigate("DetailKomik", { id: komik.id })}
+        onPress={() => navigation.replace("DetailKomik", { id: komik.id })}
         style={styles.komik}
       >
         <RenderImage komik={komik} />

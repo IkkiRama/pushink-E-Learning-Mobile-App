@@ -51,9 +51,26 @@ const Profile = ({ navigation }) => {
   });
 
   const handleLogout = () => {
-    signOut(auth);
-    navigation.replace("Login");
-    Alert.alert("Kamu berhasil logout");
+    Alert.alert(
+      "Apakah kamu yakin?",
+      "Apakah kamu yakin akan keluar dari akun?",
+      [
+        // The "Yes" button
+        {
+          text: "Yes",
+          onPress: () => {
+            signOut(auth);
+            navigation.replace("Login");
+            Alert.alert("Kamu berhasil logout");
+          },
+        },
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped
+        {
+          text: "No",
+        },
+      ]
+    );
   };
   return (
     <SafeAreaView style={SAFEAREAVIEW.style}>
@@ -161,7 +178,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  profileUserContainer: { marginLeft: 20 },
+  profileUserContainer: { flex: 1, marginLeft: 20 },
   userName: {
     fontSize: 23,
     fontWeight: "700",

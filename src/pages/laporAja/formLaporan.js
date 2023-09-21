@@ -254,14 +254,15 @@ const styles = StyleSheet.create({
   },
 
   ctaCeritakan: {
+    flex: 1,
+
     borderRadius: 10,
     paddingVertical: 10,
-    paddingHorizontal: 30,
-    alignItems: "center",
     backgroundColor: COLORS.btnHijau,
     marginRight: 10,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
   },
   ctaCeritakanText: {
     fontSize: 16,

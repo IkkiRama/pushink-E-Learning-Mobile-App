@@ -9,16 +9,46 @@ import {
   Text,
   View,
 } from "react-native";
-import React, { Fragment, useState } from "react";
-import { COLORS, SAFEAREAVIEW, images } from "../../constants";
-import { Navbar, BottomMenu } from "../../components";
+import React, { useState, useEffect } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
+import { ref, onValue } from "firebase/database";
 
+import { db } from "../../configs/firebase";
+import {
+  Navbar,
+  BottomMenu,
+  RekomendasiArtikel,
+  ArtikelCard,
+} from "../../components";
+import { COLORS, SAFEAREAVIEW, images } from "../../constants";
 const DetailArtikel = ({ route, navigation }) => {
   const [changeFontSize, setChangeFontSize] = useState(false);
   const [isLoadedImage, setIsLoadedImage] = useState(true);
-  const [isArtikel, setIsArtikel] = useState(false);
+  const [dataArtikel, setDataArtikel] = useState({});
+  const dataArtikelKeys = Object.keys(dataArtikel);
+
+  let artikelTerbaruKeys = [];
   const { artikel } = route.params;
+  let artikelRekomendasiKeys = [];
+
+  useEffect(() => {
+    return onValue(ref(db, "Artikel"), (querySnapShot) => {
+      let data = querySnapShot.val() || {};
+      let semuaArtikel = { ...data };
+      setDataArtikel(semuaArtikel);
+    });
+  }, []);
+
+  dataArtikelKeys.map((key, index) => {
+    if (index > 0 && index <= 7 && dataArtikel[key].judul !== artikel.judul) {
+      artikelTerbaruKeys.push(key);
+    }
+    if (index > 7 && index <= 14 && dataArtikel[key].judul !== artikel.judul) {
+      artikelRekomendasiKeys.push(key);
+    }
+    return true;
+  });
+
   const ukuranFont = [
     {
       fontSize: 14,
@@ -87,12 +117,10 @@ const DetailArtikel = ({ route, navigation }) => {
 
         <View style={styles.containerWrapper}>
           {/* change font isArtikel */}
-          <Text style={styles.titleArtikel} numberOfLines={3}>
-            {artikel.judul}
-          </Text>
+          <Text style={styles.titleArtikel}>{artikel.judul}</Text>
           <Text style={styles.authorArtikelContainer}>
             Ditulis oleh{" "}
-            <Text style={styles.authorArtikel}>{artikel.penulis}, </Text>{" "}
+            <Text style={styles.authorArtikel}>{artikel.penulis} </Text> tanggal{" "}
             {artikel.terbit}
           </Text>
           <View style={styles.kategoriContainer}>
@@ -115,6 +143,34 @@ const DetailArtikel = ({ route, navigation }) => {
               {artikel.konten}
             </Text>
           </View>
+
+          <View style={styles.rekomendasiArtikelContainer}>
+            <Text style={styles.sectionTitle}>Rekomendasi Artikel</Text>
+            <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={styles.rekomendasiArtikel}
+              data={artikelRekomendasiKeys}
+              renderItem={({ item }) => (
+                <RekomendasiArtikel
+                  artikel={dataArtikel[item]}
+                  key={item}
+                  navigation={navigation}
+                />
+              )}
+            />
+
+            <View style={styles.artikelBaru}>
+              <Text style={styles.sectionTitle}>Artikel Terbaru</Text>
+              {artikelTerbaruKeys.map((key) => (
+                <ArtikelCard
+                  key={key}
+                  navigation={navigation}
+                  artikel={dataArtikel[key]}
+                />
+              ))}
+            </View>
+          </View>
         </View>
       </ScrollView>
       <BottomMenu focused="Artikel" navigationHandle={navigation}></BottomMenu>
@@ -129,6 +185,13 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: COLORS.lightWhite,
+  },
+
+  sectionTitle: {
+    color: COLORS.font,
+    fontWeight: "600",
+    fontSize: 21,
+    marginBottom: 10,
   },
 
   changeFontSize: {
@@ -225,5 +288,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: COLORS.font,
+  },
+
+  rekomendasiArtikelContainer: {
+    marginBottom: 20,
+  },
+  artikelBaru: {
+    marginVertical: 10,
+  },
+  rekomendasiArtikel: {
+    marginTop: 5,
   },
 });

@@ -120,11 +120,7 @@ const Bantuan = ({ navigation }) => {
               </Pressable>
 
               <Pressable
-                onPress={() =>
-                  OpenAnything.Call("+6282133320489").catch(
-                    Alert.alert("Tidak Dapat menelfon nomer tersebut!")
-                  )
-                }
+                onPress={() => OpenAnything.Call("+6282133320489")}
                 style={styles.perBantuan}
               >
                 <View style={styles.perBantuanTextContainer}>

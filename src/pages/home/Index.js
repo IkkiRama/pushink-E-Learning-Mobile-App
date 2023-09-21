@@ -114,6 +114,7 @@ const Home = ({ navigation }) => {
         >
           <View
             style={{
+              flex: 1,
               paddingBottom: 20,
               paddingHorizontal: 10,
             }}
