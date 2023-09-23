@@ -8,6 +8,7 @@ import {
   Image,
   Pressable,
   Linking,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Foundation, Ionicons } from "@expo/vector-icons";
@@ -19,6 +20,7 @@ import { FasilitasKhusus, KostCarousel, Navbar } from "../../components";
 const InfoKosDetail = ({ route, navigation }) => {
   const { id } = route.params;
   const [kos, setKos] = useState({});
+  const kosKeys = Object.keys(kos);
   const [isLoadedImage, setIsLoadedImage] = useState(true);
   const [isLihatSelengkapnya, setIsLihatSelengkapnya] = useState(false);
 
@@ -98,141 +100,148 @@ const InfoKosDetail = ({ route, navigation }) => {
           backgroundColor="transparent"
         ></StatusBar>
 
-        <View style={styles.containerWrapper}>
-          <KostCarousel ImageKos={kos.kost_images} />
-
-          {/* Detail Information */}
-          <View style={styles.detailInformasiKosContainer}>
-            <Text style={styles.namaKos} numberOfLines={2}>
-              {kos.name}
-            </Text>
-
-            <View style={styles.informasiKos}>
-              <View style={styles.jenisKelaminKos(kos.type)}>
-                <Text style={styles.jenisKelaminKosText(kos.type)}>
-                  {kos.type === "l" ? "Putra" : "Putri"}
-                </Text>
-              </View>
-
-              <View style={styles.alamatKosContainer}>
-                <Foundation name="marker" size={24} color={COLORS.font} />
-                <Text style={styles.alamatKos}>{kos.region}</Text>
-              </View>
-            </View>
-
-            <View style={styles.peraturanUmumKos}>
-              <Text style={styles.peraturanUmumKosTitle}>
-                Peraturan umum kos
-              </Text>
-              <Text
-                style={styles.peraturanUmumKosText}
-                numberOfLines={isLihatSelengkapnya ? 0 : 3}
-              >
-                {`Peraturan umum yang berlaku di kos ini dirancang untuk memastikan bahwa lingkungan tetap bersih, nyaman, dan aman bagi semua penghuni. Setiap penghuni diharapkan menjaga kebersihan kamar dan ruang umum, serta merawat fasilitas dengan baik. Setiap penghuni wajib melakukan penguncian pintu dan larangan memberikan akses kepada orang yang tidak dikenal, serta penghuni diharapkan mengikuti prosedur tertentu ketika memiliki tamu untuk menjaga keamanan bersama.\n\n\nPeraturan tambahan:\n\n1. Jika tenant merusak atau menghilangkan fasilitas, diwajibkan mengganti 100% fasilitas tersebut dengan pembelian dilakukan oleh pihak pemilik dan barang yang rusak tersebut dapat diambil oleh tenant dengan pengangkutan pribadi.\n\n2. Apabila tenant yang melanggar tata tertib yang diberlakukan pemilik, maka menyetujui untuk dikeluarkan dengan masa peringatan 3 hari, lewat dari 3 hari maka final dikeluarkan (pria melewati lobby, alas sepatu taruh sembarangan, alat kebersihan taruh sembarangan, dsb).`}
+        {kosKeys.length > 0 ? (
+          <View style={styles.containerWrapper}>
+            <KostCarousel ImageKos={kos.kost_images} />
+            <View style={styles.detailInformasiKosContainer}>
+              <Text style={styles.namaKos} numberOfLines={2}>
+                {kos.name}
               </Text>
 
-              <Pressable
-                onPress={() => setIsLihatSelengkapnya(!isLihatSelengkapnya)}
-              >
-                <Text style={styles.peraturanUmumKosLihatSelengkapnya}>
-                  {isLihatSelengkapnya
-                    ? `Lihat lebih sedikit`
-                    : "Lihat selengkapnya"}
+              <View style={styles.informasiKos}>
+                <View style={styles.jenisKelaminKos(kos.type)}>
+                  <Text style={styles.jenisKelaminKosText(kos.type)}>
+                    {kos.type === "l" ? "Putra" : "Putri"}
+                  </Text>
+                </View>
+
+                <View style={styles.alamatKosContainer}>
+                  <Foundation name="marker" size={24} color={COLORS.font} />
+                  <Text style={styles.alamatKos}>{kos.region}</Text>
+                </View>
+              </View>
+
+              <View style={styles.peraturanUmumKos}>
+                <Text style={styles.peraturanUmumKosTitle}>
+                  Peraturan umum kos
                 </Text>
-              </Pressable>
-            </View>
-          </View>
-          {/* Apa yang kamu dapatkan */}
-          <View style={styles.fasilitasKosContainer}>
-            {/* Fasilitas khusus diambil dari API */}
-            <View style={styles.fasilitasKhusus}>
-              <Text style={styles.fasilitasTitle}>Fasilitas khusus</Text>
+                <Text
+                  style={styles.peraturanUmumKosText}
+                  numberOfLines={isLihatSelengkapnya ? 0 : 3}
+                >
+                  {`Peraturan umum yang berlaku di kos ini dirancang untuk memastikan bahwa lingkungan tetap bersih, nyaman, dan aman bagi semua penghuni. Setiap penghuni diharapkan menjaga kebersihan kamar dan ruang umum, serta merawat fasilitas dengan baik. Setiap penghuni wajib melakukan penguncian pintu dan larangan memberikan akses kepada orang yang tidak dikenal, serta penghuni diharapkan mengikuti prosedur tertentu ketika memiliki tamu untuk menjaga keamanan bersama.\n\n\nPeraturan tambahan:\n\n1. Jika tenant merusak atau menghilangkan fasilitas, diwajibkan mengganti 100% fasilitas tersebut dengan pembelian dilakukan oleh pihak pemilik dan barang yang rusak tersebut dapat diambil oleh tenant dengan pengangkutan pribadi.\n\n2. Apabila tenant yang melanggar tata tertib yang diberlakukan pemilik, maka menyetujui untuk dikeluarkan dengan masa peringatan 3 hari, lewat dari 3 hari maka final dikeluarkan (pria melewati lobby, alas sepatu taruh sembarangan, alat kebersihan taruh sembarangan, dsb).`}
+                </Text>
 
-              <FasilitasKhusus FasilitasKos={kos.kost_facilities} />
+                <Pressable
+                  onPress={() => setIsLihatSelengkapnya(!isLihatSelengkapnya)}
+                >
+                  <Text style={styles.peraturanUmumKosLihatSelengkapnya}>
+                    {isLihatSelengkapnya
+                      ? `Lihat lebih sedikit`
+                      : "Lihat selengkapnya"}
+                  </Text>
+                </Pressable>
+              </View>
             </View>
+            <View style={styles.fasilitasKosContainer}>
+              {/* Fasilitas khusus diambil dari API */}
+              <View style={styles.fasilitasKhusus}>
+                <Text style={styles.fasilitasTitle}>Fasilitas khusus</Text>
 
-            {/* Spesifikasi Kamar */}
-            <View>
-              <Text style={styles.fasilitasTitle}>Spesifikasi tipe kamar</Text>
+                <FasilitasKhusus FasilitasKos={kos.kost_facilities} />
+              </View>
+
+              {/* Spesifikasi Kamar */}
               <View>
-                <View style={styles.perSpesifikasiTipeKamar}>
-                  <Ionicons name="cube-outline" size={20} color={COLORS.font} />
-                  <Text style={styles.perSpesifikasiTipeKamarText}>
-                    4 x 3 meter
-                  </Text>
-                </View>
-                <View style={styles.perSpesifikasiTipeKamar}>
-                  <Image
-                    source={{
-                      uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FKost%2FSpesifikasi%20Kamar%2Flistrik%201.png?alt=media&token=19335caa-bcae-4364-8782-f769234f2f14",
-                    }}
-                    style={styles.perSpesifikasiTipeKamarImage}
-                  />
-                  <Text style={styles.perSpesifikasiTipeKamarText}>
-                    Tidak termasuk listrik
-                  </Text>
+                <Text style={styles.fasilitasTitle}>
+                  Spesifikasi tipe kamar
+                </Text>
+                <View>
+                  <View style={styles.perSpesifikasiTipeKamar}>
+                    <Ionicons
+                      name="cube-outline"
+                      size={20}
+                      color={COLORS.font}
+                    />
+                    <Text style={styles.perSpesifikasiTipeKamarText}>
+                      4 x 3 meter
+                    </Text>
+                  </View>
+                  <View style={styles.perSpesifikasiTipeKamar}>
+                    <Image
+                      source={{
+                        uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/IITC%202023%2FKost%2FSpesifikasi%20Kamar%2Flistrik%201.png?alt=media&token=19335caa-bcae-4364-8782-f769234f2f14",
+                      }}
+                      style={styles.perSpesifikasiTipeKamarImage}
+                    />
+                    <Text style={styles.perSpesifikasiTipeKamarText}>
+                      Tidak termasuk listrik
+                    </Text>
+                  </View>
                 </View>
               </View>
-            </View>
 
-            {/* Fasilitas Umum */}
-            <View style={styles.fasilitasUmumKos}>
-              <Text style={styles.fasilitasTitle}>Fasilitas umum</Text>
+              {/* Fasilitas Umum */}
+              <View style={styles.fasilitasUmumKos}>
+                <Text style={styles.fasilitasTitle}>Fasilitas umum</Text>
 
-              {FasilitasUmum.map((fasilitas) => (
-                <View key={fasilitas.id} style={styles.perFasilitasUmumKos}>
+                {FasilitasUmum.map((fasilitas) => (
+                  <View key={fasilitas.id} style={styles.perFasilitasUmumKos}>
+                    <Image
+                      source={{ uri: fasilitas.image }}
+                      width={20}
+                      height={20}
+                      style={styles.perSpesifikasiTipeKamarImage}
+                    />
+                    <Text style={styles.perSpesifikasiTipeKamarText}>
+                      {fasilitas.nama}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+
+              {/* Fasilitas Parkir */}
+              <View style={styles.fasilitasUmumKos}>
+                <Text style={styles.fasilitasTitle}>Fasilitas parkir</Text>
+
+                {FasilitasParkir.map((fasilitas) => (
+                  <View key={fasilitas.id} style={styles.perFasilitasUmumKos}>
+                    <Image
+                      source={{ uri: fasilitas.image }}
+                      width={20}
+                      height={20}
+                      style={styles.perSpesifikasiTipeKamarImage}
+                    />
+                    <Text style={styles.perSpesifikasiTipeKamarText}>
+                      {fasilitas.nama}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+
+              {/* MAP */}
+              <View style={styles.mapContainer}>
+                <Text style={styles.fasilitasTitle}>Lokasi Kos</Text>
+                <Pressable onPress={() => OpenAnything.Web(kos.location)}>
                   <Image
-                    source={{ uri: fasilitas.image }}
-                    width={20}
-                    height={20}
-                    style={styles.perSpesifikasiTipeKamarImage}
+                    onLoad={() => setIsLoadedImage(false)}
+                    source={
+                      isLoadedImage
+                        ? images.defaultBanner
+                        : {
+                            uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/Appsoed%2FIcon%2Flocation_kost.png?alt=media&token=ed7d705d-8511-4286-b75e-f725d723cb80",
+                          }
+                    }
+                    style={styles.mapImage}
+                    resizeMode="contain"
                   />
-                  <Text style={styles.perSpesifikasiTipeKamarText}>
-                    {fasilitas.nama}
-                  </Text>
-                </View>
-              ))}
-            </View>
-
-            {/* Fasilitas Parkir */}
-            <View style={styles.fasilitasUmumKos}>
-              <Text style={styles.fasilitasTitle}>Fasilitas parkir</Text>
-
-              {FasilitasParkir.map((fasilitas) => (
-                <View key={fasilitas.id} style={styles.perFasilitasUmumKos}>
-                  <Image
-                    source={{ uri: fasilitas.image }}
-                    width={20}
-                    height={20}
-                    style={styles.perSpesifikasiTipeKamarImage}
-                  />
-                  <Text style={styles.perSpesifikasiTipeKamarText}>
-                    {fasilitas.nama}
-                  </Text>
-                </View>
-              ))}
-            </View>
-
-            {/* MAP */}
-            <View style={styles.mapContainer}>
-              <Text style={styles.fasilitasTitle}>Lokasi Kos</Text>
-              <Pressable onPress={() => OpenAnything.Web(kos.location)}>
-                <Image
-                  onLoad={() => setIsLoadedImage(false)}
-                  source={
-                    isLoadedImage
-                      ? images.defaultBanner
-                      : {
-                          uri: "https://firebasestorage.googleapis.com/v0/b/react-native-crud-fireba-ea6c9.appspot.com/o/Appsoed%2FIcon%2Flocation_kost.png?alt=media&token=ed7d705d-8511-4286-b75e-f725d723cb80",
-                        }
-                  }
-                  style={styles.mapImage}
-                  resizeMode="contain"
-                />
-              </Pressable>
+                </Pressable>
+              </View>
             </View>
           </View>
-        </View>
+        ) : (
+          <ActivityIndicator size="large" color={COLORS.primary} />
+        )}
       </ScrollView>
       <View style={styles.hubungiPenjual}>
         <View style={styles.hargaContainer}>

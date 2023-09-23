@@ -66,7 +66,7 @@ const Home = ({ navigation }) => {
       let data = querySnapShot.val() || {};
       let dataArtikel = { ...data };
       setSeriesArtikel(dataArtikel);
-    });
+    }); 
 
     fetch("https://api.bem-unsoed.com/api/kost")
       .then((response) => response.json())

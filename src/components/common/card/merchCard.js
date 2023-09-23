@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   hargaContainer: {
+    marginTop: 5,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -110,8 +111,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   diskonProduk: {
-    paddingVertical: 2,
     paddingHorizontal: 10,
+    paddingVertical: 2,
     marginLeft: 15,
     borderRadius: 50,
     alignItems: "center",
